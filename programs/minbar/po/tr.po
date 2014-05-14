@@ -1,0 +1,512 @@
+# Minbar Turkish Translation.
+# Copyright (C) 2007 Mustafa Doğan
+# This file is distributed under the same license as the Minbar package.
+# Mustafa Doğan <dogan@politics.ankara.edu.tr>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-21 22:03+0000\n"
+"PO-Revision-Date: 2007-11-30 17:10+02\n"
+"Last-Translator: Mustafa Doğan <dogan@politics.ankara.edu.tr>\n"
+"Language-Team: Türkçe <TR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../src/main.c:156
+#, c-format
+msgid "Time for prayer: %s"
+msgstr "%s namazı vakti: "
+
+#: ../src/main.c:162 ../src/main.c:170
+#, c-format
+msgid "%d %s until %s prayer."
+msgstr "%d %s sonra %s vakti girecek."
+
+#: ../src/main.c:164 ../src/main.c:182 ../src/main.c:390
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "dakika"
+msgstr[1] "dakika"
+
+#: ../src/main.c:172 ../src/main.c:180
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "saat"
+msgstr[1] "saat"
+
+#: ../src/main.c:178
+#, c-format
+msgid "%d %s and %d %s until %s prayer."
+msgstr "%d %s ve %d %s sonra %s vakti girecek."
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 12 January 2007
+#.
+#: ../src/main.c:217
+msgid "%d %B %G"
+msgstr "%d %B %G"
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 19:17.
+#. *             if you want to use 12 hour format, use: %I:%M %p
+#. *             which will print something similar to: 7:17 pm
+#.
+#: ../src/main.c:229
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#. The comma may differ from language to language
+#: ../src/main.c:237
+msgid ","
+msgstr ","
+
+#: ../src/main.c:283
+#, c-format
+msgid "%d minutes until %s prayer."
+msgstr "%d dakika sonra %s vakti girecek."
+
+#: ../src/main.c:298
+#, c-format
+msgid "It is time for %s prayer."
+msgstr "%s namazı vakti."
+
+#: ../src/main.c:749 ../src/main.c:840
+#, c-format
+msgid ""
+"Invalid calculation method in preferences, using 5: Muslim world League \n"
+msgstr ""
+"Tercih edilen hesaplama metodu geçersizdir, Muslim World League metodu "
+"kullanılacaktır.\n"
+
+#: ../src/main.c:1054
+#, c-format
+msgid "Error: %s\n"
+msgstr "Hata: %s\n"
+
+#: ../src/main.c:1123
+msgid "All files"
+msgstr "Tüm dosyalar"
+
+#: ../src/main.c:1129
+msgid "Supported files"
+msgstr "Desteklenen dosyalar"
+
+#: ../src/main.c:1252 ../minbar.desktop.in.h:2
+msgid "Minbar Prayer Times"
+msgstr "Minbar Namaz Vakitleri"
+
+#: ../src/main.c:1254
+msgid "skip"
+msgstr "geç"
+
+#: ../src/main.c:1255
+msgid "Muharram"
+msgstr "Muharrem"
+
+#: ../src/main.c:1256
+msgid "Safar"
+msgstr "Safer"
+
+#: ../src/main.c:1257
+msgid "Rabi I"
+msgstr "Rebiul Evvel"
+
+#: ../src/main.c:1258
+msgid "Rabi II"
+msgstr "Rebiul Ahir"
+
+#: ../src/main.c:1259
+msgid "Jumada I"
+msgstr "Cemaziyel Evvel"
+
+#: ../src/main.c:1260
+msgid "Jumada II"
+msgstr "Cemaziyel Ahir"
+
+#: ../src/main.c:1261
+msgid "Rajab"
+msgstr "Recep"
+
+#: ../src/main.c:1262
+msgid "Shaaban"
+msgstr "Şaban"
+
+#: ../src/main.c:1263
+msgid "Ramadan"
+msgstr "Ramazan"
+
+#: ../src/main.c:1264
+msgid "Shawwal"
+msgstr "Şevval"
+
+#: ../src/main.c:1265
+msgid "Thul-Qiaadah"
+msgstr "Zilkade"
+
+#: ../src/main.c:1266
+msgid "Thul-Hijja"
+msgstr "Zilhicce"
+
+#: ../src/main.c:1268
+msgid "Subh"
+msgstr "İmsak"
+
+#: ../src/main.c:1269
+msgid "Shorook"
+msgstr "Güneş"
+
+#: ../src/main.c:1270
+msgid "Dhuhr"
+msgstr "Öğle"
+
+#: ../src/main.c:1271
+msgid "Asr"
+msgstr "İkindi"
+
+#: ../src/main.c:1272
+msgid "Maghreb"
+msgstr "Akşam"
+
+#: ../src/main.c:1273
+msgid "Isha'a"
+msgstr "Yatsı"
+
+#: ../src/main.c:1286
+msgid "Hide main window on start up."
+msgstr "Ana ekranı açılışta gizle"
+
+#: ../src/main.c:1441
+msgid "In Makkah!"
+msgstr "Mekke'de!"
+
+#: ../src/main.c:1490
+msgid "Qibla direction"
+msgstr "Kıble yönü"
+
+#: ../src/main.c:1492
+msgid "East"
+msgstr "Doğu"
+
+#: ../src/main.c:1492
+msgid "West"
+msgstr "Batı"
+
+#: ../src/main.c:1546
+msgid "Minbar Website"
+msgstr "Minber Anasayfası"
+
+#: ../src/main.c:1665
+msgid ""
+"Failed to load the Locations XML database.  Please report this as a bug."
+msgstr ""
+"Locations XML veritabanı yüklenirken hata oluştu. Lütfen bu durumu hata "
+"olarak bildirin."
+
+#: ../data/minbar.glade.h:1
+msgid "<b>Calculation Method</b>"
+msgstr "<b>Hesaplama Metodu</b>"
+
+#: ../data/minbar.glade.h:2
+msgid "<b>Notifications</b>"
+msgstr "<b>Uyarılar</b>"
+
+#: ../data/minbar.glade.h:3
+msgid "<b>Options</b>"
+msgstr "<b>Seçenekler</b>"
+
+#: ../data/minbar.glade.h:4
+msgid "<b>Times</b>"
+msgstr "Vakitler"
+
+#: ../data/minbar.glade.h:5
+msgid "About"
+msgstr "Hakkında"
+
+#: ../data/minbar.glade.h:6
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+#: ../data/minbar.glade.h:7
+msgid "Athan"
+msgstr "Ezan"
+
+#: ../data/minbar.glade.h:8
+msgid "Calculation error..."
+msgstr "Hesaplama hatası..."
+
+#: ../data/minbar.glade.h:9
+msgid "Calendar"
+msgstr "Takvim"
+
+#: ../data/minbar.glade.h:10
+msgid "City"
+msgstr "Şehir"
+
+#: ../data/minbar.glade.h:11
+msgid "City Details"
+msgstr "Şehir Detayı"
+
+#: ../data/minbar.glade.h:12
+msgid "City name:"
+msgstr "Şehir adı:"
+
+#: ../data/minbar.glade.h:13
+msgid "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+msgstr "Telif hakkı (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+
+#: ../data/minbar.glade.h:14
+msgid "Current date printing error"
+msgstr "Cari tarihi yazdırma hatası"
+
+#: ../data/minbar.glade.h:15
+msgid "Edit City Details"
+msgstr "Şehir Detayını Düzenle"
+
+#: ../data/minbar.glade.h:16
+msgid ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Shaf'i)\n"
+"University of Islamic Sciences, Karachi (Hanafi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (always 90)"
+msgstr ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Şafii)\n"
+"University of Islamic Sciences, Karachi (Hanefi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (her zaman 90)"
+
+#: ../data/minbar.glade.h:23
+msgid "Find City"
+msgstr "Şehir Ara"
+
+#: ../data/minbar.glade.h:24
+msgid ""
+"If you cannot find your location, please go to www.islamicfinder.org to "
+"search for it."
+msgstr ""
+"Bulunduğunuz yer listede yoksa, lütfen www.islamicfinder.org adresini "
+"ziyaret ediniz."
+
+#: ../data/minbar.glade.h:25
+msgid "Latitude:"
+msgstr "Enlem"
+
+#: ../data/minbar.glade.h:26
+msgid "Location"
+msgstr "Konum"
+
+#: ../data/minbar.glade.h:27
+msgid "Longitude:"
+msgstr "Boylam"
+
+#: ../data/minbar.glade.h:28
+msgid "Minbar Prayer Calendar"
+msgstr "Minbar İbadet Vakitleri Takvimi"
+
+#: ../data/minbar.glade.h:29
+msgid ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+
+#: ../data/minbar.glade.h:34
+msgid "Normal Athan:"
+msgstr "Normal Ezan:"
+
+#: ../data/minbar.glade.h:35
+msgid "Notifications"
+msgstr "Uyarılar"
+
+#: ../data/minbar.glade.h:36 ../data/minbar.schemas.in.in.h:9
+msgid "Play Athan"
+msgstr "Ezan Oku"
+
+#: ../data/minbar.glade.h:37
+msgid "Prayer Calendar"
+msgstr "İbadet Vakitleri Takvimi"
+
+#: ../data/minbar.glade.h:38
+msgid "Prayer Times"
+msgstr "İbadet Vakitleri"
+
+#: ../data/minbar.glade.h:39
+msgid "Prayer Times on your Desktop"
+msgstr "Masaüstünüz için İbadet Vakitleri"
+
+#: ../data/minbar.glade.h:40
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: ../data/minbar.glade.h:41
+msgid "Quit"
+msgstr "Çıkış"
+
+#: ../data/minbar.glade.h:42
+msgid "Select Athan File"
+msgstr "Ezan Dosyası Seç"
+
+#: ../data/minbar.glade.h:43
+msgid "Show/Hide"
+msgstr "Göster/Gizle"
+
+#: ../data/minbar.glade.h:44 ../data/minbar.schemas.in.in.h:11
+msgid "Start minimised to tray."
+msgstr "Sistem tepsisinde başlat"
+
+#: ../data/minbar.glade.h:45
+msgid "Stop Athan"
+msgstr "Ezanı Durdur"
+
+#: ../data/minbar.glade.h:46
+msgid "Subh Athan:"
+msgstr "Sabah Ezanı"
+
+#: ../data/minbar.glade.h:47
+msgid "Time Zone:"
+msgstr "Saat Dilimi"
+
+#: ../data/minbar.glade.h:48
+msgid "Timetable"
+msgstr "Vakit Tablosu"
+
+#: ../data/minbar.glade.h:49
+msgid "Today"
+msgstr "Bugün"
+
+#: ../data/minbar.glade.h:50
+msgid "Yes, notify before:"
+msgstr "Evet, önce uyar:"
+
+#: ../data/minbar.glade.h:51
+msgid "_Choose a location:"
+msgstr "Bir konum seç"
+
+#: ../data/minbar.glade.h:52
+msgid "_Find Next"
+msgstr "Sonrakini Bul"
+
+#: ../data/minbar.glade.h:53
+msgid "_Search:"
+msgstr "Araştır"
+
+#: ../data/minbar.glade.h:54
+msgid "gtk-apply"
+msgstr "Tamam"
+
+#: ../data/minbar.glade.h:55
+msgid "gtk-cancel"
+msgstr "İptal"
+
+#: ../data/minbar.glade.h:56
+msgid "gtk-close"
+msgstr "Kapat"
+
+#: ../data/minbar.glade.h:57
+msgid "gtk-media-play"
+msgstr "Başlat"
+
+#: ../data/minbar.glade.h:58
+msgid "gtk-media-stop"
+msgstr "Durdur"
+
+#: ../data/minbar.glade.h:59
+msgid "gtk-preferences"
+msgstr "Tercihler"
+
+#: ../data/minbar.glade.h:60
+msgid "minbar was not built with notifications support."
+msgstr "minbar uyarı destekli yapılandırılmamış."
+
+#: ../data/minbar.glade.h:61
+msgid "minutes"
+msgstr "dakika"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../data/minbar.glade.h:63
+msgid "translator-credits"
+msgstr "Mustafa Doğan"
+
+#: ../data/minbar.schemas.in.in.h:1
+msgid "Calculation method"
+msgstr "Hesaplama metodu"
+
+#: ../data/minbar.schemas.in.in.h:2
+msgid "Height of city"
+msgstr "Şehrin yüksekliği"
+
+#: ../data/minbar.schemas.in.in.h:3
+msgid "Latitude of city"
+msgstr "Şehrin enlemi"
+
+#: ../data/minbar.schemas.in.in.h:4
+msgid "Longitude of city"
+msgstr "Şehrin boylamı"
+
+#: ../data/minbar.schemas.in.in.h:5
+msgid "Name of city"
+msgstr "Şehrin adı"
+
+#: ../data/minbar.schemas.in.in.h:6
+msgid "Notification period"
+msgstr "Uyarı dönemi"
+
+#: ../data/minbar.schemas.in.in.h:7
+msgid "Path to Subh athan file."
+msgstr "Sabah ezanı dosyasının yolu."
+
+#: ../data/minbar.schemas.in.in.h:8
+msgid "Path to athan file."
+msgstr "Ezan dosyasının yolu."
+
+#: ../data/minbar.schemas.in.in.h:10
+msgid "Set to true to close when clicking the close button instead of hiding."
+msgstr "Kapat düğmesinin programı tamamen kapatması için burayı onaylayın."
+
+#: ../data/minbar.schemas.in.in.h:12
+msgid "Time Zone, difference from GMT"
+msgstr "Saat dilimi, GMT'den farkı"
+
+#: ../data/minbar.schemas.in.in.h:13
+msgid "Whether or not to notify"
+msgstr "Uyarı istenip istenmediği"
+
+#: ../minbar.desktop.in.h:1
+msgid "Islamic prayer times"
+msgstr "İslami ibadet vakitleri"

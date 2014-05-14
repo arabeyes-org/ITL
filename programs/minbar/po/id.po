@@ -1,0 +1,529 @@
+# Indonesian translation of Minbar.
+# Copyright (C) 2007 Andika Triwidada
+# This file is distributed under the same license as the Minbar package.
+# Andika Triwidada <andika@gmail.com>, 2007.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Minbar 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-21 22:03+0000\n"
+"PO-Revision-Date: 2007-11-20 06:06+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#: ../src/main.c:156
+#, c-format
+msgid "Time for prayer: %s"
+msgstr "Saat sholat: %s"
+
+#: ../src/main.c:162 ../src/main.c:170
+#, c-format
+msgid "%d %s until %s prayer."
+msgstr "%d %s menit menjelang sholat %s."
+
+#: ../src/main.c:164 ../src/main.c:182 ../src/main.c:390
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "menit"
+msgstr[1] "menit"
+
+#: ../src/main.c:172 ../src/main.c:180
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "jam"
+msgstr[1] "jam"
+
+#: ../src/main.c:178
+#, c-format
+msgid "%d %s and %d %s until %s prayer."
+msgstr "%d %s dan %d %s menjelang sholat %s."
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 12 January 2007
+#.
+#: ../src/main.c:217
+msgid "%d %B %G"
+msgstr "%d %B %G"
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 19:17.
+#. *             if you want to use 12 hour format, use: %I:%M %p
+#. *             which will print something similar to: 7:17 pm
+#.
+#: ../src/main.c:229
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#. The comma may differ from language to language
+#: ../src/main.c:237
+msgid ","
+msgstr ","
+
+#: ../src/main.c:283
+#, c-format
+msgid "%d minutes until %s prayer."
+msgstr "%d menit menjelang sholat %s."
+
+#: ../src/main.c:298
+#, c-format
+msgid "It is time for %s prayer."
+msgstr "Telah saatnya sholat %s."
+
+#: ../src/main.c:749 ../src/main.c:840
+#, c-format
+msgid ""
+"Invalid calculation method in preferences, using 5: Muslim world League \n"
+msgstr ""
+"Metoda perhitungan pada preferensi tidak valid, menggunakan 5: Liga Muslim "
+"Dunia\n"
+
+#: ../src/main.c:1054
+#, c-format
+msgid "Error: %s\n"
+msgstr "Kesalahan: %s\n"
+
+#: ../src/main.c:1123
+msgid "All files"
+msgstr "Semua berkas"
+
+#: ../src/main.c:1129
+msgid "Supported files"
+msgstr "Berkas yang didukung"
+
+#: ../src/main.c:1252 ../minbar.desktop.in.h:2
+msgid "Minbar Prayer Times"
+msgstr "Waktu Sholat Minbar"
+
+#: ../src/main.c:1254
+msgid "skip"
+msgstr "lewati"
+
+#: ../src/main.c:1255
+msgid "Muharram"
+msgstr "Muharram"
+
+#: ../src/main.c:1256
+msgid "Safar"
+msgstr "Safar"
+
+#: ../src/main.c:1257
+msgid "Rabi I"
+msgstr "Rabiul Awal"
+
+#: ../src/main.c:1258
+msgid "Rabi II"
+msgstr "Rabiul Akhir"
+
+#: ../src/main.c:1259
+msgid "Jumada I"
+msgstr "Jumadil Awal"
+
+#: ../src/main.c:1260
+msgid "Jumada II"
+msgstr "Jumadil Akhir"
+
+#: ../src/main.c:1261
+msgid "Rajab"
+msgstr "Rajab"
+
+#: ../src/main.c:1262
+msgid "Shaaban"
+msgstr "Sya'ban"
+
+#: ../src/main.c:1263
+msgid "Ramadan"
+msgstr "Ramadhan"
+
+#: ../src/main.c:1264
+msgid "Shawwal"
+msgstr "Syawal"
+
+#: ../src/main.c:1265
+msgid "Thul-Qiaadah"
+msgstr "Dzulqaidah"
+
+#: ../src/main.c:1266
+msgid "Thul-Hijja"
+msgstr "Dzulhijjah"
+
+#: ../src/main.c:1268
+msgid "Subh"
+msgstr "Subuh"
+
+#: ../src/main.c:1269
+msgid "Shorook"
+msgstr "Fajar"
+
+#: ../src/main.c:1270
+msgid "Dhuhr"
+msgstr "Duhur"
+
+#: ../src/main.c:1271
+msgid "Asr"
+msgstr "Ashar"
+
+#: ../src/main.c:1272
+msgid "Maghreb"
+msgstr "Maghrib"
+
+#: ../src/main.c:1273
+msgid "Isha'a"
+msgstr "Isya"
+
+#: ../src/main.c:1286
+msgid "Hide main window on start up."
+msgstr "Sembunyikan jendela utama saat mulai."
+
+#: ../src/main.c:1441
+msgid "In Makkah!"
+msgstr "Di Mekah!"
+
+#: ../src/main.c:1490
+msgid "Qibla direction"
+msgstr "Arah kiblat"
+
+#: ../src/main.c:1492
+msgid "East"
+msgstr "Timur"
+
+#: ../src/main.c:1492
+msgid "West"
+msgstr "Barat"
+
+#: ../src/main.c:1546
+msgid "Minbar Website"
+msgstr "Situs Web Minbar"
+
+#: ../src/main.c:1665
+msgid ""
+"Failed to load the Locations XML database.  Please report this as a bug."
+msgstr "Gagal memuat basis data XML Lokasi.  Mohon laporkan ini sebagai bug."
+
+#: ../data/minbar.glade.h:1
+msgid "<b>Calculation Method</b>"
+msgstr "<b>Metoda Perhitungan</b>"
+
+#: ../data/minbar.glade.h:2
+msgid "<b>Notifications</b>"
+msgstr "<b>Pemberitahuan</b>"
+
+#: ../data/minbar.glade.h:3
+msgid "<b>Options</b>"
+msgstr "<b>Opsi</b>"
+
+#: ../data/minbar.glade.h:4
+msgid "<b>Times</b>"
+msgstr "<b>Jadwal</b>"
+
+#: ../data/minbar.glade.h:5
+msgid "About"
+msgstr "Ihwal"
+
+#: ../data/minbar.glade.h:6
+msgid "Advanced"
+msgstr "Lanjut"
+
+#: ../data/minbar.glade.h:7
+msgid "Athan"
+msgstr "Adzan"
+
+#: ../data/minbar.glade.h:8
+msgid "Calculation error..."
+msgstr "Kesalahan perhitungan..."
+
+#: ../data/minbar.glade.h:9
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../data/minbar.glade.h:10
+msgid "City"
+msgstr "Kota"
+
+#: ../data/minbar.glade.h:11
+msgid "City Details"
+msgstr "Detil Kota"
+
+#: ../data/minbar.glade.h:12
+msgid "City name:"
+msgstr "Nama kota:"
+
+#: ../data/minbar.glade.h:13
+msgid "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+msgstr "Hak cipta (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+
+#: ../data/minbar.glade.h:14
+msgid "Current date printing error"
+msgstr "Kesalahan mencetak tanggal kini"
+
+#: ../data/minbar.glade.h:15
+msgid "Edit City Details"
+msgstr "Sunting Detil Kota"
+
+#: ../data/minbar.glade.h:16
+msgid ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Shaf'i)\n"
+"University of Islamic Sciences, Karachi (Hanafi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (always 90)"
+msgstr ""
+"Otorita Umum Survey Mesir\n"
+"Universitas Ilmu Keislaman, Karachi (Syafii)\n"
+"Universitas Ilmu Keislaman, Karachi (Hanafi)\n"
+"Islamic Society di Amerika Utara\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Selang Waktu Tetap Isya (selalu 90)"
+
+#: ../data/minbar.glade.h:23
+msgid "Find City"
+msgstr "Cari Kota"
+
+#: ../data/minbar.glade.h:24
+msgid ""
+"If you cannot find your location, please go to www.islamicfinder.org to "
+"search for it."
+msgstr ""
+"Bila anda tidak dapat menemukan lokasi anda, silahkan kunjungi www."
+"islamicfinder.org untuk mencarinya."
+
+#: ../data/minbar.glade.h:25
+msgid "Latitude:"
+msgstr "Lintang:"
+
+#: ../data/minbar.glade.h:26
+msgid "Location"
+msgstr "Lokasi"
+
+#: ../data/minbar.glade.h:27
+msgid "Longitude:"
+msgstr "Bujur:"
+
+#: ../data/minbar.glade.h:28
+msgid "Minbar Prayer Calendar"
+msgstr "Kalender Sholat Minbar"
+
+#: ../data/minbar.glade.h:29
+msgid ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
+"Waktu Sholat Minbar adalah perangkat lunak bebas; anda dapat menyebar "
+"ulangdan/atau mengubahnya dibawah persyaratan GNU General Public License "
+"sebagaimana dipublikasikan oleh Free Software Foundation; versi 2 dari "
+"Lisensi,atau (sesuai pilihan anda) sebarang versi selanjutnya.\n"
+"\n"
+"Waktu Sholat Minbar disebarkan dengan harapan agar berguna, tapi TANPA "
+"JAMINAN APAPUN; bahkan tanpa jaminan tersirat tentang KETERDAGANGAN "
+"atauKECOCOKAN UNTUK KEPERLUAN TERTENTU. Lihat GNU General Public License "
+"untuk lebih detil.Minbar Prayer Times is distributed in the hope that it "
+"will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty "
+"of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+"Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+
+#: ../data/minbar.glade.h:34
+msgid "Normal Athan:"
+msgstr "Adzan Normal:"
+
+#: ../data/minbar.glade.h:35
+msgid "Notifications"
+msgstr "Pemberitahuan"
+
+#: ../data/minbar.glade.h:36 ../data/minbar.schemas.in.in.h:9
+msgid "Play Athan"
+msgstr "Bunyikan Adzan"
+
+#: ../data/minbar.glade.h:37
+msgid "Prayer Calendar"
+msgstr "Kalender Sholat"
+
+#: ../data/minbar.glade.h:38
+msgid "Prayer Times"
+msgstr "Waktu Sholat"
+
+#: ../data/minbar.glade.h:39
+msgid "Prayer Times on your Desktop"
+msgstr "Waktu Sholat pada Desktop anda"
+
+#: ../data/minbar.glade.h:40
+msgid "Preferences"
+msgstr "Preferensi"
+
+#: ../data/minbar.glade.h:41
+msgid "Quit"
+msgstr "Keluar"
+
+#: ../data/minbar.glade.h:42
+msgid "Select Athan File"
+msgstr "Pilih Berkas Adzan"
+
+#: ../data/minbar.glade.h:43
+msgid "Show/Hide"
+msgstr "Tampilkan/Sembunyikan"
+
+#: ../data/minbar.glade.h:44 ../data/minbar.schemas.in.in.h:11
+msgid "Start minimised to tray."
+msgstr "Mulai diminimisasi ke baki."
+
+#: ../data/minbar.glade.h:45
+msgid "Stop Athan"
+msgstr "Hentikan Adzan"
+
+#: ../data/minbar.glade.h:46
+msgid "Subh Athan:"
+msgstr "Adzan Subuh:"
+
+#: ../data/minbar.glade.h:47
+msgid "Time Zone:"
+msgstr "Zona Waktu:"
+
+#: ../data/minbar.glade.h:48
+msgid "Timetable"
+msgstr "Tabel waktu"
+
+#: ../data/minbar.glade.h:49
+msgid "Today"
+msgstr "Hari ini"
+
+#: ../data/minbar.glade.h:50
+msgid "Yes, notify before:"
+msgstr "Ya, beritahukan sebelumnya:"
+
+#: ../data/minbar.glade.h:51
+msgid "_Choose a location:"
+msgstr "_Pilih sebuah lokasi:"
+
+#: ../data/minbar.glade.h:52
+msgid "_Find Next"
+msgstr "Cari _Berikutnya:"
+
+#: ../data/minbar.glade.h:53
+msgid "_Search:"
+msgstr "_Cari:"
+
+#: ../data/minbar.glade.h:54
+msgid "gtk-apply"
+msgstr ""
+
+#: ../data/minbar.glade.h:55
+msgid "gtk-cancel"
+msgstr ""
+
+#: ../data/minbar.glade.h:56
+msgid "gtk-close"
+msgstr ""
+
+#: ../data/minbar.glade.h:57
+msgid "gtk-media-play"
+msgstr ""
+
+#: ../data/minbar.glade.h:58
+msgid "gtk-media-stop"
+msgstr ""
+
+#: ../data/minbar.glade.h:59
+msgid "gtk-preferences"
+msgstr ""
+
+#: ../data/minbar.glade.h:60
+msgid "minbar was not built with notifications support."
+msgstr "Minbar tidak dibangun dengan dukungan notifikasi."
+
+#: ../data/minbar.glade.h:61
+msgid "minutes"
+msgstr "menit"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../data/minbar.glade.h:63
+msgid "translator-credits"
+msgstr "Andika Triwidada"
+
+#: ../data/minbar.schemas.in.in.h:1
+msgid "Calculation method"
+msgstr "Metoda Perhitungan"
+
+#: ../data/minbar.schemas.in.in.h:2
+msgid "Height of city"
+msgstr "Tinggi kota"
+
+#: ../data/minbar.schemas.in.in.h:3
+msgid "Latitude of city"
+msgstr "Lintang kota"
+
+#: ../data/minbar.schemas.in.in.h:4
+msgid "Longitude of city"
+msgstr "Bujur kota"
+
+#: ../data/minbar.schemas.in.in.h:5
+msgid "Name of city"
+msgstr "Nama kota"
+
+#: ../data/minbar.schemas.in.in.h:6
+msgid "Notification period"
+msgstr "Perioda pemberitahuan"
+
+#: ../data/minbar.schemas.in.in.h:7
+msgid "Path to Subh athan file."
+msgstr "Path ke berkas adzan subuh."
+
+#: ../data/minbar.schemas.in.in.h:8
+msgid "Path to athan file."
+msgstr "Path ke berkas adzan."
+
+#: ../data/minbar.schemas.in.in.h:10
+msgid "Set to true to close when clicking the close button instead of hiding."
+msgstr ""
+"Set ke benar untuk menutup ketika meng-klik tombol tutup, bukan sekedar "
+"menyembunyikan."
+
+#: ../data/minbar.schemas.in.in.h:12
+msgid "Time Zone, difference from GMT"
+msgstr "Zona Waktu, perbedaan terhadap GMT"
+
+#: ../data/minbar.schemas.in.in.h:13
+msgid "Whether or not to notify"
+msgstr "Apakah memberitahukan atau tidak"
+
+#: ../minbar.desktop.in.h:1
+msgid "Islamic prayer times"
+msgstr "Waktu sholat Islam"
+
+#~ msgid "<b>Athan</b>"
+#~ msgstr "<b>Adzan</b>"
+
+#~ msgid "Manchester, UK"
+#~ msgstr "Manchester, UK"
+
+#~ msgid ""
+#~ "Please go to www.islamicfinder.org to\n"
+#~ " find your city details."
+#~ msgstr ""
+#~ "Silahkan kunjungi www.islamicfinder.org untuk\n"
+#~ "memperoleh detil kota anda."

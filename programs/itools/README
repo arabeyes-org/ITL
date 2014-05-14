@@ -1,0 +1,58 @@
+/************************************************************************
+ * $Id: README 10344 2004-07-28 23:11:30Z nadim $
+ *
+ * ------------
+ * Description:
+ * ------------
+ *  This README file is intended to be give a glimpse of what the
+ *  Islamic Tools Library (ITL) project is all about.
+ *
+ *  For INSTALL details note the 'Basic Instructions' section below.
+ *
+ * -----------------
+ * Revision Details:    (Updated by Revision Control System)
+ * -----------------
+ *  $Date: 2004-07-29 01:11:30 +0200 (Thu, 29 Jul 2004) $
+ *  $Author: nadim $
+ *  $Revision: 10344 $
+ *  $Source$
+ *
+ ************************************************************************/
+
+The itools package is a set of user friendly applications utilizing
+Arabeyes' ITL library.
+
+The package currently addresses two main areas - hijri date and prayertime
+calculation.  The package is envisioned to mimick the development of the
+underlying ITL library and is meant to always give the end-user a simple
+means to access its functions.
+
+The project's homepage is,
+
+  http://www.arabeyes.org/project.php?proj=ITL
+
+-------------------
+Basic Instructions:
+-------------------
+
++ Download and install the ITL-lib (the actual library component)
+
++ Download the install the ITL-tools (ie. itools package)
+  - Compile the package
+    $ autogen.sh
+    $ configure
+    $ make
+  - To install post a succesful compilation,
+    $ make install
+
+--------------------
+Support/Suggestions:
+--------------------
+
+The project is always in need of volunteers, so if you think
+you have a better implementation and/or would like to augment
+the library with an addition of your own, mail your ideas,
+comments and suggestions to 'developer -at- arabeyes .org'
+
+Salam and have fun!
+

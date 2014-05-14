@@ -1,0 +1,47 @@
+Please feel free to edit as you see fit, I would appreciate however,
+that you follow these guidelines:
+
+STYLE
+-----
+Indenting
+	Use tabs please. I use 8 spaces, switch to that and the code
+	will look very readable.
+
+Indent style
+	I personally prefer the readable BSD style, all brackets
+	should be on their own lines. Example:
+		
+	void function()
+	{
+		int i = 1;
+		if(i)
+		{
+			do();
+		}
+		else
+		{
+			dont();
+		}
+	}
+
+	I realise that this style is very verbose, but the emphasis is 
+	on readability, unless you still code on really really old 
+	terminals with only 24 lines (I doubt that).
+Line Width
+	100 Maximum, but I usually use 80.
+	in vim, I use :match DIffAdd "\%80c.*" to highlight lines longer than 80 lines, like this one.
+
+
+CODING
+------
+Functions
+	All functions should be declared first, then defined. 
+
+Glade Interfaces
+	Use Glade 3.0 or above to edit the glade user interface files.
+	Avoid using glade 2.0 at all cost. Load the xml files at run
+	time, no need to "build".
+Widgets
+	Windows: Don't destroy them, just hide them! if the code needs to
+	destroy the window, fix it. If absolutly necessary, please ask first,
+	as other code my rely on widgets existing.

@@ -1,0 +1,33 @@
+Source: libitl
+Section: libs
+Priority: optional
+Maintainer: Thamer Mahmoud <thamer@newkuwait.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.8.0
+Homepage: http://www.arabeyes.org/project.php?proj=ITL
+
+Package: libitl-dev
+Section: libdevel
+Architecture: any
+Depends: libitl0 (= ${binary:Version})
+Description: Islamic tools & libraries project - development files
+ This library allows applications to convert between Hijri/Gregorian
+ dates and compute Muslim prayer times and Qibla direction based on
+ multiple methods of calculation.
+ .
+ Install this package if you need to build programs that use libitl.
+ .
+ Part of the Islamic Tools and Libraries project (ITL).
+ .
+
+Package: libitl0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Islamic tools & libraries project - shared library
+ This library allows applications to convert between Hijri/Gregorian
+ dates and compute Muslim prayer times and Qibla direction based on
+ multiple methods of calculation.
+ .
+ Part of the Islamic Tools and Libraries project (ITL).
+ .

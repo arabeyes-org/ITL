@@ -1,0 +1,91 @@
+.\" -*- nroff -*-
+.\" $Id: ireminder.1 11579 2010-05-06 13:59:19Z thamer $
+.\"
+.\" NOTE: Please adjust .TH date whenever modifying the manpage.
+.\"
+.TH IREMINDER "1" "May 01, 2010" "ireminder" "User Commands"
+.\"
+.SH NAME
+ireminder \- Prayer time reminder
+.\"
+.SH SYNOPSIS
+.B ireminder
+.RB [ \-ipraytime
+.RI     path]
+.RB [ \-skip
+.RI     event_name]
+.RB [ \-reminder
+.RI     minutes]
+.RB [ \-inplace]
+.RB [ \-execr
+.RI     cmd]
+.RB [ \-execs
+.RI     cmd]
+.RB [ \-help]
+.SH DESCRIPTION
+The \fBireminder\fR script is written in perl and is meant to be a simplistic
+wrapper to call and process the 'ipraytime' application.  \fBireminder\fR is
+used to remind the user via audio indicators of an impending Islamic prayer
+event.
+.SH OPTIONS
+Some of the options within \fBireminder\fR allow for list inputs, those
+are meant to be a quoted series of text/numbers.
+.TP
+.B \-ipraytime \fIpath\fR
+Specify the path to the ipraytime executable.  Unless this options is
+specified, the script will default to look for the binary in /usr/bin,
+/usr/local/bin and the current directory.
+.TP
+.B \-skip \fIevent_name\fR
+Specify name of prayer/event to skip, valid options include "imsaak
+fajr shorooq zuhr asr maghrib isha" (list ok).
+.TP
+.B \-reminder \fIminutes\fR
+Specify prior to how many minutes to remind (list ok).
+.TP
+.B \-inplace
+Specify to print output in-place (without scrolling).
+.TP
+.B \-execr \fIcmd\fR
+Specify an external application trigger for reminders.  The %m
+directive is recognized and is substituted with the normal output
+message or string.  The %s directive is recognized and is
+substituted by the salat's name.
+.TP
+.B \-execs \fIcmd\fR
+Specify an external application trigger for when the salat reaches
+its appointed time (ie. "salat now").  The %m directive is
+recognized and is substituted with the normal output message or
+string.  The %s directive is recognized and is substituted by the
+salat's name.
+.TP
+.B \-help
+Produce a help screen.
+.SH "EXAMPLES"
+.TP 4
+Here is an example of using \fBireminder\fR to display a message prayer time, ignoring imsaak and shorooq:
+.nf
+
+ireminder \-skip "imsaak shorooq" \-execs "notify\-send \-t 1000000 \\"Ireminder\\" \\"It is time for %s.\\"" &
+
+.TP 4
+Another Example:
+.nf
+
+ireminder -execr "xmessage %m" -execs "xmessage %m"
+
+.fi
+.SH REPORTING BUGS
+Report bugs on the web using http://bugs.arabeyes.org
+.SH AUTHOR
+Written by Nadim Shaikli as part of the Arabeyes.org project.
+.SH COPYRIGHT
+\fBiremidner\fR is subject to the GNU General Public License (GPL).
+.br
+Copyright \(co 2006, Arabeyes, Nadim Shaikli.
+.SH "SEE ALSO"
+\fBipraytime(1) \- The underlying prayer times calculator used \fBiremidner\fR.
+.PP
+The ITL library (libitl) from the Islamic Tools and Libraries project.
+It is the underlying requirement for \fBireminder\fR to function.  The
+ITL library was created and is hosted at \fBwww.arabeyes.org\fR.

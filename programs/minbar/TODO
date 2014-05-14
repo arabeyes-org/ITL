@@ -1,0 +1,52 @@
+--0.3
+Auto add to sessions' startup with hide.
+Document hide behaviour (I forgot what this is).
+UI better for preferences (especially second tab).
+DONE use: http://commons.wikimedia.org/wiki/Image:Compass.svg
+DONE (Applying patch) Support more media types
+See gnome-commander for build summary
+Build systems: properly specify auxiliary files, clean files.
+different graphics for salat times (background of times tables?)
+Athan preferences to play different salat times.
+Support the new sound architecture.
+Offer all salat options (mirror library options). 
+Offer fix for indonisian time
+use libgweather for locations.
+applet appears without restarting
+
+DONE
+--0.2
+Ability to start minimised to tray
+Fix .desktop installation
+Tooltip should show next prayer and all of them as well.
+Store athan path.
+Prayer Timetable
+Multiple Athan files, subh athan file as well.
+Close hides (+option)
+Change minute string according to changing the number live.
+Icons for about and preferences.
+Time in date label
+Week day in date label
+Appropriate plurals support
+Add CLI option to start minimised
+Qibla Direction
+Configure summary
+City names (implicit): use gnome-applets-locations
+Better artwork
+Accept non integer values for timezone
+Integrate new artwork
+Copyright notices
+Clickable web page
+Properly handle Makkah case
+Version number in about dialogue as well as copyright year.
+
+--some time
+Detect running instance and don't duplicate.
+Use direct conf detection.
+Hijri Calendar
+-hijri events
+-Yearly timetable document
+Specify hijri date correction -- pending discussion on itl
+List of athans in interface instead of file selection
+Gnome panel entries.
+Load locations after a fixed time.

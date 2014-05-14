@@ -1,0 +1,4 @@
+src/main.c
+[type: gettext/glade]data/minbar.ui
+data/org.gnome.minbar.gschema.xml.in.in
+minbar.desktop.in

@@ -1,0 +1,512 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-21 22:03+0000\n"
+"PO-Revision-Date: 22012007\n"
+"Last-Translator: Johann Manaf Tepstad\n"
+"Language-Team: Arabeyes\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/main.c:156
+#, fuzzy, c-format
+msgid "Time for prayer: %s"
+msgstr "Tid for bønn:"
+
+#: ../src/main.c:162 ../src/main.c:170
+#, fuzzy, c-format
+msgid "%d %s until %s prayer."
+msgstr "%s er om %d minutter."
+
+#: ../src/main.c:164 ../src/main.c:182 ../src/main.c:390
+#, fuzzy
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "(i minutter)"
+msgstr[1] "(i minutter)"
+
+#: ../src/main.c:172 ../src/main.c:180
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/main.c:178
+#, fuzzy, c-format
+msgid "%d %s and %d %s until %s prayer."
+msgstr "Det er %d timer og %d minutter igjen til %s."
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 12 January 2007
+#.
+#: ../src/main.c:217
+msgid "%d %B %G"
+msgstr "%d. %B %G"
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 19:17.
+#. *             if you want to use 12 hour format, use: %I:%M %p
+#. *             which will print something similar to: 7:17 pm
+#.
+#: ../src/main.c:229
+msgid "%H:%M"
+msgstr ""
+
+#. The comma may differ from language to language
+#: ../src/main.c:237
+msgid ","
+msgstr ""
+
+#: ../src/main.c:283
+#, fuzzy, c-format
+msgid "%d minutes until %s prayer."
+msgstr "%d er om %s minutter."
+
+#: ../src/main.c:298
+#, c-format
+msgid "It is time for %s prayer."
+msgstr "Tiden for %s er inne."
+
+#: ../src/main.c:749 ../src/main.c:840
+#, c-format
+msgid ""
+"Invalid calculation method in preferences, using 5: Muslim world League \n"
+msgstr "Ugyldig utregningsmetode, bruker 5: Muslim world League \n"
+
+#: ../src/main.c:1054
+#, c-format
+msgid "Error: %s\n"
+msgstr "Feil: %s\n"
+
+#: ../src/main.c:1123
+msgid "All files"
+msgstr "Alle filer"
+
+#: ../src/main.c:1129
+msgid "Supported files"
+msgstr "Støttede filer"
+
+#: ../src/main.c:1252 ../minbar.desktop.in.h:2
+#, fuzzy
+msgid "Minbar Prayer Times"
+msgstr "Bønnetider"
+
+#: ../src/main.c:1254
+msgid "skip"
+msgstr "hopp"
+
+#: ../src/main.c:1255
+msgid "Muharram"
+msgstr ""
+
+#: ../src/main.c:1256
+msgid "Safar"
+msgstr ""
+
+#: ../src/main.c:1257
+msgid "Rabi I"
+msgstr ""
+
+#: ../src/main.c:1258
+msgid "Rabi II"
+msgstr ""
+
+#: ../src/main.c:1259
+msgid "Jumada I"
+msgstr ""
+
+#: ../src/main.c:1260
+msgid "Jumada II"
+msgstr ""
+
+#: ../src/main.c:1261
+msgid "Rajab"
+msgstr ""
+
+#: ../src/main.c:1262
+msgid "Shaaban"
+msgstr ""
+
+#: ../src/main.c:1263
+msgid "Ramadan"
+msgstr ""
+
+#: ../src/main.c:1264
+msgid "Shawwal"
+msgstr ""
+
+#: ../src/main.c:1265
+msgid "Thul-Qiaadah"
+msgstr ""
+
+#: ../src/main.c:1266
+msgid "Thul-Hijja"
+msgstr ""
+
+#: ../src/main.c:1268
+msgid "Subh"
+msgstr ""
+
+#: ../src/main.c:1269
+msgid "Shorook"
+msgstr ""
+
+#: ../src/main.c:1270
+msgid "Dhuhr"
+msgstr ""
+
+#: ../src/main.c:1271
+msgid "Asr"
+msgstr ""
+
+#: ../src/main.c:1272
+msgid "Maghreb"
+msgstr ""
+
+#: ../src/main.c:1273
+msgid "Isha'a"
+msgstr ""
+
+#: ../src/main.c:1286
+msgid "Hide main window on start up."
+msgstr ""
+
+#: ../src/main.c:1441
+msgid "In Makkah!"
+msgstr ""
+
+#: ../src/main.c:1490
+msgid "Qibla direction"
+msgstr ""
+
+#: ../src/main.c:1492
+msgid "East"
+msgstr ""
+
+#: ../src/main.c:1492
+#, fuzzy
+msgid "West"
+msgstr "Vevside"
+
+#: ../src/main.c:1546
+#, fuzzy
+msgid "Minbar Website"
+msgstr "Vevside"
+
+#: ../src/main.c:1665
+msgid ""
+"Failed to load the Locations XML database.  Please report this as a bug."
+msgstr ""
+
+#: ../data/minbar.glade.h:1
+#, fuzzy
+msgid "<b>Calculation Method</b>"
+msgstr "<b>Utregningsmetode:</b>"
+
+#: ../data/minbar.glade.h:2
+#, fuzzy
+msgid "<b>Notifications</b>"
+msgstr "<b>Beskjeder:</b>"
+
+#: ../data/minbar.glade.h:3
+#, fuzzy
+msgid "<b>Options</b>"
+msgstr "<b>Sted</b>"
+
+#: ../data/minbar.glade.h:4
+msgid "<b>Times</b>"
+msgstr "<b>Tider</b>"
+
+#: ../data/minbar.glade.h:5
+msgid "About"
+msgstr "Om"
+
+#: ../data/minbar.glade.h:6
+msgid "Advanced"
+msgstr "Avansert"
+
+#: ../data/minbar.glade.h:7
+#, fuzzy
+msgid "Athan"
+msgstr "Spille athan"
+
+#: ../data/minbar.glade.h:8
+#, fuzzy
+msgid "Calculation error..."
+msgstr "Feil i utregning..."
+
+#: ../data/minbar.glade.h:9
+msgid "Calendar"
+msgstr ""
+
+#: ../data/minbar.glade.h:10
+msgid "City"
+msgstr ""
+
+#: ../data/minbar.glade.h:11
+msgid "City Details"
+msgstr "Geografiske detaljer"
+
+#: ../data/minbar.glade.h:12
+msgid "City name:"
+msgstr "By:"
+
+#: ../data/minbar.glade.h:13
+msgid "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+msgstr "Kopibeskyttet (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+
+#: ../data/minbar.glade.h:14
+msgid "Current date printing error"
+msgstr "Feil i nåværende dato"
+
+#: ../data/minbar.glade.h:15
+#, fuzzy
+msgid "Edit City Details"
+msgstr "Geografiske detaljer"
+
+#: ../data/minbar.glade.h:16
+msgid ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Shaf'i)\n"
+"University of Islamic Sciences, Karachi (Hanafi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (always 90)"
+msgstr ""
+
+#: ../data/minbar.glade.h:23
+msgid "Find City"
+msgstr ""
+
+#: ../data/minbar.glade.h:24
+msgid ""
+"If you cannot find your location, please go to www.islamicfinder.org to "
+"search for it."
+msgstr ""
+
+#: ../data/minbar.glade.h:25
+msgid "Latitude:"
+msgstr "Breddegrad:"
+
+#: ../data/minbar.glade.h:26
+#, fuzzy
+msgid "Location"
+msgstr "<b>Sted</b>"
+
+#: ../data/minbar.glade.h:27
+msgid "Longitude:"
+msgstr "Lengdegrad:"
+
+#: ../data/minbar.glade.h:28
+#, fuzzy
+msgid "Minbar Prayer Calendar"
+msgstr "Bønnetider"
+
+#: ../data/minbar.glade.h:29
+msgid ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
+
+#: ../data/minbar.glade.h:34
+#, fuzzy
+msgid "Normal Athan:"
+msgstr "Spille athan"
+
+#: ../data/minbar.glade.h:35
+#, fuzzy
+msgid "Notifications"
+msgstr "<b>Beskjeder:</b>"
+
+#: ../data/minbar.glade.h:36 ../data/minbar.schemas.in.in.h:9
+msgid "Play Athan"
+msgstr "Spille athan"
+
+#: ../data/minbar.glade.h:37
+msgid "Prayer Calendar"
+msgstr ""
+
+#: ../data/minbar.glade.h:38
+msgid "Prayer Times"
+msgstr "Bønnetider"
+
+#: ../data/minbar.glade.h:39
+msgid "Prayer Times on your Desktop"
+msgstr "Bønnetider på ditt skrivebord"
+
+#: ../data/minbar.glade.h:40
+msgid "Preferences"
+msgstr ""
+
+#: ../data/minbar.glade.h:41
+msgid "Quit"
+msgstr ""
+
+#: ../data/minbar.glade.h:42
+msgid "Select Athan File"
+msgstr "Velge athan-fil"
+
+#: ../data/minbar.glade.h:43
+msgid "Show/Hide"
+msgstr "Vis/skjul"
+
+#: ../data/minbar.glade.h:44 ../data/minbar.schemas.in.in.h:11
+msgid "Start minimised to tray."
+msgstr ""
+
+#: ../data/minbar.glade.h:45
+msgid "Stop Athan"
+msgstr "Stoppe athan"
+
+#: ../data/minbar.glade.h:46
+#, fuzzy
+msgid "Subh Athan:"
+msgstr "Stoppe athan"
+
+#: ../data/minbar.glade.h:47
+msgid "Time Zone:"
+msgstr "Tidssone:"
+
+#: ../data/minbar.glade.h:48
+msgid "Timetable"
+msgstr ""
+
+#: ../data/minbar.glade.h:49
+msgid "Today"
+msgstr ""
+
+#: ../data/minbar.glade.h:50
+msgid "Yes, notify before:"
+msgstr "Ja, gi beskjed på forhånd:"
+
+#: ../data/minbar.glade.h:51
+msgid "_Choose a location:"
+msgstr ""
+
+#: ../data/minbar.glade.h:52
+msgid "_Find Next"
+msgstr ""
+
+#: ../data/minbar.glade.h:53
+msgid "_Search:"
+msgstr ""
+
+#: ../data/minbar.glade.h:54
+msgid "gtk-apply"
+msgstr ""
+
+#: ../data/minbar.glade.h:55
+msgid "gtk-cancel"
+msgstr ""
+
+#: ../data/minbar.glade.h:56
+msgid "gtk-close"
+msgstr ""
+
+#: ../data/minbar.glade.h:57
+msgid "gtk-media-play"
+msgstr ""
+
+#: ../data/minbar.glade.h:58
+msgid "gtk-media-stop"
+msgstr ""
+
+#: ../data/minbar.glade.h:59
+msgid "gtk-preferences"
+msgstr ""
+
+#: ../data/minbar.glade.h:60
+msgid "minbar was not built with notifications support."
+msgstr "Minbar ble ikke kompilert med støtte for forhåndsbeskjeder."
+
+#: ../data/minbar.glade.h:61
+#, fuzzy
+msgid "minutes"
+msgstr "(i minutter)"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../data/minbar.glade.h:63
+msgid "translator-credits"
+msgstr "Johann Manaf Tepstad"
+
+#: ../data/minbar.schemas.in.in.h:1
+#, fuzzy
+msgid "Calculation method"
+msgstr "<b>Utregningsmetode:</b>"
+
+#: ../data/minbar.schemas.in.in.h:2
+msgid "Height of city"
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:3
+#, fuzzy
+msgid "Latitude of city"
+msgstr "Breddegrad:"
+
+#: ../data/minbar.schemas.in.in.h:4
+#, fuzzy
+msgid "Longitude of city"
+msgstr "Lengdegrad:"
+
+#: ../data/minbar.schemas.in.in.h:5
+msgid "Name of city"
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:6
+#, fuzzy
+msgid "Notification period"
+msgstr "<b>Beskjeder:</b>"
+
+#: ../data/minbar.schemas.in.in.h:7
+msgid "Path to Subh athan file."
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:8
+msgid "Path to athan file."
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:10
+msgid "Set to true to close when clicking the close button instead of hiding."
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:12
+msgid "Time Zone, difference from GMT"
+msgstr ""
+
+#: ../data/minbar.schemas.in.in.h:13
+msgid "Whether or not to notify"
+msgstr ""
+
+#: ../minbar.desktop.in.h:1
+#, fuzzy
+msgid "Islamic prayer times"
+msgstr "Bønnetider"
+
+#~ msgid "<b>Athan</b>"
+#~ msgstr "<b>Athan</b>"
+
+#~ msgid ""
+#~ "Please go to www.islamicfinder.org to\n"
+#~ " find your city details."
+#~ msgstr ""
+#~ "Vennligst gå til http://www.islamicfinder.org\n"
+#~ "for å finne detaljer om din by."

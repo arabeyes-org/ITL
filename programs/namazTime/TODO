@@ -1,0 +1,11 @@
+namazTime todo list
+-------------------
+. clean up the code
+. provide arabic and other translations
+. add support for playing athan (or, perhaps, running some user
+  specified application).
+. provide a command line mode (so it can be scripted with maybe?)
+. include a list of pre-included city information
+. get better graphics (including a better tray icon, because it looks odd in
+  gnome for example).
+. multiple location support (for travelers).

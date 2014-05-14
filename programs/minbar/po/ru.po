@@ -1,0 +1,514 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Minbar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-21 22:03+0000\n"
+"PO-Revision-Date: 2007-12-02 22:36+0400\n"
+"Last-Translator: R. F. Abasquliyev <rauf.abasquliyev@gmail.com>\n"
+"Language-Team: Russian <abdurrauf@mail.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\\n\n"
+
+#: ../src/main.c:156
+#, c-format
+msgid "Time for prayer: %s"
+msgstr "Время намаза: %s"
+
+#: ../src/main.c:162 ../src/main.c:170
+#, c-format
+msgid "%d %s until %s prayer."
+msgstr "%d %s до %s намаза."
+
+#: ../src/main.c:164 ../src/main.c:182 ../src/main.c:390
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "минута"
+msgstr[1] "минуты"
+msgstr[2] "минуты"
+
+#: ../src/main.c:172 ../src/main.c:180
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "час"
+msgstr[1] "часы"
+msgstr[2] "часы"
+
+#: ../src/main.c:178
+#, c-format
+msgid "%d %s and %d %s until %s prayer."
+msgstr "%d %s и %d %s до %s намаза."
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 12 January 2007
+#.
+#: ../src/main.c:217
+msgid "%d %B %G"
+msgstr "%d %B %G"
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 19:17.
+#. *             if you want to use 12 hour format, use: %I:%M %p
+#. *             which will print something similar to: 7:17 pm
+#.
+#: ../src/main.c:229
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#. The comma may differ from language to language
+#: ../src/main.c:237
+msgid ","
+msgstr ","
+
+#: ../src/main.c:283
+#, c-format
+msgid "%d minutes until %s prayer."
+msgstr "%d минут до %s намаза."
+
+#: ../src/main.c:298
+#, c-format
+msgid "It is time for %s prayer."
+msgstr "Время намаза %s."
+
+#: ../src/main.c:749 ../src/main.c:840
+#, c-format
+msgid ""
+"Invalid calculation method in preferences, using 5: Muslim world League \n"
+msgstr ""
+"В настройках указан неправильный метод вычисления. Вместо него будет "
+"использоваться метод 5: Лига Исламских Государств \n"
+
+#: ../src/main.c:1054
+#, c-format
+msgid "Error: %s\n"
+msgstr "Ошибка: %s\n"
+
+#: ../src/main.c:1123
+msgid "All files"
+msgstr "Все файлы"
+
+#: ../src/main.c:1129
+msgid "Supported files"
+msgstr "Поддерживаемые файлы"
+
+#: ../src/main.c:1252 ../minbar.desktop.in.h:2
+msgid "Minbar Prayer Times"
+msgstr "Программа расчета времени намаза «Минбар»"
+
+#: ../src/main.c:1254
+msgid "skip"
+msgstr "пропустить"
+
+#: ../src/main.c:1255
+msgid "Muharram"
+msgstr "Мухаррам"
+
+#: ../src/main.c:1256
+msgid "Safar"
+msgstr "Сафар"
+
+#: ../src/main.c:1257
+msgid "Rabi I"
+msgstr "Раби аль-Авваль"
+
+#: ../src/main.c:1258
+msgid "Rabi II"
+msgstr "Раби ас-Сани"
+
+#: ../src/main.c:1259
+msgid "Jumada I"
+msgstr "Джумада аль-Уля"
+
+#: ../src/main.c:1260
+msgid "Jumada II"
+msgstr "Джумада ас-Санийа"
+
+#: ../src/main.c:1261
+msgid "Rajab"
+msgstr "Раджаб"
+
+#: ../src/main.c:1262
+msgid "Shaaban"
+msgstr "Ша'бан"
+
+#: ../src/main.c:1263
+msgid "Ramadan"
+msgstr "Рамадан"
+
+#: ../src/main.c:1264
+msgid "Shawwal"
+msgstr "Шавваль"
+
+#: ../src/main.c:1265
+msgid "Thul-Qiaadah"
+msgstr "Зу аль-Ка'да"
+
+#: ../src/main.c:1266
+msgid "Thul-Hijja"
+msgstr "Зу аль-Хиджжа"
+
+#: ../src/main.c:1268
+msgid "Subh"
+msgstr "Субх"
+
+#: ../src/main.c:1269
+msgid "Shorook"
+msgstr "Восход"
+
+#: ../src/main.c:1270
+msgid "Dhuhr"
+msgstr "Зухр"
+
+#: ../src/main.c:1271
+msgid "Asr"
+msgstr "Аср"
+
+#: ../src/main.c:1272
+msgid "Maghreb"
+msgstr "Магриб"
+
+#: ../src/main.c:1273
+msgid "Isha'a"
+msgstr "Иша"
+
+#: ../src/main.c:1286
+msgid "Hide main window on start up."
+msgstr "Скрывать главное окно при запуске."
+
+#: ../src/main.c:1441
+msgid "In Makkah!"
+msgstr "В Мекке!"
+
+#: ../src/main.c:1490
+msgid "Qibla direction"
+msgstr "Направление к Кибле"
+
+#: ../src/main.c:1492
+msgid "East"
+msgstr "Восток"
+
+#: ../src/main.c:1492
+msgid "West"
+msgstr "Запад"
+
+#: ../src/main.c:1546
+msgid "Minbar Website"
+msgstr "Вебсайт программы «Минбар»"
+
+#: ../src/main.c:1665
+msgid ""
+"Failed to load the Locations XML database.  Please report this as a bug."
+msgstr ""
+"Невозможно сагрузить XML-базу данных местоположений. Пожалуйста, сообщите об "
+"этой ошибке."
+
+#: ../data/minbar.glade.h:1
+msgid "<b>Calculation Method</b>"
+msgstr "<b>Метод вычисления</b>"
+
+#: ../data/minbar.glade.h:2
+msgid "<b>Notifications</b>"
+msgstr "<b>Уведомления</b>"
+
+#: ../data/minbar.glade.h:3
+msgid "<b>Options</b>"
+msgstr "<b>Настройки</b>"
+
+#: ../data/minbar.glade.h:4
+msgid "<b>Times</b>"
+msgstr "<b>Время</b>"
+
+#: ../data/minbar.glade.h:5
+msgid "About"
+msgstr "О программе"
+
+#: ../data/minbar.glade.h:6
+msgid "Advanced"
+msgstr "Дополнительно"
+
+#: ../data/minbar.glade.h:7
+msgid "Athan"
+msgstr "Азан"
+
+#: ../data/minbar.glade.h:8
+msgid "Calculation error..."
+msgstr "Ошибка в вычислениях..."
+
+#: ../data/minbar.glade.h:9
+msgid "Calendar"
+msgstr "Календарь"
+
+#: ../data/minbar.glade.h:10
+msgid "City"
+msgstr "Город"
+
+#: ../data/minbar.glade.h:11
+msgid "City Details"
+msgstr "Информация о городе"
+
+#: ../data/minbar.glade.h:12
+msgid "City name:"
+msgstr "Название города:"
+
+#: ../data/minbar.glade.h:13
+msgid "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+msgstr "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+
+#: ../data/minbar.glade.h:14
+msgid "Current date printing error"
+msgstr "Ошибка вывода текущей даты"
+
+#: ../data/minbar.glade.h:15
+msgid "Edit City Details"
+msgstr "Редактировать информацию о городе"
+
+#: ../data/minbar.glade.h:16
+msgid ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Shaf'i)\n"
+"University of Islamic Sciences, Karachi (Hanafi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (always 90)"
+msgstr ""
+"Египетский государственный комитет по топографии\n"
+"Университет Исламских Наук, Карачи (шафиит.)\n"
+"Университет Исламских Наук, Карачи (ханафит.)\n"
+"Исламское Общество Северной Америки\n"
+"Лига Исламских Государств (ЛИГ)\n"
+"«Умм аль-Кура», Саудовская Аравия\n"
+"Фиксированный интервал для иша (всегда 90 минут)"
+
+#: ../data/minbar.glade.h:23
+msgid "Find City"
+msgstr "Найти город"
+
+#: ../data/minbar.glade.h:24
+msgid ""
+"If you cannot find your location, please go to www.islamicfinder.org to "
+"search for it."
+msgstr ""
+"Если Вы не можете найти в списке Ваш город, пожалуйста поищите его на сайте "
+"www.islamicfinder.org ."
+
+#: ../data/minbar.glade.h:25
+msgid "Latitude:"
+msgstr "Широта"
+
+#: ../data/minbar.glade.h:26
+msgid "Location"
+msgstr "Местоположение"
+
+#: ../data/minbar.glade.h:27
+msgid "Longitude:"
+msgstr "Долгота"
+
+#: ../data/minbar.glade.h:28
+msgid "Minbar Prayer Calendar"
+msgstr "Расписание времени намазов «Минбар»"
+
+#: ../data/minbar.glade.h:29
+msgid ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
+"Программа расчета времени намаза «Минбар» относится к категории свободного "
+"программного обеспечения. Вы имеете право распространять данную программу и/"
+"или модифицировать ее, придерживаясь при этом условий 2-ой или более поздней "
+"(на Ваш выбор) версии лицензии GNU General Public License, опубликованной "
+"фондом Free Software Foundation.\n"
+"\n"
+"Программа расчета времени намаза «Минбар» распространяется в надежде на то, "
+"что она будет полезна кому-либо, но БЕЗ КАКОЙ ЛИБО ГАРАНТИИ; в том числе без "
+"вытекающей гарантии ТОВАРНОЙ ПРИГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ ЧАСТНОГО "
+"ИСПОЛЬЗОВАНИЯ. См. лицензию GNU General Public License для более подробной "
+"информации. \n"
+"\n"
+"Вместе с программой расчета времени намаза «Минбар» вы должны получить копию "
+"лицензии GNU General Public License; в противном случае для ее приобретения "
+"обращайтесь по адресу: Free Software Foundation, Inc., 59 Temple Place, "
+"Suite 330, Boston, MA  02111-1307  USA"
+
+#: ../data/minbar.glade.h:34
+msgid "Normal Athan:"
+msgstr "Нормальный азан:"
+
+#: ../data/minbar.glade.h:35
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: ../data/minbar.glade.h:36 ../data/minbar.schemas.in.in.h:9
+msgid "Play Athan"
+msgstr "Прослушать азан"
+
+#: ../data/minbar.glade.h:37
+msgid "Prayer Calendar"
+msgstr "Расписание намазов"
+
+#: ../data/minbar.glade.h:38
+msgid "Prayer Times"
+msgstr "Время намазов"
+
+#: ../data/minbar.glade.h:39
+msgid "Prayer Times on your Desktop"
+msgstr "Время намазов на Вашем рабочем столе"
+
+#: ../data/minbar.glade.h:40
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../data/minbar.glade.h:41
+msgid "Quit"
+msgstr "Завершить"
+
+#: ../data/minbar.glade.h:42
+msgid "Select Athan File"
+msgstr "Выбрать файл азана"
+
+#: ../data/minbar.glade.h:43
+msgid "Show/Hide"
+msgstr "Показать/Скрыть"
+
+#: ../data/minbar.glade.h:44 ../data/minbar.schemas.in.in.h:11
+msgid "Start minimised to tray."
+msgstr "Запускать свернутым в системный лоток."
+
+#: ../data/minbar.glade.h:45
+msgid "Stop Athan"
+msgstr "Остановить азан"
+
+#: ../data/minbar.glade.h:46
+msgid "Subh Athan:"
+msgstr "Азан субха:"
+
+#: ../data/minbar.glade.h:47
+msgid "Time Zone:"
+msgstr "Часовой пояс:"
+
+#: ../data/minbar.glade.h:48
+msgid "Timetable"
+msgstr "Расписание"
+
+#: ../data/minbar.glade.h:49
+msgid "Today"
+msgstr "Сегодня"
+
+#: ../data/minbar.glade.h:50
+msgid "Yes, notify before:"
+msgstr "Да, уведомлять до:"
+
+#: ../data/minbar.glade.h:51
+msgid "_Choose a location:"
+msgstr "_Выбрать местоположение:"
+
+#: ../data/minbar.glade.h:52
+msgid "_Find Next"
+msgstr "_Найти следующий"
+
+#: ../data/minbar.glade.h:53
+msgid "_Search:"
+msgstr "_Искать:"
+
+#: ../data/minbar.glade.h:54
+msgid "gtk-apply"
+msgstr "gtk-apply"
+
+#: ../data/minbar.glade.h:55
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../data/minbar.glade.h:56
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ../data/minbar.glade.h:57
+msgid "gtk-media-play"
+msgstr "gtk-media-play"
+
+#: ../data/minbar.glade.h:58
+msgid "gtk-media-stop"
+msgstr "gtk-media-stop"
+
+#: ../data/minbar.glade.h:59
+msgid "gtk-preferences"
+msgstr "gtk-preferences"
+
+#: ../data/minbar.glade.h:60
+msgid "minbar was not built with notifications support."
+msgstr "Программа «Минбар» написана без поддержки уведомлений."
+
+#: ../data/minbar.glade.h:61
+msgid "minutes"
+msgstr "минуты"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../data/minbar.glade.h:63
+msgid "translator-credits"
+msgstr "Рауф Абаскулиев <abdurrauf@mail.ru>"
+
+#: ../data/minbar.schemas.in.in.h:1
+msgid "Calculation method"
+msgstr "Метод вычисления"
+
+#: ../data/minbar.schemas.in.in.h:2
+msgid "Height of city"
+msgstr "Высота города над уровнем моря"
+
+#: ../data/minbar.schemas.in.in.h:3
+msgid "Latitude of city"
+msgstr "Широта города"
+
+#: ../data/minbar.schemas.in.in.h:4
+msgid "Longitude of city"
+msgstr "Долгота города"
+
+#: ../data/minbar.schemas.in.in.h:5
+msgid "Name of city"
+msgstr "Название города"
+
+#: ../data/minbar.schemas.in.in.h:6
+msgid "Notification period"
+msgstr "Период уведомления"
+
+#: ../data/minbar.schemas.in.in.h:7
+msgid "Path to Subh athan file."
+msgstr "Путь к файлу азана субха."
+
+#: ../data/minbar.schemas.in.in.h:8
+msgid "Path to athan file."
+msgstr "Путь к файлу азана."
+
+#: ../data/minbar.schemas.in.in.h:10
+msgid "Set to true to close when clicking the close button instead of hiding."
+msgstr "Установить значение «Да» для закрытия окна, вместо сворачивания."
+
+#: ../data/minbar.schemas.in.in.h:12
+msgid "Time Zone, difference from GMT"
+msgstr "Часовой пояс, отличный от Гринвича"
+
+#: ../data/minbar.schemas.in.in.h:13
+msgid "Whether or not to notify"
+msgstr "Уведомлять или нет"
+
+#: ../minbar.desktop.in.h:1
+msgid "Islamic prayer times"
+msgstr "Время намазов"

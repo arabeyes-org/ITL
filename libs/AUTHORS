@@ -1,0 +1,20 @@
+#--
+# $Id: AUTHORS 11575 2010-05-06 13:19:00Z thamer $
+#--
+
+(To reach any/all of the contributors mail to developer -at- arabeyes . org)
+
+Nadim Shaikli:
+- Contributed brute force calculation method for hijri
+
+Fayez Alhargan: 
+- Author of Umm Alqura code of hijri. For contact info, see the file:
+  hijri/src/umm_alqura.c
+
+Thamer Mahmoud:
+- Contributed the prayertime backend code
+- Shared/Static library build process
+- Initial Debian packaging
+
+-Samy Al Bahra:
+- Autoconf generation and support files

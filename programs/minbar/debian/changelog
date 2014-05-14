@@ -1,0 +1,135 @@
+minbar (0.2.1-7) unstable; urgency=low
+
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * Bump Standards-Version to 3.9.2.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Wed, 03 Aug 2011 16:26:06 +0200
+
+minbar (0.2.1-6) unstable; urgency=low
+
+  * Install schema file. Adapted patch courtesy of Ahmed El-Mahmoudy.
+    (Closes: #561935)
+  * Transition to libnotify 0.7. Patch courtesy of Ahmed El-Mahmoudy.
+    (Closes: #630291)
+  * Improve desktop integration with other Islamic applications.
+    Patch courtesy of Ahmed El-Mahmoudy: (Closes: #632808)
+     + add islamic-menus to Recommends.
+     + add X-Islamic-Software to desktop file.
+  * Fix sound file path in minbar.schema.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Wed, 03 Aug 2011 16:22:50 +0200
+
+minbar (0.2.1-5) unstable; urgency=low
+
+  * Split package to create a minbar-data package.
+  * Backport fixes from upstream:
+     + set minbar's icon as notification icon. (Closes: #528451)
+     + support the new sound architecture. (Closes: #527282)
+     + fix manpage.
+     + no need for mentioning Encoding in .desktop files.
+  * Bump debhelper compatibility to 7.
+  * Bump Standards-Version to 3.8.2.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Fri, 07 Aug 2009 16:11:49 +0200
+
+minbar (0.2.1-4) unstable; urgency=low
+
+  * Remove reference to a removed patch in debian/patches/series.
+    (Closes: #484699)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 08 Sep 2008 16:06:26 +0200
+
+minbar (0.2.1-3) unstable; urgency=low
+
+  * Remove "DEB_CONFIGURE_SCRIPT_ENV += " from debian/rules to avoid FTBFS
+    when sh is dash. (Closes: #458794)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Thu, 03 Jan 2008 11:02:47 +0100
+
+minbar (0.2.1-2) unstable; urgency=low
+
+  * Rebootstrap with a fixed data/Makefile.am so that schemas file is
+    cleaned.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 23 Dec 2007 22:15:45 +0100
+
+minbar (0.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 23 Dec 2007 18:04:43 +0100
+
+minbar (0.2-2) unstable; urgency=low
+
+  * Remove noopt and nostrip options.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 23 Dec 2007 15:36:45 +0100
+
+minbar (0.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+     + remove Build-Depends on libnotify-dev-gtk2.10.
+     + bump standards-version.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 03 Dec 2007 03:17:42 +0100
+
+minbar (0.1-9) unstable; urgency=low
+
+  * Tighten build-dep on libnotify. (Closes: #409978)
+     + revert to build-depending on libnotify-dev-gtk2.10 as suggested by Loïc
+       Minier.
+     + notify_notification_attach_to_status_icon is available with
+       libnotify >= 0.4.1.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 16 Apr 2007 15:34:52 +0200
+
+minbar (0.1-8) unstable; urgency=low
+
+  * No need for libnotify-dev-gtk2.10, now we need libnotify-dev.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sat, 14 Apr 2007 01:58:46 +0200
+
+minbar (0.1-7) unstable; urgency=low
+
+  * Upload to unstable. (Closes: #409978)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Fri, 13 Apr 2007 23:43:30 +0200
+
+minbar (0.1-6) experimental; urgency=low
+
+  * Add -export-dynamic to LDFLAGS in debian/rules.
+    Thanks Ahmad M. Afuni.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 11 Feb 2007 22:45:49 +0100
+
+minbar (0.1-5) experimental; urgency=low
+
+  * Build-Depends on libnotify-dev-gtk2.10.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Tue,  6 Feb 2007 23:14:02 +0100
+
+minbar (0.1-4) experimental; urgency=low
+
+  * Tighten Build-Depends.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 15 Jan 2007 14:13:28 +0100
+
+minbar (0.1-3) experimental; urgency=low
+
+  * Also Build-Depend on intltool.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 15 Jan 2007 14:03:06 +0100
+
+minbar (0.1-2) experimental; urgency=low
+
+  * Build-Depend on scrollkeeper. (Closes: #406958)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 15 Jan 2007 12:10:36 +0100
+
+minbar (0.1-1) experimental; urgency=low
+
+  * Initial release. (Closes: #404449)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun,  3 Dec 2006 02:03:28 +0100
+

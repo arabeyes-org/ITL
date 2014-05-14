@@ -1,0 +1,463 @@
+.\" \" -*- nroff -*-
+.\" \" $Id: ipraytime.1 11579 2010-05-06 13:59:19Z thamer $
+.\" \" 
+.\" \" - Define 'example' macro
+.\" .de EX
+.\" .ne 5
+.\" .if n .sp 1
+.\" .if t .sp .5
+.\" .nf
+.\" .in +.5i
+.\" ..
+.\" .de EE
+.\" .fi
+.\" .in -.5i
+.\" .if n .sp 1
+.\" .if t .sp .5
+.\" ..
+.\" \" - Define 'example' macro
+.\" \" 
+.\" \" NOTE: Please adjust .TH date whenever modifying the manpage.
+.\" \" 
+.\" \" 
+.\" 
+.TH "IPRAYTIME" "1" "May 1, 2010" "ipraytime" "User Commands"
+.SH "NAME"
+ipraytime \- An Islamic Prayer Times Calculator
+.\"
+.SH "SYNOPSIS"
+.B ipraytime
+.RB [ \-\-date
+.RI           yyyymmdd ]
+.RB [ \-\-latitude
+.RI              real_num ]
+.RB [ \-\-longitude
+.RI              real_num ]
+.RB [ \-\-utcdiff
+.RI              real_num ]
+.RB [ \-\-method
+.RI             int_num ]
+.RB [ \-\-ishaangle
+.RI              real_num ]
+.RB [ \-\-fajrangle
+.RI              real_num ]
+.RB [ \-\-dst
+.RI             int_num ]
+.RB [ \-\-dst\-start
+.RI             yyyymmdd ]
+.RB [ \-\-dst\-end
+.RI             yyyymmdd ]
+.RB [ \-\-round
+.RI             int_num ]
+.RB [ \-\-extreme
+.RI             int_num ]
+.RB [ \-\-sea\-level
+.RI             int_num ]
+.RB [ \-\-month
+.RI            [int_num] ]
+.RB [ \-\-year
+.RI           [int_num] ]
+.RB [ \-\-file
+.RI           pref_file ]
+.RB [ \-\-end ]
+.RB [ \-\-brief ]
+.RB [ \-\-help ]
+.SH "DESCRIPTION"
+\fBipraytime\fR is a generator of Islamic prayer times for any given
+location. It is capable of generating daily, monthly, and yearly
+schedules based on user specified settings. In its single day output
+format, it can calculate the appropriate Qibla direction (heading
+towards the Kabaa) and Imsaak time (the time when one is to start
+fasting). \fBipraytime\fR also has a minimalistic option to show a
+brief one\-liner showing prayer times for a single day.
+.PP 
+
+\fBipraytime\fR is configured using a file in the user's home
+directory (\fI~/.iprayrc\fR). For configuration and usage samples, see
+the \fBEXAMPLES\fR section below. It is also possible to specify
+settings using an environment variable (IPT_DATA) or through passing
+arguments to the command line (which takes precedent over all other
+settings). If none of the above is found, \fBipraytime\fR defaults to
+using Makkah's location with the host machine's current date settings.
+.SH "OPTIONS"
+A summary of all command\-line arguments and configuration options are
+noted below:
+.TP 
+.B \-h, \-\-help
+Show summary of options.
+.TP 
+.B \-d, \-\-date \fIyyyymmdd\fR
+Specify the Gregorian date to use where `y' stands for
+year, `m' for month and `d' for day.
+.TP 
+.B \-lat, \-\-latitude \fIreal_num\fR
+Specify the latitude setting to use during calculations.  The value
+could be any real number.
+.TP 
+.B \-lon, \-\-longitude \fIreal_num\fR
+Specify the longitude setting to use during calculations.  The value
+could be any real number.
+.TP 
+.B \-sea, \-\-sea\-level \fIreal_num\fR
+Specify height above Sea level (in meters).
+.TP 
+.B \-u, \-\-utcdiff \fIreal_num\fR
+Specify the difference between the specified timezone and that of GMT/UTC.
+The value could be any real number.
+.TP 
+.B \-a, \-\-anglemethod \fI[int_num]\fR
+Specify which angle method calculation to use.  The angle methods that are
+currently supported by \fIipraytime\fR are,
+.RS 8
+.TP 4
+.B 1
+Egyptian General Authority of Survey
+  Fajr/Isha Angle   : 20/18
+  Used in           : Africa, Indonesia, Iraq, 
+                      Jordan, Lebanon, Malaysia,
+                      Singapore, Syria,
+                      Parts of the USA
+.TP 4
+.B 2
+University of Islamic Sciences, Karachi (Shaf'i)
+  Fajr/Isha Angle   : 18/18
+  Used in           : Iran, Kuwait,
+                      Parts of Europe
+.TP 4
+.B 3
+University of Islamic Sciences, Karachi (Hanafi)
+  Fajr/Isha Angle   : 18/18
+  Used in           : Afghanistan, Bangladesh,
+                      India
+.TP 4
+.B 4
+Islamic Society of North America
+  Fajr/Isha  Angle  : 15/15
+  Used in           : Canada, Parts of UK,
+                      Parts of USA
+.TP 4
+.B 5
+Muslim World League (MWL)
+  Fajr/Isha  Angle  : 18/17
+  Used in           : Parts of Europe,
+                      Far East, Parts of USA
+.TP 4
+.B 6
+Umm Al\-Qurra University
+  Fajr/Isha Angl e  : 19/0
+  Isha Interval     : 90 minutes from Al\-Maghrib
+                      prayer but set to 120
+                      during Ramadan.
+  Used in           : Saudi Arabia
+.TP 4
+.B 7
+Fixed Isha Angle Interval (always 90)
+  Fajr/Isha Angle   : 19.5/0
+  Isha Interval     : 90 minutes from Al\-Maghrib
+                      prayer
+  Used in           : Bahrain, Oman, Qatar, UAE
+.TP 4
+.B 8
+Egyptian General Authority of Survey (Egypt)
+  Fajr/Isha Angle   : 19.5/17.5
+  Used in           : Egypt
+.RE
+.TP
+.B \-fa, \-\-fajrangle \fI[real_num]\fR
+Specify which angle to use for Fajr. Will override the one set by the \-\-anglemethod.
+.TP
+.B \-ia, \-\-ishaangle \fI[real_num]\fR
+Specify which angle to use for Isha. Will override the one set by the \-\-anglemethod.
+.TP
+.B \-s, \-\-dst \fI[int_num]\fR
+By default, \fBipraytime\fR uses the host's machine timezone
+information to determine whether daylight saving time is in effect or
+not. If this information is unavailable or not accurate, this option
+provides the means to explicitly set the DST status. Set this to 0 to
+completely disable daylight saving time. Set it to 1 to always add one
+hour to the computed prayer times.
+.PP 
+.B \-ss, \-\-dst\-start  \fIyyyymmdd\fR
+.br 
+.B \-se, \-\-dst\-end  \fIyyyymmdd\fR 
+.br 
+.RS
+Specify a range of dates where day light saving time is in effect for
+your location. For example:
+.RE
+.RS 12
+.TP 4
+ipraytime \-\-dst\-start 20040328 \-\-dst\-end 20041029
+.RE
+.TP 
+.B \-m, \-\-month \fI[int_num]\fR
+Specify to print either current month's schedule or the passed\-in value's
+month schedule.
+.TP 
+.B \-y, \-\-year \fI[int_num]\fR
+Specify to print either current year's schedule or the passed\-in value's
+year schedule.
+.TP 
+.B \-f, \-\-file \fIpref_file\fR
+Specify filename to load which contains user's settings and preferences.
+.TP 
+.B \-e, \-\-end
+Specify to continue with schedule printing until the end of specified month.
+.TP 
+.B \-b, \-\-brief
+Specify to print a brief one\-liner output for single day mode.
+.TP 
+.B \-h12,  \-\-regular\-hour
+Display the prayer times in regular time instead of military time.
+.TP 
+.B \-r, \-\-round \fI[int_num]\fR
+Specify a method for rounding seconds. The supported methods are,
+.RS 8
+.TP 4
+.B 0
+No Rounding. Completely ignore the computed seconds value.
+.TP 4
+.B 1
+Regular Rounding. If seconds are equal to 30 or above, add 1 minute.
+.TP 4
+.B 2
+Special Rounding. Similar to regular rounding but we always round down
+for Shurooq and Imsaak times. (This is the default method).
+.TP 4
+.B 3
+Aggressive Rounding. Similar to Special Rounding but we add 1 minute
+if the seconds value are equal to 1 second or more.
+.RE
+.TP 
+.B \-x, \-\-extreme \fI[int_num]\fR
+Specify a method for prayer times calculations at high (49+) or
+extreme (66+) latitudes. Prayer times calculations relies heavily on
+astronomical events. At these latitudes some of those events do not
+occur at all, or are impossible to precisely calculate using
+conventional means. For example, at certain locations the sun never
+moves below the horizon to the position of the amount of Fajr angle
+degrees specified, therefore there will be no real Fajr time at that
+location. The supported extreme methods are:
+.RS 8
+.PP 5
+.B Note:
+Methods that have the \fBIf Invalid\fR keyword are applied only when
+\fBipraytime\fR is unable to calculate these times. Methods that have the
+\fBAlways\fR keyword are applied always.
+.TP 4
+.B 0
+None. If unable to calculate, leave as 99:99
+.TP 4
+.B 1
+Nearest Latitude (Aqrab Al\-Bilaad): All prayers [Always]
+.TP 4
+.B 2
+Nearest Latitude (Aqrab Al\-Bilaad): Fajr and Isha [Always]
+.TP 4
+.B 3
+Nearest Latitude (Aqrab Al\-Bilaad):  All prayers [If Invalid]
+.TP 4
+.B 4
+Nearest Good Day (Aqrab Al\-Ayyam): All prayers [Always]
+.TP 4
+.B 5
+Nearest Good Day (Aqrab Al\-Ayyam): All prayers [If Invalid] (This is
+the default method)
+.PP 4
+.B Note: 
+All the extreme methods following below do not have a proof in
+traditional Shari'a (Fiqh) resources. These methods were introduced by
+modern day Muslim scholars and scientists for practical reasons only.
+.TP 4
+.B 6
+Seventh of Night: Fajr and Isha [Always]
+.TP 4
+.B 7
+Seventh of Night: Fajr and Isha [If Invalid]
+.TP 4
+.B 8
+Seventh of Day: Fajr and Isha [Always]
+.TP 4
+.B 9
+Seventh of Day: Fajr and Isha [If Invalid]
+.TP 4
+.B 10
+Half of the Night: Fajr and Isha [Always]
+.TP 4
+.B 11
+Half of the Night: Fajr and Isha [If Invalid]
+.PP 4
+.B Note: 
+To use the next two methods, you will need to specify \fBFajrInterval\fR and
+\fBIshaInterval\fR in your configuration file.
+.TP 4
+.B 12
+Minutes from Shorooq/Maghrib: Fajr and Isha [Always]
+.TP 4
+.B 13
+Minutes from Shorooq/Maghrib: Fajr and Isha [If invalid]
+.RE
+.SH "CONFIGURATION"
+\fBipraytime\fR is capable of loading settings from a configuration
+file (\fI~/.iprayrc\fR). The default location of the configuration
+file can be changed using the \-\-file option. The content of the file
+should be in the following syntax `variable_string: value'. See the
+\fBEXAMPLES\fR section for usage examples. Below is a list of all the
+supported settings which can be used in the configuration file:
+.SS "Location Settings"
+.TP 2
+.B City
+Specifies an informational city name string to be displayed for reference.
+.TP 2
+.B Latitude
+Specify the latitude setting to use during calculations.  The value
+could be any real number.
+.TP 2
+.B Longitude
+Specify the longitude setting to use during calculations.  The value
+could be any real number.
+.TP 2
+.B UTC
+Specify the difference between the specified timezone and that of GMT/UTC.
+The value could be any real number.
+.TP 2
+.B SeaLevel
+Specify height above Sea level (in meters).
+.TP 2
+.B Pressure
+Specify the atmospheric pressure in millibars. The default value is 1010. 
+.TP 2
+.B Temperature
+Specify the temperature in Celsius degree. The default value is 10.
+.SS "Calculation Method Settings"
+.TP 2
+.B AngleMethod
+Specify which angle method calculation to use.  The value needs to be
+a positive integer of one of the supported methods. See the
+\-\-anglemethod option for more information.
+.TP 2
+.B Mathhab
+Specify which mathhab to use in one's calculations.  The current
+supported value are 1 for Shaf'i and 2 for Hanafi.
+.TP 2
+.B OffsetList
+Specify a list of values in minutes to add or subtract any amount of
+minutes from the daily computed prayer times. For example, If you want
+to add 30 seconds to Maghrib and subtract 2 minutes from Isha, you
+will set this option to `0 0 0 0 0.5 \-2'.
+.TP 2
+.B FajrAngle
+Specify the fajr angle to use during calculations. Will override the
+values of the specified method.
+.TP 2
+.B IshaAngle
+Specify the isha angle to use during calculations. Will override the
+values of the specified method.
+.TP 2
+.B ImsaakAngle
+Specify imsaak and fajr angle difference. The default value is 1.5 degrees.
+.TP 2
+.B FajrInterval
+Specify the number of minutes between fajr and shorooq. This should be
+a positive integer.
+.TP 2
+.B IshaInterval
+Specify the number of minutes between Isha and Maghrib. This should be
+a positive integer.
+.TP 2
+.B ImsaakInterval
+Specify a difference in minutes between imsaak and fajr. The default
+Imsaak interval from fajr is 10 minutes if the FajrInterval is set.
+.TP 2
+.B ExtremeMethod
+Specify which method to use for high and extreme latitudes.  The value
+needs to be an integer of one of the supported extreme methods. See
+descriptions of the \-\-extreme option for a list of the supported
+methods.
+.TP 2
+.B NearestLatitude
+Specify the latitude Used for the `Nearest Latitude' extreme
+methods. The default is at 48.5 degrees.
+.TP 2
+.B RoundMethod
+Specify which method to use for rounding seconds. The value needs to
+be an integer of one of the supported rounding methods.  See
+the \-\-round option for a list of the supported methods.
+.SS "Daylight Saving Time Settings"
+By default, \fBipraytime\fR uses the host's machine timezone
+information to determine whether daylight saving time is in effect or
+not. If this information is unavailable or not accurate, these options
+provide the means to explicitly set the DST status.
+.TP 2
+.B DST
+Specify the current DST status. Set this to 0 to completely disable
+daylight saving time. Set it to 1 to always add one hour to the
+computed prayer times.
+.TP 2
+.B DST\-Start
+Specify the start date when daylight saving time adjustment is in
+effect for your location. This value should be a valid date in yyyymmdd
+form.
+.TP 2
+.B DST\-End
+Specify the date when daylight saving time adjustment period
+ends. This value should be a valid date in yyyymmdd form.
+.SS "Display Settings"
+.TP 2
+.B HourFormat
+Specify a time format for displaying the prayer times. The value should
+be 12 (regular time) or 24 (military time).
+.SH "ENVIRONMENT"
+.TP 10
+.B IPT_DATA
+One means to pass\-in the various required settings is via this variable.
+The format of the variable needs to be "LocationName Latitude Longitude
+UTCdiff AngleMethodNumber". For instance,
+.EX
+setenv IPT_DATA "Dubai 25.25 55.3 4 2"
+.SH FILES
+.I ~/.iprayrc
+User configuration file.
+.SH "EXAMPLES"
+.TP 4
+A sample (\fB~/.iprayrc\fR) showing how options are set:
+.nf
+
+City: Brussels, Belguim
+Latitude: 50.8333
+Longitude: 4.3333
+UTC: 1
+AngleMethod: 2
+Mathhab: 1
+OffsetList: 0 0 1 2.21 3 \-1
+.fi
+.TP 4
+Examples of using the command\-line options:
+.nf
+
+ipraytime \-y 2007
+
+ipraytime \-f /home/user/.iprayrc\-Oman
+
+ipraytime \-lat 29.5000 \-lon 47.7500 \-u 3 \-\-anglemethod 2 \-d 20071229 \-h12
+
+.fi
+.SH "REPORTING BUGS"
+Report bugs on the web using http://bugs.arabeyes.org
+.SH "AUTHORS"
+Written by Nadim Shaikli and Thamer Mahmoud. Part of the
+Arabeyes.org project.
+.SH "COPYRIGHT"
+\fBipraytime\fR is subject to the GNU General Public License (GPL).
+.br 
+Copyright \(co 2005, Arabeyes, Nadim Shaikli.
+.br
+Copyright \(co 2005\-2010 Thamer Mahmoud
+
+.SH "SEE ALSO"
+\fBireminder\fR(1) \- Prayer time reminder script that uses \fBipraytime\fR.
+\" .BR libitl (1).
+.PP 
+The ITL library (libitl) from the Islamic Tools and Libraries project.
+It is the underlying requirement for \fBipraytime\fR to function.  The
+ITL library was created and is hosted at \fBwww.arabeyes.org\fR.

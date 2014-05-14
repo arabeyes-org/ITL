@@ -1,0 +1,95 @@
+.\" -*- nroff -*-
+.\" $Id: idate.1 11011 2009-03-19 09:20:05Z thamer $
+.\"
+.\" NOTE: Please adjust .TH date whenever modifying the manpage.
+.\"
+.TH IDATE "1" "January 05, 2005" "idate" "User Commands"
+.\"
+.SH NAME
+idate \- A Gregorian/Meladi to/from Hijri/Islamic date converter
+.\"
+.SH SYNOPSIS
+.B idate
+.RB [ \--gregorian
+.RI   yyyymmdd ]
+.RB [ \--hijri
+.RI   yyyymmdd ]
+.RB [ \--simple]
+.RB [ \--umm_alqura ]
+.RB [ \--help ]
+.SH DESCRIPTION
+The \fBidate\fR program is a Gregorian to Hijri (and vice-versa)
+date converter.  The application uses and offers multiple calculation
+methods with not all of them agreeing at all times.  The reason for
+this multiplicity is due to not having one agreed upon method and
+so various entities develop and advocate their calculations.
+.PP
+\fBidate\fR is able to comprehend and calculate both pre-epoch or
+pre-Hijrah, denoted as "B.H", as well as post-epoch or post-Hijrah,
+denoted as "A.H", dates.  \fBidate\fR also utilizes Gregorian's
+pre-epoch "B.C" and post-epoch "A.D" dates and notes them per its
+output.  When entering pre-epoch years, negative numbers ought to be
+utilized.
+.PP
+\fBidate\fR when run without any command-line options uses the host
+machine's current Gregorian date and converts it to Hijri.
+.SH OPTIONS
+\fBidate\fR follows the usual GNU command line syntax, with long options
+starting with two dashes (`-').  A summary of all options is noted below:
+.TP
+.B \-h, \-\-help
+Show summary of options
+.TP
+.B \-g, \-\-gregorian \fIyyyymmdd\fR
+Specify the Gregorian date to be converted where 'y' stands for
+year, 'm' for month and 'd' for day
+.TP
+.B \-hi, \-\-hijri \fIyyyymmdd\fR
+Specify the Hijri date to be converted where 'y' stands for
+year, 'm' for month and 'd' for day
+.TP
+.B \-s, \-\-simple
+Specify a simplified output mode
+.TP
+.B \-u, \-\-umm_alqura
+Specify to use the Umm Al-Qura calculation method (used mostly in
+Saudi Arabia)
+.SH BACKGROUND
+The Hijri calendar is used in most of the Arab world and is the symbolic
+calendar of the Islamic faithed worldwide.  This calendar is known as
+the "Hijri" (based on the word "Hijrah" - denoting migration in Arabic)
+to signal Prophet Mohammed's (PBUH) migration from Makkah to Medinah
+on Thursday, July 15, 622 AD (Julian) or July 19, 622 AD (Gregorian).
+
+The Islamic Hijri calendar is strictly lunar (ie. moon-based) with
+twelve lunar months which do not correspond or track their solar
+counterparts (the Gregorian calendar is a solar or sun-based calendar).
+Lunar years and thus Hijri years are, on average, about 354 days long
+resulting in a Hijri year being roughly about 11 days shorter than its
+Gregorian counterpart.
+
+There is much discussion and confusion regarding how best to track
+the Hijri calendar.  A great deal of that confusion is based on the
+fact that many rely on a human moon sighting to denote the start
+(or end) of a month (each month of the Hijri calendar starts when
+a new moon's crescent is observed or is made visible at sunset)
+as opposed to using an empirical mathematic certainty.  The methods
+presented in this application and its underlying ITL library are
+strictly arithmetic in nature and do NOT take moon-phases into
+consideration (in short, observational approximation is not used).
+.SH LIMITATIONS
+The Umm Al-Qura option doesn't function with pre-epoch settings.
+.SH REPORTING BUGS
+Report bugs on the web using http://bugs.arabeyes.org
+.SH AUTHOR
+Written by Nadim Shaikli as part of the Arabeyes.org project.
+.SH COPYRIGHT
+\fBidate\fR is subject to the GNU General Public License (GPL).
+.br
+Copyright \(co 2005, Arabeyes, Nadim Shaikli.
+.SH SEE ALSO
+\" .BR libitl (1).
+.PP
+The ITL library (libitl) from the Islamic Tools and Libraries project.
+It is the underlying requirement for \fBidate\fR to function.  The
+ITL library was created and is hosted at \fBwww.arabeyes.org\fR.

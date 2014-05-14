@@ -1,0 +1,252 @@
+2012-04-19  Khaled Hosny <khaledhosny@eglug.org>
+	* configure.ac: Enable automake silent rules.
+	* src/main.h: Remove unused tray_destroy_cb().
+	* configure.ac, data/minbar.glade, main.c: Migrate to gtk-3.
+	* configure.ac, data/Makefile.am, data/org.gnome.minbar.gschema.xml.in,
+	  po/POTFILES.in, src/Makefile.am, src/config.c, src/config.h,
+	  src/main.c: Migrate from gconf/keyfile to gsettings.
+	* data/minbar.glade: Mark translatable strings again.
+	* data/Makefile.am, data/org.gnome.minbar.gschema.xml.in.in: Fix athan
+	  files path.
+	* data/Makefile.am, data/minbar.glade, data/minbar.ui, po/POTFILES.in,
+	  src/defines.h, src/main.c, data/minbar.ui: Rename ui file, it no
+	  longer a glade file.
+	* data/minbar.ui, src/main.c, src/main.h: Re-enable qibla drawing.
+	* README, configure.ac: Doc tweaks.
+
+2011-08-14  Abderrahim Kitouni <a.kitouni@gmail.com>
+	* src/main.c, configure.in, data/minbar.glade: Use GtkBuilder instead 
+	of libglade.
+	* data/Makefile.am: only install minbar-applet.* if the applet is built.
+
+2011-08-06  Mohammed Adnène Trojette <adn@diwi.org>
+	* src/main.c:		Support the new sound architecture.
+				Set minbar's icon as notification icon.
+				Update to libnotify 0.7.
+	* data/Makefile.am:	Make sure schema is installed. 
+	* minbar.desktop.in: 	Add to category X-Islamic-Software.
+
+2008-02-06  Abderrahim Kitouni <a.kitouni@gmail.com>
+	* src/main.c: add xine as backend for athan playback, and rsvg for
+			qibla.
+	* data/minbar.glade: use a GtkDrawinArea instead of a GnomeCanvas.
+	* src/main.h: add prototypes.
+	* data/Compass.svg: new file
+	* configure.ac, Makefile.am, data/Makefile.am: updated.
+	
+2007-12-23  Djihed Afifi <djihed@gmail.com>
+	
+	* 0.2.1: release.
+
+
+2007-12-22  Djihed Afifi <djihed@gmail.com>
+	
+	* 0.2: release.
+
+2007-11-17  Djihed Afifi <djihed@gmail.com>
+
+	* configure.ac: more info in configure summary - thanks Abderrahim.
+	* src/main.c : Location search callbacks and functions.
+			Correction is now double.
+			properly handle wcase when location is Makkah.
+			Hack to fix showing qibla on minimise.
+	* src/main.h : Added func prototypes.
+	* data/minbar.glade : Add callbacks for the search. Rearrage main
+			interface.
+	* data/Locations.xml : Using one that only contains languages included 
+			in minbar. Will be updated when new languages are in.
+	* data/minbar.schemas.in.in : correction is "double" now. Needed
+			for places with 1/2 hour corrections.
+	* TODO: updated.
+	* pixmaps/icons/*: New shiny icons! thanks to Yulian Ardiansyah
+
+2007-11-08  Abderrahim Kitouni  <a.kitouni@gmail.com>
+
+	* configure.ac, data/Makefile.am, src/Makefile.am : clean up, added
+				configure summary and gconf uninstall rule.
+	* po/POTFILE.in : replaced minbar.schemas.in.in by minbar.schema.in
+	* src/locations-xml.c : copied dmsh2rad from weather.c
+	* src/main.c : minor corrections (mainly using g_build_filename instead
+			of hardcoding '/'), Locations are now fully working although
+			there may be some bugs.
+	* src/main.h : fixed a typo.
+	* data/minbar.glade : I forgot if I modified anything but cvs diff says
+				I did. Feel free to rollback.
+	* data/Locations.xml : replacing .in by this (from gnome-applets 2.18)
+	* TODO: updated.
+
+2007-05-20  Djihed Afifi  <djihed@gmail.com>
+
+	* configure.ac : new dependencies: libgnomecanvas, libxml.
+	* minbar.glade : Locations window.
+	* src/main.h : adding locations-xml.{c,h}
+	* src/main.c : Qibla direction code.
+		loactions code
+
+2007-05-17  Djihed Afifi  <djihed@gmail.com>
+
+	* Makefile.am : extra EXTRA_DIST files.
+	* doc/minbar.1 : updated man documentation.
+	* src/main.c : command line argument to start hidden.
+		Plural forms for all appropriate messages.
+		Add time and week day to time string.
+
+2007-05-16  Djihed Afifi  <djihed@gmail.com>
+
+	* Makefile.am : don't use distuninstallcheck_listfiles.
+	* minbar.glade : interface revamp. Introducing calendar,
+		new UI options, seperate athans for subh and normal.
+		etc.
+	* src/Makefile.am : use noinst_HEADERS
+		move /apps/minbar to prefs.h
+	* main.h : new function prototypes.
+	* main.c : add calendar navigation.
+		Add ability to have multiple athans
+		icons for dialogs.
+
+2006-05-14  Abderrahim Kitouni  <a.kitouni@gmail.com>
+
+	* configure.ac, src/main.c, src/prefs.h : add the possibility to use a
+	keyfile instead of gconf for storing preferences. Minbar doesn't rely on
+	gnome anymore.
+	
+	* configure.ac, acinclude.m4 : added the possibility to use relative
+	filenames for its resources (mainly to be used on Windows). added a
+	couple of GPL'd macros to compute the relative paths.
+	
+	* src/main.c : rewrote part of update_date_label so that it uses glib.
+	
+2007-05-06  Djihed Afifi  <djihed@gmail.com>
+
+	* README : minor corrections.
+	* TODO : Plans for next release.
+	* configure.ac : no need for glade.in.
+		add variable to configure minbar.schemas.in.in
+	* data/Makefile.am : get schemas.in.
+		shutdown gconftool after install.
+	* pixmaps/Makefile.am : specify uninstall hook
+	* src/main.c : Close now only hides.
+		handle preference to close instead (gconf)
+		Athan location preference for subh and normal
+		Load icon from icon cache, not direct image name, to allowtheming.
+	* src/prefs.h : new preferences for athan locations and close option.
+
+2007-03-21  Djihed Afifi  <djihed@gmail.com>
+
+	* pixmaps/Makefile.am : proper icon size.
+
+	* Makefile.am : Fix icon rule.
+
+	* minbar.desktop.in : switch to minbar.desktop.in to get translated
+	menu entries.
+
+	* data/minbar.schemas.in: Translatable preferences.
+
+	* src/main.c : Specify next prayer name in tooltip.
+
+2007-02-17  Djihed Afifi  <djihed@gmail.com>
+
+	* doc/minbar.1 : minor corrections.
+
+	* src/main.c : added ability to start minimised
+
+	* scr/prefs.h : new pref hidden to start minimised.
+
+	* configure.ac : minbar.glade.in no longer needed.
+
+	* data/minbar.glade : new checkbox to enable start minimised.
+
+	* data/minbar.schemas : new preference to start minimised.
+
+2006-12-24  Djihed Afifi  <djihed@gmail.com>
+
+	* doc/* : Added man page.
+
+	* src/main.c : function prototypes removed to header.
+	use gnome translation system.
+	localised date string.
+
+	* src/main.h : complete function proptoypes.
+
+	* scr/defines.h : no need for gettext macros.
+
+	* configure.ac : remade autotools.
+
+	* Makefile.am : remade autotools.
+
+	* autogen.sh : use gnome autotools.
+
+	* src/Makefile.h : remade autotools.
+
+2006-12-07  Djihed Afifi  <djihed@gmail.com>
+
+	* src/main.c : move defined PROGRAM_NAME to a var.
+
+2006-12-17  Abderrahim Kitouni  <a.kitouni@gmail.com>
+
+	* bootstrap, configure.in : use intltool.
+
+	* po/POTFILE.in : added desktop file and gconf schemas.
+
+	* po/minbar.pot : updated.
+
+2006-12-07  Djihed Afifi  <djihed@gmail.com>
+
+	* main.c : Add some logic to avoid displaying hours when there are 0.
+
+	* data/minbar.glade.in : unmarked non needed translations
+
+	* defines.h : more complete gettext support (for plurals)
+
+	* po/ar.po : more translations - testing if I'm missing any
+
+	* AUTHORS : updated.
+
+	* TODO : More information on what is needed.
+	
+2006-12-16  Abderrahim Kitouni  <a.kitouni@gmail.com>
+
+	* main.c : Added i18n support (using gettext).
+
+	* data/minbar.schemas : Macca is GMT+3, and not -3.
+
+	* defines.h : Added a shortcut for gettext
+
+	* bootstrap : added a call to glib-gettextize.
+
+	* po/ : Added POTFILE.in, minbar.pot, and ar.po
+	
+	* configure.in, Makefile.am : added gettext support and po subdirectory.
+
+	* data/minbar.glade.in, src/Makefile.am : fixed pixmaps.
+	
+	* TODO : updated accordingly.
+
+2006-12-07  Djihed Afifi  <djihed@gmail.com>
+
+	* main.c : USE_NOTIFY checks.
+	minimise to tray.
+
+	* configure.in : libnotify checks.
+	
+	* minbar.glade : Cleaner preferences.
+	Added options to menu popup.
+
+2006-12-07  Djihed Afifi  <djihed@gmail.com>
+
+	* main.c : Added notifications using libnotify. 
+	Added gtkstatusicon check to hide close button. 
+	Added tray icon tooltip.
+	Added Advanced preferences (method, notify..)
+
+	* minbar.glade: Advanced preferences. Close now quits.
+
+	* configure.in: libnotify check.
+
+	* minbar.schemas: schemas for notif, notiftime, method.
+
+	* prefs.h : New preferences.
+
+2006-12-01  Djihed Afifi  <djihed@gmail.com>
+
+	* Initial check in.

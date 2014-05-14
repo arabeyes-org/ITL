@@ -1,0 +1,68 @@
+# $Id: configure.in 10996 2009-03-09 05:17:24Z thamer $
+
+AC_PREREQ(2.57)
+AC_INIT([itools],[1.0],[developer-at-arabeyes.org])
+
+AC_PROG_CC
+AC_PATH_PROG(LD, ld)
+AC_SUBST(LD)
+
+# Checks for Link/Compile options
+SYSTEM=`uname -s`
+if [ test "$SYSTEM" = "SunOS" ]; then
+   LDFLAGS="$LDFLAGS -rpath-link /usr/include"
+fi
+
+
+# Checks for libraries
+AC_HAVE_LIBRARY(m, , [AC_MSG_ERROR(library 'libm' is missing)])
+#AC_CHECK_LIB(itl, getPrayerTimes, , [AC_MSG_ERROR(library 'itl' is missing)])
+
+
+# Specify ITL specific lib (wish AC_CHECK_LIB did this !!)
+if test "x${prefix}" = "xNONE"; then
+  my_prefix=${ac_default_prefix}
+else
+  my_prefix=${prefix}
+fi
+
+ITL_LIB="$my_prefix/lib/itl $my_prefix/lib64/itl $my_prefix/lib32/itl /usr/lib/ /usr/lib64/ /usr/lib32/ /usr/lib/itl/ /usr/lib64/itl/ /usr/lib32/itl/"
+
+for i in $ITL_LIB; do
+  echo -n "checking for -litl in $i... "
+  ( [ test -e $i/libitl.so.@<:@0123456@:>@ ] || [ test -e $i/libitl.a ] ) && ITL_LIB_FOUND=$i && break;
+done;
+
+if [ test "$ITL_LIB_FOUND" = "/usr/lib/" ]; then
+  LIBS="-litl $LIBS"
+  echo "yes"
+elif [ test -n "$ITL_LIB_FOUND" ]; then
+  LDFLAGS="$LDFLAGS -L$ITL_LIB_FOUND -Xlinker -rpath -Xlinker $ITL_LIB_FOUND"
+  LIBS="-litl $LIBS"
+  echo "yes"
+else
+  echo "no"	
+  echo "library 'itl' is missing"
+  exit;
+fi
+
+AC_CHECK_MEMBER(struct tm.tm_gmtoff, [AC_DEFINE(HAVE_TM_GMTOFF)], ,
+                [#include <time.h>])
+
+# Checks for header files
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
+AC_CHECK_HEADERS([itl/prayer.h itl/hijri.h], , [AC_MSG_ERROR(ITL header files missing)])
+
+# Checks for typedefs and structures
+AC_C_CONST
+AC_TYPE_UID_T
+AC_STRUCT_TM
+
+# Checks for library functions
+AC_CHECK_FUNCS([strcasecmp])
+
+# Generate output
+AC_CONFIG_HEADER([config.h])
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

@@ -1,0 +1,9 @@
+[Desktop Entry]
+_Name=Minbar Prayer Times
+_Comment=Islamic prayer times
+Exec=minbar
+Icon=minbar
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=X-Islamic-Software;GNOME;GTK;Utility;Utility;

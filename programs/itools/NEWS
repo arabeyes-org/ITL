@@ -1,0 +1,33 @@
+/************************************************************************
+ * $Id$
+ *
+ * ------------
+ * Description:
+ * ------------
+ * This file is about changes to itools. For now, the style of the
+ * file follows the format used in Emacs org-mode.
+ *  
+ * -----------------
+ * Revision Details:    (Updated by Revision Control System)
+ * -----------------
+ *  $Date$
+ *  $Author$
+ *  $Revision$
+ *  $Source$
+ *
+ ************************************************************************/
+
+* Changes in itools-1.0
+
+** New Features
+*** ireminder: Added -execr and -execs options for external application triggers at Athan.
+*** ipraytime: Adding support for passing arguments --fajrangle and --ishaangle.
+*** ipraytime: Adding option "OffsetList" to add and subtract minutes or seconds from numbers computed by ipraytime.
+*** ipraytime: Improved man-page and added examples.
+
+** Bug fixes
+*** ipraytime: Fixed crashes with regards to memory allocation.
+
+** Build process
+*** configure now checks for lib32 and lib64 also.
+*** Switched to using install instead of cp (this would automatically preserve proper permissions).

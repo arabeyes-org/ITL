@@ -1,0 +1,23 @@
+libitl (0.7.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated FSF address, thanks to Mohammed Sameer (Closes: #403480).
+  * Binaries should not be stripped, thanks to Julien Danjou (Closes:
+    #437373).
+
+ -- Thamer Mahmoud <thamer@newkuwait.org>  Tue, 17 Mar 2009 20:26:19 +0300
+
+libitl (0.6.4-1) unstable; urgency=low
+
+  * New upstream release
+  * Added autoconf to the build-depends, thanks to Kurt Roeckx (Closes:
+    #298794).
+
+ -- Thamer Mahmoud <thamer@newkuwait.org>  Thu, 17 Mar 2005 01:29:43 +0300
+	
+libitl (0.6.3-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Thamer Mahmoud <thamer@newkuwait.org>  Wed,  8 Dec 2004 10:05:07 +0300
+

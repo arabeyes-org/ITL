@@ -1,0 +1,13 @@
+#--
+# $Id: README 12117 2013-09-15 14:22:18Z hosny $
+#--
+
+Al Salam Alykom Wa Rahmat Allah Wa Barakatoh.
+
+This directory contains on-going work that pertains to the generation
+of Hijri date generators and converters.
+
+The idea is to create a library-module which, based on user input,
+can generate and convert Hijri dates based on a variety of calculation
+methods.
+

@@ -1,0 +1,65 @@
+<schemalist>
+  <schema id="org.gnome.minbar" path="/apps/minbar/">
+    <child name="city" schema="org.gnome.minbar.city"/>
+    <child name="preferences" schema="org.gnome.minbar.preferences"/>
+    <child name="athan" schema="org.gnome.minbar.athan"/>
+  </schema>
+  <schema id="org.gnome.minbar.city" path="/apps/minbar/city/">
+    <key name="latitude" type="d">
+      <default>21.43</default>
+      <_summary>Latitude of city</_summary>
+    </key>
+    <key name="longitude" type="d">
+      <default>39.77</default>
+      <_summary>Longitude of city</_summary>
+    </key>
+    <key name="name" type="s">
+      <default>'Makkah'</default>
+      <_summary>Name of city</_summary>
+    </key>
+    <key name="height" type="d">
+      <default>0</default>
+      <_summary>Height of city</_summary>
+    </key>
+    <key name="correction" type="d">
+      <default>3.0</default>
+      <_summary>Time Zone, difference from GMT</_summary>
+    </key>
+  </schema>
+  <schema id="org.gnome.minbar.preferences" path="/apps/minbar/preferences/">
+    <key name="notification" type="b">
+      <default>true</default>
+      <_summary>Whether or not to notify</_summary>
+    </key>
+    <key name="notification-time" type="i">
+      <default>5</default>
+      <_summary>Notification period</_summary>
+    </key>
+    <key name="method" type="i">
+      <default>5</default>
+      <_summary>Calculation method</_summary>
+    </key>
+    <key name="start-hidden" type="b">
+      <default>false</default>
+      <_summary>Start minimised to tray.</_summary>
+    </key>
+    <key name="closes" type="b">
+      <default>false</default>
+      <_summary>Set to true to close when clicking the close button instead of hiding.</_summary>
+    </key>
+  </schema>
+  <schema id="org.gnome.minbar.athan" path="/apps/minbar/athan/">
+    <key name="play" type="b">
+      <default>true</default>
+      <_summary>Play Athan</_summary>
+    </key>
+    <key name="normal" type="s">
+      <default>'@datadir@/@PACKAGE@/athan.ogg'</default>
+      <_summary>Path to athan file.</_summary>
+    </key>
+    <key name="subh" type="s">
+      <default>'@datadir@/@PACKAGE@/athan.ogg'</default>
+      <_summary>Path to Subh athan file.</_summary>
+    </key>
+  </schema>
+</schemalist>

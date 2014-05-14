@@ -1,0 +1,49 @@
+Minbar is a GNOME Islamic prayer times application on top of libitl,
+the Arabeyes prayer calculation library.
+
+It runs in background as a tray icon, plays the 'athan' (call to
+prayer) and notifies when at prayer times.
+
+Minbar uses the following optional calculation methods:
+
+You must adjust it to make it use the method you follow in Preferences.
+
+BUILDING
+--------
+Before building from source, please check whether your distribution
+has a package already. Search for Minbar in your distro repositories
+or check out:
+
+http://djihed.com/minbar
+
+To build, you need a few libraries and programs to build from source, on debian/ubuntu
+these are:
+
+automake1.9
+gettext
+gnome-common
+libglib2.0-dev
+libgtk-3-dev
+libitl-dev
+libgstreamer0.10-dev
+libnotify-dev
+
+Build essentials: make, gcc, ...
+
+Build procedure: you just need to run the following commands
+
+./autogen.sh
+make
+sudo make install
+
+If you prepared a package for another Linux distribution or ported
+Minbar to another operating system, please let me know by sending me
+an email.
+
+CONTACT
+-------
+Djihed Afifi: djihed@gmail.com
+http://djihed.com/minbar
+
+--Djihed
+

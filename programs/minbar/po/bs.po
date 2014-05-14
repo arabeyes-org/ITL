@@ -1,0 +1,513 @@
+# Minbar Bosnian translation.
+# Copyright (C) 2007, 2006
+# This file is distributed under the same license as the minbar package.
+# FIRST AUTHOR <>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Minbar 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-21 22:03+0000\n"
+"PO-Revision-Date: 2007-12-02 10:51+0100\n"
+"Last-Translator: Alma <alma@etf.ba>\n"
+"Language-Team: Bosnian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/main.c:156
+#, c-format
+msgid "Time for prayer: %s"
+msgstr "Vrijeme za namaz: %s"
+
+#: ../src/main.c:162 ../src/main.c:170
+#, c-format
+msgid "%d %s until %s prayer."
+msgstr "%d %s do %s namaza."
+
+#: ../src/main.c:164 ../src/main.c:182 ../src/main.c:390
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minuta"
+msgstr[1] "minuta"
+
+#: ../src/main.c:172 ../src/main.c:180
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "sat"
+msgstr[1] "sati"
+
+#: ../src/main.c:178
+#, c-format
+msgid "%d %s and %d %s until %s prayer."
+msgstr "%d %s i %d %s do %s namaza."
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 12 January 2007
+#.
+#: ../src/main.c:217
+msgid "%d %B %G"
+msgstr "%d %B %G"
+
+#. TRANSLATOR: this is a format string for strftime
+#. *             see `man 3 strftime` for more details
+#. *             copy it if you're unsure
+#. *             This will print an example: 19:17.
+#. *             if you want to use 12 hour format, use: %I:%M %p
+#. *             which will print something similar to: 7:17 pm
+#.
+#: ../src/main.c:229
+msgid "%H:%M"
+msgstr "%H:%M"
+
+#. The comma may differ from language to language
+#: ../src/main.c:237
+msgid ","
+msgstr ","
+
+#: ../src/main.c:283
+#, c-format
+msgid "%d minutes until %s prayer."
+msgstr "%d minuta do %s namaza."
+
+#: ../src/main.c:298
+#, c-format
+msgid "It is time for %s prayer."
+msgstr "Vrijeme je za %s namaz."
+
+#: ../src/main.c:749 ../src/main.c:840
+#, c-format
+msgid ""
+"Invalid calculation method in preferences, using 5: Muslim world League \n"
+msgstr ""
+"Neispravan metod proračuna u postavljanjima, u upotrebi 5: Muslimanska "
+"Svjetska Liga \n"
+
+#: ../src/main.c:1054
+#, c-format
+msgid "Error: %s\n"
+msgstr "Greška: %s\n"
+
+#: ../src/main.c:1123
+msgid "All files"
+msgstr "Sve datoteke"
+
+#: ../src/main.c:1129
+msgid "Supported files"
+msgstr "Podržane datoteke"
+
+#: ../src/main.c:1252 ../minbar.desktop.in.h:2
+msgid "Minbar Prayer Times"
+msgstr "Minbar Vaktovi Namaza"
+
+#: ../src/main.c:1254
+msgid "skip"
+msgstr "preskoči"
+
+#: ../src/main.c:1255
+msgid "Muharram"
+msgstr "Muharrem"
+
+#: ../src/main.c:1256
+msgid "Safar"
+msgstr "Safer"
+
+#: ../src/main.c:1257
+msgid "Rabi I"
+msgstr "Rebiu-l-evvel"
+
+#: ../src/main.c:1258
+msgid "Rabi II"
+msgstr "Rebiu-l-ahir"
+
+#: ../src/main.c:1259
+msgid "Jumada I"
+msgstr "Džumade-l-ula"
+
+#: ../src/main.c:1260
+msgid "Jumada II"
+msgstr "Džumade-l-uhra"
+
+#: ../src/main.c:1261
+msgid "Rajab"
+msgstr "Redžeb"
+
+#: ../src/main.c:1262
+msgid "Shaaban"
+msgstr "Ša'ban"
+
+#: ../src/main.c:1263
+msgid "Ramadan"
+msgstr "Ramazan"
+
+#: ../src/main.c:1264
+msgid "Shawwal"
+msgstr "Ševval"
+
+#: ../src/main.c:1265
+msgid "Thul-Qiaadah"
+msgstr "Zu-l-ka'de"
+
+#: ../src/main.c:1266
+msgid "Thul-Hijja"
+msgstr "Zu-l-hidždže"
+
+#: ../src/main.c:1268
+msgid "Subh"
+msgstr "Sabah"
+
+#: ../src/main.c:1269
+msgid "Shorook"
+msgstr "Izlazak sunca"
+
+#: ../src/main.c:1270
+msgid "Dhuhr"
+msgstr "Podne"
+
+#: ../src/main.c:1271
+msgid "Asr"
+msgstr "Ikindija"
+
+#: ../src/main.c:1272
+msgid "Maghreb"
+msgstr "Akšam"
+
+#: ../src/main.c:1273
+msgid "Isha'a"
+msgstr "Jacija"
+
+#: ../src/main.c:1286
+msgid "Hide main window on start up."
+msgstr "Sakrij glavni prozor pri pokretanju."
+
+#: ../src/main.c:1441
+msgid "In Makkah!"
+msgstr "U Mekki!"
+
+#: ../src/main.c:1490
+msgid "Qibla direction"
+msgstr "Smjer Ka'be"
+
+#: ../src/main.c:1492
+msgid "East"
+msgstr "Istok"
+
+#: ../src/main.c:1492
+msgid "West"
+msgstr "Zapad"
+
+#: ../src/main.c:1546
+msgid "Minbar Website"
+msgstr "Minbar web-stranica"
+
+#: ../src/main.c:1665
+msgid ""
+"Failed to load the Locations XML database.  Please report this as a bug."
+msgstr ""
+"Učitavanje XML baze podataka svih lokacija nije uspjelo. Molim prijavite ovo "
+"kao grešku (bug)."
+
+#: ../data/minbar.glade.h:1
+msgid "<b>Calculation Method</b>"
+msgstr "<b>Metod proračuna</b>"
+
+#: ../data/minbar.glade.h:2
+msgid "<b>Notifications</b>"
+msgstr "Obavijesti"
+
+#: ../data/minbar.glade.h:3
+msgid "<b>Options</b>"
+msgstr "Opcije"
+
+#: ../data/minbar.glade.h:4
+msgid "<b>Times</b>"
+msgstr "Vaktovi"
+
+#: ../data/minbar.glade.h:5
+msgid "About"
+msgstr "U vezi sa"
+
+#: ../data/minbar.glade.h:6
+msgid "Advanced"
+msgstr "Detaljno"
+
+#: ../data/minbar.glade.h:7
+msgid "Athan"
+msgstr "Ezan"
+
+#: ../data/minbar.glade.h:8
+msgid "Calculation error..."
+msgstr "Greška u proračunu..."
+
+#: ../data/minbar.glade.h:9
+msgid "Calendar"
+msgstr "Kalendar"
+
+#: ../data/minbar.glade.h:10
+msgid "City"
+msgstr "Grad"
+
+#: ../data/minbar.glade.h:11
+msgid "City Details"
+msgstr "Detalji o gradu"
+
+#: ../data/minbar.glade.h:12
+msgid "City name:"
+msgstr "Ime grada:"
+
+#: ../data/minbar.glade.h:13
+msgid "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+msgstr "Copyright (c) 2006, 2007 Djihed Afifi <djihed@gmail.com>"
+
+#: ../data/minbar.glade.h:14
+msgid "Current date printing error"
+msgstr "Greška pri ispisu današnjeg datuma"
+
+#: ../data/minbar.glade.h:15
+msgid "Edit City Details"
+msgstr "Uredi detalje o gradu"
+
+#: ../data/minbar.glade.h:16
+msgid ""
+"Egyptian General Authority of Survey\n"
+"University of Islamic Sciences, Karachi (Shaf'i)\n"
+"University of Islamic Sciences, Karachi (Hanafi)\n"
+"Islamic Society of North America\n"
+"Muslim World League (MWL)\n"
+"Umm Al-Qurra, Saudi Arabia\n"
+"Fixed Ishaa Interval (always 90)"
+msgstr ""
+"Egipatsko Glavno Tijelo za Geolokaciju\n"
+"Univerzitet Islamskih nauka, Karači (aafi'ijski)\n"
+"Univerzitet Islamskih nauka, Karači (Hanefijski)\n"
+"Islamsko Društvo Sjeverne Amerike\n"
+"Muslimanska Svjetska Liga (MWL)\n"
+"Umm Al-Qurra, Saudijska Arabija\n"
+"Stalni Jacijski Interval (uvijek 90)"
+
+#: ../data/minbar.glade.h:23
+msgid "Find City"
+msgstr "Pronađi grad"
+
+#: ../data/minbar.glade.h:24
+msgid ""
+"If you cannot find your location, please go to www.islamicfinder.org to "
+"search for it."
+msgstr ""
+"Ukoliko ne možete pronaći vašu lokaciju, molim posjetite www.islamicfinder."
+"org da biste je pronašli."
+
+#: ../data/minbar.glade.h:25
+msgid "Latitude:"
+msgstr "Geografska širina:"
+
+#: ../data/minbar.glade.h:26
+msgid "Location"
+msgstr "Lokacija"
+
+#: ../data/minbar.glade.h:27
+msgid "Longitude:"
+msgstr "Geografska dužina:"
+
+#: ../data/minbar.glade.h:28
+msgid "Minbar Prayer Calendar"
+msgstr "Minbar Kalendar Vaktova Namaza"
+
+#: ../data/minbar.glade.h:29
+msgid ""
+"Minbar Prayer Times is free software; you can redistribute it and/or modify "
+"it under the terms of the GNU General Public License as published by the "
+"Free Software Foundation; either version 2 of the License, or (at your "
+"option) any later version.\n"
+"\n"
+"Minbar Prayer Times is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Minbar Prayer Times; if not, write to the Free Software Foundation, Inc., 59 "
+"Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
+"Minbar Vaktovi Namaza je besplatan softver; možete ga redistribuirati i/ili "
+"modificirati pod uvjetima GNU General Public License objavljene od strane "
+"Free Software Foundation; prema verziji 2 Licence, ili (po vašem izboru) "
+"bilo koje kasnije verzije.\n"
+"\n"
+"Minbar Vaktovi Namaza se distribuira u nadi da će biti koristan, ali BEZ "
+"IKAKVE GARANCIJE; bez implicitne garancije za TRGOVINU ili ZA BILO KOJU "
+"DRUGU NAMJENU. Pogledajte GNU General Public Licencu za više detalja.\n"
+"\n"
+"Trebalo bi da imate kopiju GNU General Public Licence zajedno sa Minbar "
+"Vaktovima Namaza; ako je nemate, kontaktirajte Free Software Foundation, "
+"Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+
+#: ../data/minbar.glade.h:34
+msgid "Normal Athan:"
+msgstr "Redovni ezan:"
+
+#: ../data/minbar.glade.h:35
+msgid "Notifications"
+msgstr "Obavijesti"
+
+#: ../data/minbar.glade.h:36 ../data/minbar.schemas.in.in.h:9
+msgid "Play Athan"
+msgstr "Reproduciraj ezan"
+
+#: ../data/minbar.glade.h:37
+msgid "Prayer Calendar"
+msgstr "Kalendar namaza"
+
+#: ../data/minbar.glade.h:38
+msgid "Prayer Times"
+msgstr "Vaktovi namaza"
+
+#: ../data/minbar.glade.h:39
+msgid "Prayer Times on your Desktop"
+msgstr "Vaktovi namaza na vašoj radnoj površini"
+
+#: ../data/minbar.glade.h:40
+msgid "Preferences"
+msgstr "Postavljanja"
+
+#: ../data/minbar.glade.h:41
+msgid "Quit"
+msgstr "Isključi"
+
+#: ../data/minbar.glade.h:42
+msgid "Select Athan File"
+msgstr "Izaberite datoteku Ezana"
+
+#: ../data/minbar.glade.h:43
+msgid "Show/Hide"
+msgstr "Prikaži/Sakrij"
+
+#: ../data/minbar.glade.h:44 ../data/minbar.schemas.in.in.h:11
+msgid "Start minimised to tray."
+msgstr "Pokreni minimizirano u trayu."
+
+#: ../data/minbar.glade.h:45
+msgid "Stop Athan"
+msgstr "Zaustavi ezan"
+
+#: ../data/minbar.glade.h:46
+msgid "Subh Athan:"
+msgstr "Sabah ezan:"
+
+#: ../data/minbar.glade.h:47
+msgid "Time Zone:"
+msgstr "Vremenska zona:"
+
+#: ../data/minbar.glade.h:48
+msgid "Timetable"
+msgstr "Vremenska tabela"
+
+#: ../data/minbar.glade.h:49
+msgid "Today"
+msgstr "Danas"
+
+#: ../data/minbar.glade.h:50
+msgid "Yes, notify before:"
+msgstr "Da, obavijesti prije:"
+
+#: ../data/minbar.glade.h:51
+msgid "_Choose a location:"
+msgstr "_Izaberite lokaciju:"
+
+#: ../data/minbar.glade.h:52
+msgid "_Find Next"
+msgstr "_Pronađi sljedeći"
+
+#: ../data/minbar.glade.h:53
+msgid "_Search:"
+msgstr "_Traži:"
+
+#: ../data/minbar.glade.h:54
+msgid "gtk-apply"
+msgstr "gtk-primijeni"
+
+#: ../data/minbar.glade.h:55
+msgid "gtk-cancel"
+msgstr "gtk-poništi"
+
+#: ../data/minbar.glade.h:56
+msgid "gtk-close"
+msgstr "gtk-zatvori"
+
+#: ../data/minbar.glade.h:57
+msgid "gtk-media-play"
+msgstr "gtk-media-reprodukcija"
+
+#: ../data/minbar.glade.h:58
+msgid "gtk-media-stop"
+msgstr "gtk-media-zaustavi"
+
+#: ../data/minbar.glade.h:59
+msgid "gtk-preferences"
+msgstr "gtk-postavljanja"
+
+#: ../data/minbar.glade.h:60
+msgid "minbar was not built with notifications support."
+msgstr "Minbar nije napravljen sa podrškom za obavijesti."
+
+#: ../data/minbar.glade.h:61
+msgid "minutes"
+msgstr "minute"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../data/minbar.glade.h:63
+msgid "translator-credits"
+msgstr "Nedim Hadžić, Alma Aganović"
+
+#: ../data/minbar.schemas.in.in.h:1
+msgid "Calculation method"
+msgstr "Metod proračuna"
+
+#: ../data/minbar.schemas.in.in.h:2
+msgid "Height of city"
+msgstr "Nadmorska visina grada"
+
+#: ../data/minbar.schemas.in.in.h:3
+msgid "Latitude of city"
+msgstr "Geografska širina grada"
+
+#: ../data/minbar.schemas.in.in.h:4
+msgid "Longitude of city"
+msgstr "Geografska dužina grada"
+
+#: ../data/minbar.schemas.in.in.h:5
+msgid "Name of city"
+msgstr "Ime grada"
+
+#: ../data/minbar.schemas.in.in.h:6
+msgid "Notification period"
+msgstr "Period obavještavanja"
+
+#: ../data/minbar.schemas.in.in.h:7
+msgid "Path to Subh athan file."
+msgstr "Putanja do datoteke za Sabah ezan."
+
+#: ../data/minbar.schemas.in.in.h:8
+msgid "Path to athan file."
+msgstr "Putanja do datoteke za Ezan."
+
+#: ../data/minbar.schemas.in.in.h:10
+msgid "Set to true to close when clicking the close button instead of hiding."
+msgstr ""
+"Podesi na true za zatvaranje, kada kliknete na dugme Zatvori, umjesto "
+"skrivanja"
+
+#: ../data/minbar.schemas.in.in.h:12
+msgid "Time Zone, difference from GMT"
+msgstr "Vremenska zona, razlika od GMT"
+
+#: ../data/minbar.schemas.in.in.h:13
+msgid "Whether or not to notify"
+msgstr "Da li da obavijesti ili ne"
+
+#: ../minbar.desktop.in.h:1
+msgid "Islamic prayer times"
+msgstr "Islamski vaktovi namaza"

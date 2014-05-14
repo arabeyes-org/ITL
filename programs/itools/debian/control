@@ -1,0 +1,24 @@
+Source: itools
+Section: misc
+Priority: optional
+Maintainer: Thamer Mahmoud <thamer@newkuwait.org>
+Build-Depends: debhelper (>= 4.0.0), libitl-dev
+Standards-Version: 3.8.0
+Homepage: http://www.arabeyes.org/project.php?proj=ITL
+
+Package: itools
+Architecture: any
+Depends: ${shlibs:Depends}, ${perl:Depends}
+Description: Islamic hijri date and prayer time utilities
+ The itools is a collection of command line tools that mimics the
+ development of the underlying ITL library (libitl) and is meant to
+ always give the end-user simple means to access its functions. The
+ available tools are:
+ .
+   * ical: Display a Hijri calendar. 
+   * idate: Multi method Hijri/Gregorian date converter.
+   * ipraytime: Prayer times and Qibla calculator and schedule table generator. 
+   * ireminder: Prayer time reminder Perl script.
+ .
+ This package is part of the Islamic Tools and Libraries project.
+ .

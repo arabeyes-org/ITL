@@ -1,0 +1,17 @@
+namazTime 0.9b
+http://piousity.net/blog
+------------------------------------------------------------------------
+this is a small prayer times application.  it is based on thamer mahmoud's
+itl library, which can be downloaded from http://www.arabeyes.org.  images
+were obtained from both google's personalized homepage and
+http://weather.allrefer.com.
+
+this application is designed to run within a notification (tray) area.
+gnome, kde, xfce, fluxbox, and others have this.  for window managers
+without this (openbox, for example), a good alternative is the "trayer"
+application.
+
+if you run into any problems or have any requests, comments, suggestions,
+or would like to help, please send me an email.
+--
+ahmedre@piousity.net

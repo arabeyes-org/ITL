@@ -1,0 +1,110 @@
+# $Id: Makefile.in 11578 2010-05-06 13:46:01Z thamer $
+
+PREFIX		= @prefix@
+
+CC		= @CC@
+CFLAGS		= @CFLAGS@
+LDFLAGS		= @LDFLAGS@
+CPPFLAGS	= @CPPFLAGS@
+LIBS		= @LIBS@
+VERSION		= @PACKAGE_VERSION@
+TARNAME		= @PACKAGE_TARNAME@
+
+PROGRAMS	= ical idate ipraytime
+
+all: $(PROGRAMS)
+
+ical: ical.c
+	@echo "==> Building ical..."
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) ical.c -o ical
+
+idate: idate.c
+	@echo "==> Building idate..."
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) idate.c -o idate
+
+ipraytime: ipraytime.c
+	@echo "==> Building ipraytime..."
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) ipraytime.c -o ipraytime
+
+static: ical.c idate.c ipraytime.c
+	$(CC) $(CFLAGS) $(LDFLAGS) ipraytime.c -o ipraytime -static $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) idate.c -o idate -static $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) ical.c -o ical -static $(LIBS)
+
+static-tree: ical.c idate.c ipraytime.c
+	$(CC) $(CFLAGS) -g $(LDFLAGS) ipraytime.c -o ipraytime -I../../libs/build/ \
+	-L../../libs/build/ ../../libs/build/libitl.a -lm
+	$(CC) $(CFLAGS) -g $(LDFLAGS) idate.c -o idate -I../../libs/build/ \
+	-L../../libs/build/ ../../libs/build/libitl.a -lm
+	$(CC) $(CFLAGS) -g $(LDFLAGS) ical.c -o ical -I../../libs/build/ \
+	-L../../libs/build/ ../../libs/build/libitl.a -lm
+
+install: all
+	@echo "==> Installing compiled binaries & manpages..."
+	test -d $(PREFIX)/bin \
+	|| mkdir -p $(PREFIX)/bin \
+        || exit 1;
+	install ical $(PREFIX)/bin
+	install idate $(PREFIX)/bin
+	install ipraytime $(PREFIX)/bin
+	install ireminder $(PREFIX)/bin
+	test -d $(PREFIX)/man/man1 \
+	|| mkdir -p $(PREFIX)/man/man1\
+	|| exit 1;
+	install doc/ical.1 $(PREFIX)/man/man1
+	install doc/idate.1 $(PREFIX)/man/man1
+	install doc/ipraytime.1 $(PREFIX)/man/man1
+	install doc/ireminder.1 $(PREFIX)/man/man1
+
+debinstall: all
+	@echo "==> Installing compiled binaries & manpages..."
+	test -d $(PREFIX)/bin \
+	|| mkdir -p $(PREFIX)/bin \
+        || exit 1;
+	cp ical $(PREFIX)/bin
+	cp idate $(PREFIX)/bin
+	cp ipraytime $(PREFIX)/bin
+	cp ireminder $(PREFIX)/bin
+
+uninstall:
+	@echo "==> Uninstalling ITL-tools various components..."
+	rm -f $(PREFIX)/bin/ical $(PREFIX)/man/man1/ical.1
+	rm -f $(PREFIX)/bin/idate $(PREFIX)/man/man1/idate.1
+	rm -f $(PREFIX)/bin/ipraytime $(PREFIX)/man/man1/ipraytime.1
+	rm -f $(PREFIX)/bin/ireminder $(PREFIX)/man/man1/ireminder.1
+
+dist: distclean
+# 	@echo "Creating ChangeLog..."
+# 	svn2cl > ChangeLog
+	@echo "Creating Package ..."
+	rm -rf /tmp/$(TARNAME)-$(VERSION)/
+	mkdir /tmp/$(TARNAME)-$(VERSION)/
+	cp -Pa ./ /tmp/$(TARNAME)-$(VERSION)/
+	tar --exclude-vcs --exclude 'debian' -C /tmp/ -cvhzf ./$(TARNAME)-$(VERSION).tar.gz $(TARNAME)-$(VERSION)/
+	rm -rf /tmp/$(TARNAME)-$(VERSION)/
+
+clean:
+	rm -f *.o *~ ical idate ipraytime
+
+distclean: autogen.sh clean
+	fakeroot $(MAKE) -k -f debian/rules clean
+	rm -f Makefile
+	rm -f config.status config.cache config.log config.h
+	rm -f configure-stamp build-arch-stamp Makefile
+
+maintainer-clean: distclean
+	./autogen.sh clean
+
+maintainer-debpackage: distclean
+        # Creating a deb package 
+	rm -rf /tmp/$(TARNAME)-$(VERSION)
+	mkdir /tmp/$(TARNAME)-$(VERSION)
+	find . -path '*.svn*' -prune -o -print0 | cpio -pmd0 /tmp/$(TARNAME)-$(VERSION)/
+	cd /tmp/$(TARNAME)-$(VERSION) && find -name 'TAGS' -exec rm -f {} \;
+	cd /tmp/$(TARNAME)-$(VERSION) && rm -f config.status config.cache config.log config.h
+	cd /tmp/$(TARNAME)-$(VERSION) && rm -f NEWS
+	cd /tmp/ && tar -czv $(TARNAME)-$(VERSION)/ -f $(TARNAME)_$(VERSION).orig.tar.gz
+        # Build packages
+	cd /tmp/$(TARNAME)-$(VERSION) && dpkg-buildpackage -rfakeroot
+        # and then to check for errors, do:
+	cd /tmp/$(TARNAME)-$(VERSION) && lintian -i ../$(TARNAME)_$(VERSION)-1_i386.changes

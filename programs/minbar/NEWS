@@ -1,0 +1,66 @@
+Minbar 0.2.1:
+	23/12/2007
+	
+	Fixed default Athan paths.
+	Many thanks Mohammed Adnène Trojette for his patience and
+		fast testing.
+
+
+Minbar 0.2:
+	22/12/2007
+
+	Fixes and New Features:
+	-----------------------
+	Ability to start minimised to tray.
+	Fix .desktop installation.
+	Tooltip should show next prayer and all of them as well.
+	Store athan path.
+	Prayer Timetable.
+	Multiple Athan files, subh athan file as well.
+	Close hides (+option).
+	Change minute string according to changing the number live.
+	Icons for about and preferences.
+	Time in date label.
+	Week day in date label.
+	Appropriate plurals support.
+	Add CLI option to start minimised.
+	Qibla Direction.
+	Configure summary.
+	City names (implicit): use gnome-applets-locations.
+	Better artwork.
+	Accept non integer values for timezone.
+	Integrate new artwork.
+	Copyright notices.
+	Clickable web page.
+	Properly handle Makkah case.
+	Version number in about dialogue as well as copyright year.
+
+	Artwork:
+	--------
+	Yulian Ardiansyah.
+
+	Updated and new translations:
+	-----------------------------
+	Arabic: Abderrahim Kitouni, Khaled Hosny.
+	Bosnian: Nedim, Alma.
+	Farsi: Mohammad Derakhshani
+	French: Abdelmoam Kouka, Mohammed Adnène Trojette.	
+	Indonesian: Andika Triwidada.
+	Pashto: Zabeeh Khan	
+	Spanish: Guillermo Garcia Rojas Covarrubias.
+	Turkish: Mustafa Doğan.
+	Urdu: Suleman Khalid.
+	Urdu PK: Muhammad Ali Makki.
+
+	Special thanks to:
+	------------------
+	Abderrahim Kitouni.
+	Mohammed Adnène Trojette
+	
+	Author:
+	-------
+	Djihed Afifi.
+
+Minbar 0.1:
+	25/12/2006
+	Initial release.

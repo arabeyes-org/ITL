@@ -1,0 +1,20 @@
+#--
+# Makefile.cvs for akemsalatak 
+# $Id: Makefile.cvs 9851 2003-12-06 06:26:00Z elzubeir $
+#--
+
+configure: all
+	./configure
+
+all:
+	aclocal
+	autoconf
+	automake -a
+
+install: configure
+	make
+	make install
+
+reconf: all
+	./config.status --recheck
+	./config.status

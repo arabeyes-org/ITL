@@ -1,0 +1,13 @@
+#--
+# $Id: AUTHORS 10333 2004-07-18 10:11:47Z thamer $
+#--
+
+(To reach any/all of the contributors mail to developer -at- arabeyes . org)
+
+Thamer Mahmoud:
+- Various updates due to ITL library changes
+- Various bug fixes and enhacements to ipraytime
+
+Nadim Shaikli:
+- Added ical/idate/ipraytime applications based on ITL's demo applications
+- Added manpages

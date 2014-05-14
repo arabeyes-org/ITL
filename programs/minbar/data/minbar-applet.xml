@@ -1,0 +1,18 @@
+<Root>
+  <popups>
+    <popup name="button3">
+      <menuitem
+       name="Preferences Item"
+       verb="MinbarPreferences"
+       _label="_Preferences"
+       pixtype="stock"
+       pixname="gtk-properties"/>
+      <menuitem
+       name="About Item"
+       verb="MinbarAbout"
+       _label="_About"
+       pixtype="stock"
+       pixname="gtk-about"/>
+    </popup>
+  </popups>
+</Root>
