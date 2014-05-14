@@ -49,7 +49,8 @@ enum exmethods  { NONE_EX,
                   HALF_INVALID,
                   MIN_ALWAYS,
                   MIN_INVALID,
-                  GOOD_INVALID_SAME };
+                  GOOD_INVALID_SAME,
+                  ANGLE_BASED };
 
 enum methods    { NONE,
                   EGYPT_SURVEY,
@@ -158,8 +159,12 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     else tempPrayer[5] = zu + is;
 
 
-    /* Calculate all prayer times as Base-10 numbers in Extreme Latitudes (if
-     * needed) */
+    /* Re-calculate Fajr and Ishaa in Extreme Latitudes */
+    if (lat > conf->nearestLat) {
+        tempPrayer[0] = 99;
+        tempPrayer[5] = 99;
+        invalid = 1;
+    }
 
     /* Reset status of extreme switches */
     for (i=0; i<6; i++)
@@ -183,6 +188,18 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
 
         switch(conf->extreme)
         {
+        /* Angle Based */
+        case ANGLE_BASED:
+                portion = ((24 - tempPrayer[4]) + tempPrayer[1]);
+                double fajrDiff = (1/60.0 * conf->fajrAng) * portion;
+                double ishaDiff = (1/60.0 * conf->ishaaAng) * portion;
+                
+                tempPrayer[0] = tempPrayer[1] - fajrDiff;
+                tempPrayer[5] = tempPrayer[4] + ishaDiff;
+                pt[0].isExtreme = 1;
+                pt[5].isExtreme = 1;
+                break;
+        	
         /* Nearest Latitude (Method.nearestLat) */
         case LAT_ALL:
         case LAT_ALWAYS:
@@ -608,24 +625,19 @@ static double getZuhr(double lon, const Astro* astro)
 
 static double getAssr(double lat, double dec, int mathhab)
 {
-    double part1, part2, part3, part4, ndec;
+    double part1, part2, part3, part4;
     double rlat = DEG_TO_RAD(lat);
+    
+    part1 = mathhab + tan(fabs(rlat - dec));
+    part2 = atan(1.0 / part1);
 
-    /* Reverse if at or near the southern hemisphere */
-    ndec = dec;
-    if (lat < 0.0)
-        ndec = -dec;
-    part1 = mathhab + tan(rlat - ndec);
-    if (part1 < 1.0)
-        part1 = mathhab - tan(rlat - ndec);
-
-    part2 = (PI/2.0) - atan(part1);
     /* Compute the hour angle */
-    part3 = sin(part2) - (sin(rlat) * sin(ndec));
-    part4 = (part3 / (cos(rlat) * cos(ndec)));
-
-    if ( part4 < -INVALID_TRIGGER || part4 > INVALID_TRIGGER)
+    part3 = sin(part2) - (sin(rlat) * sin(dec));
+    part4 = (part3 / (cos(rlat) * cos(dec)));
+    
+    if ( part4 < -INVALID_TRIGGER || part4 > INVALID_TRIGGER) {
         return 99;
+    }
 
     return DEG_TO_10_BASE * RAD_TO_DEG (acos(part4));
 }
