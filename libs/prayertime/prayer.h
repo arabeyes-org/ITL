@@ -126,7 +126,8 @@ extern "C" {
       11: Half of the Night: Fajr Ishaa if invalid
       12: Minutes from Shorooq/Maghrib: Fajr Ishaa Always (e.g. Maghrib=Ishaa)
       13: Minutes from Shorooq/Maghrib: Fajr Ishaa If invalid
-
+      14: Nearest Good Day: Fajr Ishaa if either is invalid
+      15: Angle based: Fajr Ishaa if invalid
     */
 
 
