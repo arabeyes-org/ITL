@@ -1,23 +1,9 @@
-/************************************************************************
- * $Id: README 10502 2004-12-16 17:52:52Z thamer $
- *
- * ------------
- * Description:
- * ------------
- *  This README file is intended to be give a glimpse of what the
- *  Islamic Tools Library (ITL) project is all about.
- *
- *  For INSTALL details note the 'Basic Instructions' section below.
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2004-12-16 18:52:52 +0100 (Thu, 16 Dec 2004) $
- *  $Author: thamer $
- *  $Revision: 10502 $
- *  $Source$
- *
- ************************************************************************/
+This README file is intended to be give a glimpse of what the
+Islamic Tools Library (ITL) project is all about.
+
+For installation details, see the 'Installation' section below.
+
+---------------------------------------------------------------
 
 The ITL library is a collaborative effort of various Islamic
 organizations and Arabeyes.org.  The Islamic Tools Library is a
@@ -33,27 +19,20 @@ corresponding README file in each module directory for more details.)
 
 The project's homepage is,
 
-  http://www.arabeyes.org/project.php?proj=ITL
+  https://github.com/arabeyes-org/ITL
 
--------------------
-Basic Instructions:
--------------------
+-------------
+Installation:
+-------------
 
-+ Download the package to you local machine
-
-+ If you are grabbing the source from CVS,
-  - run './autogen.sh'
-
-+ To configure and compile the package,
-  - run './configure'
-  - run 'make'
-
-+ To install post a succesful compilation,
-  - run 'make install'
-
-NOTE: You may build and install individual components
-      by themselves by appending "-components" to the
-      above targets (ie. install-components, etc...).
++ Perform the following instructions:
+  > git clone git@github.com:arabeyes-org/ITL.git
+  > cd ITL
+  > mkdir build
+  > cd build
+  > cmake ..
+  > make
+  > make install (optional)
 
 
 --------------------
