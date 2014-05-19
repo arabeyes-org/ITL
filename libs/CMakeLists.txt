@@ -25,8 +25,8 @@ set( SOURCE_FILES
         )
 
 add_library( libitl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
-install( FILES ${HEADER_FILES} DESTINATION "itl/include/" )
-install( TARGETS libitl DESTINATION "itl/lib/" )
+install( FILES ${HEADER_FILES} DESTINATION "include/" )
+install( TARGETS libitl DESTINATION "lib/" )
 
 # Specify executables
 add_executable( demo_hijri hijri/demo_hijri.c )
