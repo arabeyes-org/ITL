@@ -27,7 +27,6 @@ Installation:
 
 + Perform the following instructions:
   > git clone git@github.com:arabeyes-org/ITL.git
-  > cd ITL
   > mkdir build
   > cd build
   > cmake ..
