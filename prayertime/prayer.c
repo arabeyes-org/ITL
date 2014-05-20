@@ -756,6 +756,12 @@ void getMethod(int n, Method* conf)
         conf->fajrAng = 19.5;
         conf->ishaaAng = 17.5;
         break;
+            
+    case UMM_ALQURRA_RAMADAN:
+        conf->fajrAng = 19;
+        conf->ishaaAng = 0.0;
+        conf->ishaaInv = 120;
+        break;
     }
 }
 

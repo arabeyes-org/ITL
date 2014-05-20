@@ -144,8 +144,7 @@ extern "C" {
        6: Umm Al-Qurra, Saudi Arabia
        7: Fixed Ishaa Interval (always 90)
        8: Egyptian General Authority of Survey (Egypt)
-
-       (See the file "./doc/method-info.txt" for more details)
+       9: Umm Al-Qurra Ramadan, Saudi Arabia
     */
     void getMethod(int n, Method* conf);
 
