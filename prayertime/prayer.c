@@ -60,7 +60,8 @@ enum methods    { NONE,
                   MUSLIM_LEAGUE,
                   UMM_ALQURRA,
                   FIXED_ISHAA,
-                  EGYPT_NEW };
+                  EGYPT_NEW,
+                  UMM_ALQURRA_RAMADAN };
 
 enum salatType  { FAJR,
                   SHUROOQ,
