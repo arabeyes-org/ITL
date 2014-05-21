@@ -60,7 +60,8 @@ enum methods    { NONE,
                   MUSLIM_LEAGUE,
                   UMM_ALQURRA,
                   FIXED_ISHAA,
-                  EGYPT_NEW };
+                  EGYPT_NEW,
+                  UMM_ALQURRA_RAMADAN };
 
 enum salatType  { FAJR,
                   SHUROOQ,
@@ -755,6 +756,12 @@ void getMethod(int n, Method* conf)
     case EGYPT_NEW:
         conf->fajrAng = 19.5;
         conf->ishaaAng = 17.5;
+        break;
+            
+    case UMM_ALQURRA_RAMADAN:
+        conf->fajrAng = 19;
+        conf->ishaaAng = 0.0;
+        conf->ishaaInv = 120;
         break;
     }
 }
