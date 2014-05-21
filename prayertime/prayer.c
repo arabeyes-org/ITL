@@ -1,21 +1,7 @@
 /************************************************************************
- * $Id: prayer.c 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2003-2006, 2009, Arabeyes, Thamer Mahmoud
  *
  *  A full featured Muslim Prayer Times calculator
- *
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under LGPL license - see COPYING file)
  ************************************************************************/
@@ -178,22 +164,23 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
                                          conf->extreme == HALF_INVALID) &&
                                         (invalid == 0)))
     {
-        double exdecPrev, exdecNext, degnLat;
-        double exZu=99, exFj=99, exIs=99, exAr=99, exIm=99, exSh=99, exMg=99;
+        double exdecPrev, exdecNext;
+        double exZu=99, exFj=99, exIs=99, exAr=99, exSh=99, exMg=99;
         double portion = 0;
         double nGoodDay = 0;
         int exinterval = 0;
         Location exLoc = *loc;
         Astro exAstroPrev;
         Astro exAstroNext;
+        double fajrDiff, ishaDiff;
 
         switch(conf->extreme)
         {
         /* Angle Based */
         case ANGLE_BASED:
                 portion = ((24 - tempPrayer[4]) + tempPrayer[1]);
-                double fajrDiff = (1/60.0 * conf->fajrAng) * portion;
-                double ishaDiff = (1/60.0 * conf->ishaaAng) * portion;
+                fajrDiff = (1/60.0 * conf->fajrAng) * portion;
+                ishaDiff = (1/60.0 * conf->ishaaAng) * portion;
                 
                 tempPrayer[0] = tempPrayer[1] - fajrDiff;
                 tempPrayer[5] = tempPrayer[4] + ishaDiff;
@@ -210,7 +197,7 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
              * angle==0 . Only the if-invalid methods would work */
             exLoc.degreeLat = conf->nearestLat;
             exFj = getFajIsh(conf->nearestLat, dec, conf->fajrAng);
-            exIm = getFajIsh(conf->nearestLat, dec, conf->imsaakAng);
+            /*exIm = getFajIsh(conf->nearestLat, dec, conf->imsaakAng);*/
             exSh = getSunrise(&exLoc, &tAstro);
             exAr = getAssr(conf->nearestLat, dec, conf->mathhab);
             exMg = getSunset(&exLoc, &tAstro);

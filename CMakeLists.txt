@@ -6,7 +6,7 @@ project( libitl )
 message( "Installation target directory is: " ${CMAKE_INSTALL_PREFIX} )
 message( "To override this value, use 'make -DCMAKE_INSTALL_PREFIX=$DIR'" )
 
-set( COMPILE_FLAGS "-pedantic -Wall -O2" )
+set( COMPILE_FLAGS "-ansi -pedantic -Wall -O2" )
 set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COMPILE_FLAGS}" )
 
 # Specify header files

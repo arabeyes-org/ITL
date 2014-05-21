@@ -1,9 +1,4 @@
 /************************************************************************
- * $Id: umm_alqura.c 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2004, Arabeyes, Fayez Alhargan
  *
  *    This is a program that computes the Hijary dates for Umm-AlQura
@@ -17,14 +12,6 @@
  *
  *    Fayez Alhargan version: opn1.2
  *    Fayez Alhargan last modified 22-1-2003
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under LGPL license - see COPYING file)
  ************************************************************************/
@@ -281,7 +268,7 @@ int G2H(sDate *mydate, int dg, int mg, int yg)
    double GJD, HJD;
    sDate tmpdate;
    sDate tmpdate2;
-   int error_fill;
+   /*int error_fill;*/
 
    GJD = GCalendarToJD(yg, mg, dg + 0.5);  /* find JD of Gdate */
 
@@ -330,11 +317,10 @@ int G2H(sDate *mydate, int dg, int mg, int yg)
    mydate->day = tmpdate.day;
 
    /* Fill-in the structure with various nicities a user might need */
-   error_fill = fill_datestruct(mydate, mydate->weekday, mg, mydate->month,
+   fill_datestruct(mydate, mydate->weekday, mg, mydate->month,
 				g_day, g_day_short, g_month, g_month_short,
 				h_day, h_day_short, h_month, h_month_short,
 				NULL, 0);
-//				h_events_table, sizeof(h_events_table));
 
    return(flag);
 }
@@ -352,7 +338,7 @@ int G2H(sDate *mydate, int dg, int mg, int yg)
 int H2G(sDate *mydate, int dh, int mh, int yh)
 {
    int found, yh1, mh1;
-   int error_fill;
+   /*int error_fill;*/
    sDate tmpdate;
 
    /* make sure values are within the allowed values */
@@ -387,11 +373,10 @@ int H2G(sDate *mydate, int dh, int mh, int yh)
    }
 
    /* Fill-in the structure with various nicities a user might need */
-   error_fill = fill_datestruct(mydate, mydate->weekday, mh, mydate->month,
+   fill_datestruct(mydate, mydate->weekday, mh, mydate->month,
 				h_day, h_day_short, h_month, h_month_short,
 				g_day, g_day_short, g_month, g_month_short,
 				NULL, 0);
-//				g_events_table, sizeof(g_events_table));
 
    return(found);
 }
@@ -645,7 +630,6 @@ void JDToHCalendar(double JD, sDate *mydate)
 void JDToHACalendar(double JD, int *yh, int *mh, int *dh)
 {
    int df;
-   long J;
    double HJD;
    sDate tmpdate;
 
