@@ -171,12 +171,15 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     for (i=0; i<6; i++)
         pt[i].isExtreme = 0;
 
-    if ((conf->extreme != NONE_EX) && !((conf->extreme == GOOD_INVALID ||
-                                         conf->extreme == LAT_INVALID ||
-                                         conf->extreme == SEVEN_NIGHT_INVALID ||
-                                         conf->extreme == SEVEN_DAY_INVALID ||
-                                         conf->extreme == HALF_INVALID) &&
-                                        (invalid == 0)))
+    if ((conf->extreme != NONE_EX) && ((invalid == 1) ||
+                                         (conf->extreme == LAT_ALL ||
+                                          conf->extreme == LAT_ALWAYS ||
+                                          conf->extreme == GOOD_ALL ||
+                                          conf->extreme == SEVEN_NIGHT_ALWAYS ||
+                                          conf->extreme == SEVEN_DAY_ALWAYS ||
+                                          conf->extreme == HALF_ALWAYS ||
+                                          conf->extreme == MIN_ALWAYS)
+                                       ))
     {
         double exdecPrev, exdecNext, degnLat;
         double exZu=99, exFj=99, exIs=99, exAr=99, exIm=99, exSh=99, exMg=99;
