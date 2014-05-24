@@ -1,9 +1,4 @@
 /************************************************************************
- * $Id: astro.c 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2003-2006, 2009-2010 Arabeyes, Thamer Mahmoud
  *
  *  A full featured Muslim Prayer Times calculator
@@ -12,14 +7,6 @@
  *  upon a subset of the VSOP87 planetary theory developed by Jean Meeus. Page
  *  and formula numbers in-line below are references to his book: Astronomical
  *  Algorithms. Willmann-Bell, second edition, 1998.
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under LGPL license - see COPYING file)
  ************************************************************************/
@@ -47,7 +34,6 @@ static double limitAngle180(double L);
 static double limitAngle(double L);
 static double limitAngle1(double L);
 static double limitAngle180between(double L);
-static double getYearFromJulian(double jd);
 
 double getSunrise (const Location* loc, const Astro* tastro)
 {
@@ -173,46 +159,6 @@ double getRefraction(const Location* loc, double sunAlt)
     return (part1 * part2) / 60.0;
 }
 
-/* const double DT[][5]={
-    {121, 112, 103, 95, 88},
-    {82, 77, 72, 68, 63},
-    {60, 56, 53, 51, 48},
-    {46, 44, 42, 40, 38},
-    {35, 33, 31, 29, 26},
-    {24, 22, 20, 18, 16},
-    {14, 12, 11, 10, 9},
-    {8, 7, 7, 7, 7},
-    {7, 7, 8, 8, 9},
-    {9, 9, 9, 9, 10},
-    {10, 10, 10, 10, 10},
-    {10, 10, 11, 11, 11},
-    {11, 11, 12, 12, 12},
-    {12, 13, 13, 13, 14},
-    {14, 14, 14, 15, 15},
-    {15, 15, 15, 16, 16},
-    {16, 16, 16, 16, 16},
-    {16, 15, 15, 14, 13},
-    {13.1, 12.5, 12.2, 12, 12},
-    {12, 12, 12, 12, 11.9},
-    {11.6, 11, 10.2, 9.2, 8.2},
-    {7.1, 6.2, 5.6, 5.4, 5.3},
-    {5.4, 5.6, 5.9, 6.2, 6.5},
-    {6.8, 7.1, 7.3, 7.5, 7.6},
-    {7.7, 7.3, 6.2, 5.2, 2.7},
-    {1.4, -1.2, -2.8, -3.8, -4.8},
-    {-5.5, -5.3, -5.6, -5.7, -5.9},
-    {-6.0, -6.3, -6.5, -6.2, -4.7},
-    {-2.8, -0.1, 2.6, 5.3, 7.7},
-    {10.4, 13.3, 16, 18.2, 20.2},
-    {21.1, 22.4, 23.5, 23.8, 24.3},
-    {24, 23.9, 23.9, 23.7, 24},
-    {24.3, 25.3, 26.2, 27.3, 28.2},
-    {29.1, 30, 30.7, 31.4, 32.2},
-    {33.1, 34, 35, 36.5, 38.3},
-    {40.2, 42.2, 44.5, 46.5, 48.5},
-    {50.5, 52.2, 53.8, 54.9, 55.8},
-    {56.9, 58.3, 60, 61.6, 63}, /* 1990-1998 */
-/* };  */
 
 const double DT2[]={
     63.4673, 63.8285, 64.0908, 64.2998, 64.4734, /* 1999-2003 */
@@ -969,45 +915,3 @@ static double limitAngle180between(double L)
     return F;
 }
 
-/* FIXIT: Not used and not tested. */
-static double getYearFromJulian(double jd)
-{
-    double tempJD;
-    double F, Z, A, B, a, D, E;
-    int C, month, year;
-
-    tempJD = jd + 0.5;
-
-    /* Add an extra 0.5 to compensate for day starts if different than 0h UT at
-     * local time. */
-    if ((jd - floor(jd)) > 0)
-    {
-        tempJD -= (jd - floor(jd));
-        tempJD += 0.5;
-    }
-
-    Z = (int)tempJD;
-    F = tempJD - floor(tempJD);
-    if (Z < 2299161)
-        A = Z;
-    else
-    {
-        a = (int)((Z-1867216.25)/36524.25);
-        A = Z + 1 + a - (int)(a/4.0);
-    }
-
-    B = A + 1524;
-    C = (int)((B - 122.1)/365.25);
-    D = (int)(365.25 * C);
-    E = (int)((B - D)/30.6001);
-
-    if (E < 14)
-        month = E - 1;
-    else if ( E == 14 || E == 15 )
-        month = E - 13;
-    else month = 0; /* Bad month */
-
-    if (month > 2)
-        return C - 4716;
-    else return C - 4715;
-}

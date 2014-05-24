@@ -1,21 +1,7 @@
 /************************************************************************
- * $Id: prayer.h 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2003-2006, 2009, Arabeyes, Thamer Mahmoud
  *
  *  A full featured Muslim Prayer Times calculator
- *
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under LGPL license - see COPYING file)
  ************************************************************************/

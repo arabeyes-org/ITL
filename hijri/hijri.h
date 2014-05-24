@@ -1,24 +1,10 @@
 /************************************************************************
- * $Id: hijri.h 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2004, Arabeyes, Nadim Shaikli
  *
  *  A Hijri (Islamic) to/from Gregorian (Christian) date conversion library.
  *  This file contains various structures/prototypes to be used within the
  *  library itself.  Some of these structs are of interest to the user others
  *  shouldn't be.
- *
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under LGPL license - see COPYING file)
  ************************************************************************/
@@ -64,5 +50,14 @@ int g_date(sDate *cdate, int day, int month, int year);
 
 int G2H(sDate *cdate, int yg, int mg, int dg);
 int H2G(sDate *cdate, int yh, int mh, int dh);
+
+int g_absolute(int day, int month, int year);
+int g_numdays(int month, int year);
+
+int fill_datestruct(sDate *fdate, int weekday, int frm_month_num,
+		int to_month_num, char *frm_day[], char *frm_day_short[],
+		char *frm_month[], char *frm_month_short[], char *to_day[],
+		char *to_day_short[], char *to_month[], char *to_month_short[],
+		sEvent *farr_table, int farr_size);
 
 #endif  /* _HIJRI_H */

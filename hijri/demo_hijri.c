@@ -1,23 +1,10 @@
 /************************************************************************
- * $Id: demo_hijri.c 12117 2013-09-15 14:22:18Z hosny $
- *
- * ------------
- * Description:
- * ------------
  *  Copyright (c) 2004, Arabeyes, Nadim Shaikli
  *
  *  This is a demo file to note how to call the upcoming hijri library.
  *  It is envisioned that both hijri and umm_alqura will be within the
  *  same library and will be triggered via a command-line (ie. passed-in
  *  flag or indicator).
- *
- * -----------------
- * Revision Details:    (Updated by Revision Control System)
- * -----------------
- *  $Date: 2013-09-15 16:22:18 +0200 (Sun, 15 Sep 2013) $
- *  $Author: hosny $
- *  $Revision: 12117 $
- *  $Source$
  *
  * (www.arabeyes.org - under GPL license)
  ************************************************************************/
@@ -52,15 +39,6 @@ int main(void)
    int i;
    int error_code = 0;
 
-   /* umm_alqura code specifics */
-   int dg, mg, yg;
-   int dh, mh, yh;
-   int x, weekday;
-
-   int yy = 1424;
-   int mm = 11;
-   int dd = 11;
-
    time_t mytime;
    struct tm *t_ptr;
 
@@ -74,7 +52,7 @@ int main(void)
    month = t_ptr->tm_mon  + 1;
    year	 = t_ptr->tm_year + 1900;
 
-   // Convert using hijri code from meladi to hijri
+   /* Convert using hijri code from meladi to hijri */
    error_code = h_date(&mydate, day, month, year);
 
    if (error_code)
@@ -114,12 +92,12 @@ int main(void)
    /* Tests for umm_alqura code */
    printf("Umm-AlQura results:\n");
 
-   x = G2H(&mydate, day, month, year);
+   G2H(&mydate, day, month, year);
    printf("G2H (to Hijri)     - %d/%d/%d\n", mydate.day,
 	  mydate.month, mydate.year);
    printf("                   - day of week is %d\n", mydate.weekday);
 
-   x = H2G(&mydate2, mydate.day, mydate.month, mydate.year);
+   H2G(&mydate2, mydate.day, mydate.month, mydate.year);
    printf("H2G (to Gregorian) - %d/%d/%d\n", mydate2.day,
 	  mydate2.month, mydate2.year);
    printf("                   - day of week is %d\n", mydate2.weekday);
