@@ -722,7 +722,7 @@ void getMethod(int n, Method* conf)
         break;
 
     case NORTH_AMERICA:
-        conf->fajrAng = 15;
+        conf->fajrAng = 17.5;
         conf->ishaaAng = 15;
         break;
 
