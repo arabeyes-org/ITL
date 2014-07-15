@@ -62,7 +62,7 @@ Method List:
                                                              
         4- Islamic Society of North America                  *
         ======================================================
-        Fajr Angle      = 15                                 
+        Fajr Angle      = 17.5                                 
         Ishaa Angle     = 15                                 
         Used in:        Canada   Parts of UK                  
                         parts of United States               
