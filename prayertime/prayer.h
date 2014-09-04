@@ -49,6 +49,7 @@ extern "C" {
        by calling 'getMethod(0, &method)' */
     typedef struct
     {
+        int method;         /* Chosen calculation method */
         double fajrAng;     /* Fajr angle */
         double ishaaAng;    /* Ishaa angle */
         double imsaakAng;   /* The angle difference between Imsaak and Fajr (
@@ -79,6 +80,8 @@ extern "C" {
                                methods. The default is 48.5 */
         int extreme;        /* Extreme latitude calculation method (see
                                below) */
+        double extremeLat;  /* Latitude at which the extreme method should
+                               always be used. The default is 55 */
         int offset;         /* Enable Offsets switch (set this to 1 to
                                activate). This option allows you to add or
                                subtract any amount of minutes to the daily
@@ -131,6 +134,7 @@ extern "C" {
        7: Fixed Ishaa Interval (always 90)
        8: Egyptian General Authority of Survey (Egypt)
        9: Umm Al-Qurra Ramadan, Saudi Arabia
+      10: Moonsighting Committee Worldwide
     */
     void getMethod(int n, Method* conf);
 

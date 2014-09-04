@@ -14,6 +14,7 @@
 #define KAABA_LAT 21.423333
 #define KAABA_LONG 39.823333
 #define DEF_NEAREST_LATITUDE 48.5
+#define DEF_EXTREME_LATITUDE 55.0
 #define DEF_IMSAAK_ANGLE 1.5
 #define DEF_IMSAAK_INTERVAL 10
 #define DEF_ROUND_SEC 30
@@ -47,7 +48,8 @@ enum methods    { NONE,
                   UMM_ALQURRA,
                   FIXED_ISHAA,
                   EGYPT_NEW,
-                  UMM_ALQURRA_RAMADAN };
+                  UMM_ALQURRA_RAMADAN,
+                  MOONSIGHTING_COMMITTEE };
 
 enum salatType  { FAJR,
                   SHUROOQ,
@@ -61,11 +63,14 @@ enum salatType  { FAJR,
 static double getZuhr (double lon, const Astro* astro);
 static double getFajIsh (double Lat, double dec, double Ang);
 static double getAssr (double Lat, double dec, int mathhab);
+static double getSeasonalFajr(double lat, int day, double fajr, double sunrise);
+static double getSeasonalIsha(double lat, int day, double isha, double sunset);
 static void base6hm(double bs, const Location* loc, const Method* conf,
                     Prayer* pt, int type);
-static void getDayInfo( const Date* date, double gmt, int *lastDay, double *julianDay);
+static int getSeasonDay(int dayOfYear, double lat);
+static void getDayInfo( const Date* date, double gmt, int *lastDay, int *dayOfYear, double *julianDay);
 static void getPrayerTimesByDay ( const Location* loc, const Method* conf, int lastDay,
-                                  double julianDay, Prayer* pt, int type);
+                                  int dayOfYear, double julianDay, Prayer* pt, int type);
 
 Astro astroCache; /* This global variable is used for caching values between
                    * multiple getPrayerTimesByDay() calls. You can disable this
@@ -76,14 +81,15 @@ void getPrayerTimes ( const Location* loc, const Method* conf, const Date* date,
                       Prayer* pt)
 {
     int lastDay;
+    int dayOfYear;
     double julianDay;
-    getDayInfo ( date, loc->gmtDiff, &lastDay, &julianDay);
-    getPrayerTimesByDay( loc, conf, lastDay, julianDay, pt, 0);
+    getDayInfo ( date, loc->gmtDiff, &lastDay, &dayOfYear, &julianDay);
+    getPrayerTimesByDay( loc, conf, lastDay, dayOfYear, julianDay, pt, 0);
 }
 
 static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
-                                  int lastDay, double julianDay, Prayer* pt,
-                                  int type)
+                                  int lastDay, int dayOfYear, double julianDay,
+                                  Prayer* pt, int type)
 {
 
     int i, invalid;
@@ -110,7 +116,7 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     ar   = getAssr (lat, dec, conf->mathhab);
     mg   = getSunset(loc, &tAstro);
     is   = getFajIsh (lat, dec, conf->ishaaAng);
-
+    
     /* Calculate all prayer times as Base-10 numbers in Normal circumstances */
     /* Fajr */
     if (fj == 99) {
@@ -146,8 +152,21 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     else tempPrayer[5] = zu + is;
 
 
+    if (conf->method == MOONSIGHTING_COMMITTEE) {
+        tempPrayer[0] = getSeasonalFajr(lat, dayOfYear, tempPrayer[0], tempPrayer[1]);
+        tempPrayer[5] = getSeasonalIsha(lat, dayOfYear, tempPrayer[5], tempPrayer[4]);
+        
+        if (tempPrayer[2] != 99) {
+            tempPrayer[2] += (5.0 / 60.0);
+        }
+        
+        if (tempPrayer[4] != 99) {
+            tempPrayer[4] += (3.0 / 60.0);
+        }
+    }
+    
     /* Re-calculate Fajr and Ishaa in Extreme Latitudes */
-    if (lat > conf->nearestLat) {
+    if (lat > conf->extremeLat) {
         tempPrayer[0] = 99;
         tempPrayer[5] = 99;
         invalid = 1;
@@ -190,7 +209,7 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
                 pt[0].isExtreme = 1;
                 pt[5].isExtreme = 1;
                 break;
-        	
+            
         /* Nearest Latitude (Method.nearestLat) */
         case LAT_ALL:
         case LAT_ALWAYS:
@@ -525,6 +544,7 @@ void getImsaak (const Location* loc, const Method* conf, const Date* date,
 
     Method tmpConf;
     int lastDay;
+    int dayOfYear;
     double julianDay;
     Prayer temp[6];
 
@@ -543,8 +563,8 @@ void getImsaak (const Location* loc, const Method* conf, const Date* date,
         tmpConf.fajrAng += conf->imsaakAng;
     }
 
-    getDayInfo ( date, loc->gmtDiff, &lastDay, &julianDay);
-    getPrayerTimesByDay( loc, &tmpConf, lastDay, julianDay, temp, IMSAAK);
+    getDayInfo ( date, loc->gmtDiff, &lastDay, &dayOfYear, &julianDay);
+    getPrayerTimesByDay( loc, &tmpConf, lastDay, dayOfYear, julianDay, temp, IMSAAK);
 
     /* FIXIT: We probably need to check whether it's possible to compute
      * Imsaak normally for some extreme methods first */
@@ -562,7 +582,7 @@ void getImsaak (const Location* loc, const Method* conf, const Date* date,
             tmpConf.offList[0] -= conf->imsaakInv;
             tmpConf.offset = 1;
         }
-        getPrayerTimesByDay( loc, &tmpConf, lastDay, julianDay, temp, IMSAAK);
+        getPrayerTimesByDay( loc, &tmpConf, lastDay, dayOfYear, julianDay, temp, IMSAAK);
     }
 
     *pt = temp[0];
@@ -587,9 +607,10 @@ void getNextDayFajr (const Location* loc, const Method* conf, const Date* date,
 {
     Prayer temp[6];
     int lastDay;
+    int dayOfYear;
     double julianDay;
-    getDayInfo ( date, loc->gmtDiff, &lastDay, &julianDay);
-    getPrayerTimesByDay( loc, conf, lastDay, julianDay+1, temp, NEXTFAJR);
+    getDayInfo ( date, loc->gmtDiff, &lastDay, &dayOfYear, &julianDay);
+    getPrayerTimesByDay( loc, conf, lastDay, dayOfYear+1, julianDay+1, temp, NEXTFAJR);
 
     *pt = temp[0];
 }
@@ -633,6 +654,95 @@ static double getAssr(double lat, double dec, int mathhab)
     return DEG_TO_10_BASE * RAD_TO_DEG (acos(part4));
 }
 
+static double getSeasonalFajr(double lat, int day, double fajr, double sunrise)
+{
+    float A, B, C, D;
+    int DYY;
+    double adjustedFajr;
+
+    DYY = getSeasonDay(day, lat);
+    
+    A = 75 + 28.65 / 55.0 * fabs(lat);
+    B = 75 + 19.44 / 55.0 * fabs(lat);
+    C = 75 + 32.74 / 55.0 * fabs(lat);
+    D = 75 + 48.1 / 55.0 * fabs(lat);
+    
+    if ( DYY < 91) {
+        A = A + ( B - A )/ 91.0 * DYY;
+    } else if ( DYY < 137) {
+        A = B + ( C - B ) / 46.0 * ( DYY - 91 );
+    } else if ( DYY< 183 ) {
+        A = C + ( D - C ) / 46.0 * ( DYY - 137 );
+    } else if ( DYY < 229 ) {
+        A = D + ( C - D ) / 46.0 * ( DYY - 183 );
+    } else if ( DYY < 275 ) {
+        A = C + ( B - C ) / 46.0 * ( DYY - 229 );
+    } else if ( DYY >= 275 ) {
+        A = B + ( A - B ) / 91.0 * ( DYY - 275 );
+    }
+    
+    adjustedFajr = sunrise - (floor(A) / 60.0);
+    if (adjustedFajr > fajr) {
+        fajr = adjustedFajr;
+    }
+    
+    return fajr;
+}
+
+static double getSeasonalIsha(double lat, int day, double isha, double sunset)
+{
+    float A, B, C, D;
+    int DYY;
+    double adjustedIsha;
+
+    DYY = getSeasonDay(day, lat);
+    
+    A = 75 + 25.6 / 55.0 * fabs(lat);
+    B = 75 + 2.05 / 55.0 * fabs(lat);
+    C = 75 - 9.21 / 55.0 * fabs(lat);
+    D = 75 + 6.14 / 55.0 * fabs(lat);
+    
+    if ( DYY < 91) {
+        A = A + ( B - A )/ 91.0 * DYY;
+    } else if ( DYY < 137) {
+        A = B + ( C - B ) / 46.0 * ( DYY - 91 );
+    } else if ( DYY< 183 ) {
+        A = C + ( D - C ) / 46.0 * ( DYY - 137 );
+    } else if ( DYY < 229 ) {
+        A = D + ( C - D ) / 46.0 * ( DYY - 183 );
+    } else if ( DYY < 275 ) {
+        A = C + ( B - C ) / 46.0 * ( DYY - 229 );
+    } else if ( DYY >= 275 ) {
+        A = B + ( A - B ) / 91.0 * ( DYY - 275 );
+    }
+
+    adjustedIsha = sunset + (ceil(A) / 60.0);
+    if (adjustedIsha < isha) {
+        isha = adjustedIsha;
+    }
+    
+    return isha;
+}
+
+static int getSeasonDay(int dayOfYear, double lat)
+{
+    int seasonDay;
+    
+    if (lat >= 0) {
+        seasonDay = dayOfYear + 10;
+        if (seasonDay > 365) {
+            seasonDay = seasonDay - 365;
+        }
+    } else {
+        seasonDay = dayOfYear - 172;
+        if (seasonDay < 0) {
+            seasonDay = seasonDay + 365;
+        }
+    }
+    
+    return seasonDay;
+}
+
 int getDayofYear(int year, int month, int day)
 {
     int i;
@@ -672,19 +782,23 @@ void decimal2Dms(double decimal, int *deg, int *min, double *sec)
 }
 
 static void getDayInfo ( const Date* date, double gmt, int *lastDay,
-                         double *julianDay)
+                         int *dayOfYear, double *julianDay)
 {
     int ld;
+    int dy;
     double jd;
     ld = getDayofYear(date->year, 12, 31);
+    dy = getDayofYear(date->year, date->month, date->day);
     jd = getJulianDay(date, gmt);
     *lastDay = ld;
+    *dayOfYear = dy;
     *julianDay = jd;
 }
 
 void getMethod(int n, Method* conf)
 {
     int i;
+    conf->method = n;
     conf->fajrInv = 0;
     conf->ishaaInv = 0;
     conf->imsaakInv = 0;
@@ -693,6 +807,7 @@ void getMethod(int n, Method* conf)
     conf->nearestLat = DEF_NEAREST_LATITUDE;
     conf->imsaakAng = DEF_IMSAAK_ANGLE;
     conf->extreme = 5;
+    conf->extremeLat = DEF_EXTREME_LATITUDE;
     conf->offset = 0;
     for (i = 0; i < 6; i++) {
         conf->offList[i] = 0;
@@ -722,7 +837,7 @@ void getMethod(int n, Method* conf)
         break;
 
     case NORTH_AMERICA:
-        conf->fajrAng = 17.5;
+        conf->fajrAng = 15;
         conf->ishaaAng = 15;
         break;
 
@@ -752,6 +867,11 @@ void getMethod(int n, Method* conf)
         conf->fajrAng = 18;
         conf->ishaaAng = 0.0;
         conf->ishaaInv = 120;
+        break;
+            
+    case MOONSIGHTING_COMMITTEE:
+        conf->fajrAng = 18;
+        conf->ishaaAng = 18;
         break;
     }
 }
