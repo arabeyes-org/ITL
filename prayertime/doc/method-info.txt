@@ -83,7 +83,6 @@ Method List:
         Fajr Angle      = 19                                 
         Ishaa Angle     = 0 (not used)                       
         Ishaa Interval  = 90 minutes from Al-Maghrib prayer,  
-                          but set to 120 during Ramadan.     
         Used in:        Saudi Arabia                         
                                                              
                                                              
@@ -103,6 +102,26 @@ Method List:
         Fajr Angle      = 19.5
         Ishaa Angle     = 17.5                                 
         Used in:        Egypt
+
+
+
+        9- Om Al-Qurra University (Ramadan)                  *
+        ======================================================
+        Fajr Angle      = 19                                 
+        Ishaa Angle     = 0 (not used)                       
+        Ishaa Interval  = 120 minutes from Al-Maghrib prayer,  
+        Used in:        Saudi Arabia (during Ramadan)
+
+
+
+        10- Moonsighting Committee Worldwide (MWC)           *
+        ======================================================
+        Fajr Angle      = 18 (used for comparison)
+        Ishaa Angle     = 18 (used for comparison)
+        Fajr and Isha calculated with different values based
+        on the season
+        Used in:        parts of United States
+                        parts of UK
 
 
 
