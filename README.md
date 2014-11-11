@@ -11,7 +11,7 @@ ITL is currently composed of two library-modules:
 ## Installation
 
 Perform the following commands:
-  * git clone git@github.com:arabeyes-org/ITL.git
+  * git clone https://github.com/arabeyes-org/ITL.git
   * mkdir build
   * cd build
   * cmake ..
