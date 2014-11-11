@@ -2,7 +2,7 @@
 # By: Mohamed A.M. Bamakhrama (mohamed@alumni.tum.de)
 
 cmake_minimum_required(VERSION 2.6)
-project( libitl )
+project( itl )
 message( "Installation target directory is: " ${CMAKE_INSTALL_PREFIX} )
 message( "To override this value, use 'make -DCMAKE_INSTALL_PREFIX=$DIR'" )
 
@@ -24,14 +24,14 @@ set( SOURCE_FILES
         hijri/umm_alqura.c
         )
 
-add_library( libitl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
+add_library( itl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
 install( FILES ${HEADER_FILES} DESTINATION "include/" )
-install( TARGETS libitl DESTINATION "lib/" )
+install( TARGETS itl DESTINATION "lib/" )
 
 # Specify executables
 add_executable( demo_hijri hijri/demo_hijri.c )
-target_link_libraries( demo_hijri libitl -lm )
+target_link_libraries( demo_hijri itl -lm )
 
 add_executable( demo_prayer prayertime/demo_prayer.c )
-target_link_libraries( demo_prayer libitl -lm )
+target_link_libraries( demo_prayer itl -lm )
 
