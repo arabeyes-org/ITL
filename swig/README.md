@@ -1,6 +1,4 @@
-$Id: README 10491 2004-12-10 14:28:41Z thamer $
-
 This directory includes a SWIG (Simplified Wrapper and Interface
 Generator) interface file for the ITL library. Also included is a
 small example that demonsrates accessing the library functions through
-a perl script. More info at "www.swig.org".
+a perl script. More info at [http://www.swig.org/](www.swig.org).

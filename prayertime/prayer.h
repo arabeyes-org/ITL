@@ -98,8 +98,7 @@ extern "C" {
 
 
     /*
-      Supported methods for Extreme Latitude calculations (Method.extreme) -
-      (see the file "./doc/method-info.txt" for details) :
+      Supported methods for Extreme Latitude calculations (Method.extreme):
 
       0:  none. if unable to calculate, leave as 99:99
       1:  Nearest Latitude: All prayers Always

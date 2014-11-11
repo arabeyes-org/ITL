@@ -1,10 +1,24 @@
 # ITL
 [![Build Status](https://travis-ci.org/arabeyes-org/ITL.svg?branch=master)](https://travis-ci.org/arabeyes-org/ITL)
 
-The Islamic Tools and Libraries (ITL) is a project to provide a plethora of useful Islamic tools and applications as well as a comprehensive feature-full Islam-centric library. The ITL project currently includes Hijri date, Muslim prayer times, and Qibla.
-There is also Minbar, a Gnome GUI with tray icon, athan call and notifications at prayer times.
+The Islamic Tools and Libraries (ITL) project provides a fully featured library for performing common Islamic calculations.
 
-# Other Languages
+ITL is currently composed of two library-modules:
+
+  + **prayertime**: Geographically-aware prayer time and Qibla calculation routines.
+  + **hijri**: Hijri date generation/calculation and conversion routines.
+
+## Installation
+
+Perform the following commands:
+  * git clone git@github.com:arabeyes-org/ITL.git
+  * mkdir build
+  * cd build
+  * cmake ..
+  * make
+  * make install (optional)
+
+## Other Languages
 
 | Language 	| Type                 	| URL                                         	|
 |----------	|----------------------	|---------------------------------------------	|
