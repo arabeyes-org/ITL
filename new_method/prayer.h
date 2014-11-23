@@ -12,8 +12,8 @@
  still missing.
 */
 
-#ifndef PRAYER_H_
-#define PRAYER_H_
+#ifndef _PRAYER_H_
+#define _PRAYER_H_
 
 /* Needed to expose POSIX stuff under C89 mode */
 #define _POSIX_C_SOURCE 2
@@ -24,6 +24,8 @@
 #include <math.h>
 #include <string.h>
 #include <assert.h>
+#include <ctype.h>
+#include <errno.h>
 
 /********** macros **********/
 
@@ -37,9 +39,8 @@
 
 /* One second and one minute as fractions of one hour
    Used for safety margins */
-#define ONE_SECOND   (0.0002777777777777778) /* 1/3600 */
-#define ONE_MINUTE   (0.016666666666666666)  /* 60/3600 */
-
+#define ONE_SECOND   (1.0/3600.0)
+#define ONE_MINUTE   (60.0/3600.0)
 
 /********** enum definitions **********/
 
@@ -47,7 +48,7 @@
 typedef enum { UP, DOWN } round_t;
               
 /* Asr Method */
-typedef enum { SHAFII, HANAFI } asr_method_t;
+typedef enum { SHAFII=0, HANAFI=1 } asr_method_t;
 
 /* Umm Al-Qura uses an offset instead of an angle */
 typedef enum { ANGLE, OFFSET } isha_flag_t;
@@ -123,6 +124,20 @@ calc_method_t calc_methods [] = {
  { UIS,  "University of Islamic Sciences, Karachi", 18, ANGLE, 18 }
 };
 
+#define NUM_OF_VALID_KEYS (9)
+
+/* List of valid keys in the config file */
+char valid_keys[NUM_OF_VALID_KEYS][16] = {
+    "name",
+    "latitude",
+    "longitude",
+    "height",
+    "asr_method",
+    "calc_method",
+    "extr_method",
+    "timezone",
+    "daylight"
+};
 
 /********** static functions **********/
 
@@ -181,15 +196,23 @@ static void conv_time_to_event(const unsigned long julian_day,
                                const round_t round,
                                event_t *event);
 
-static void set_location(struct location *loc,
-                         struct tm *date);
+static void set_default_location(struct location *loc);
+
+static char * trim_whitespace(char * str);
+
+static void parse_arguments(int argc,
+                            char ** argv,
+                            struct location * loc);
 
 /* Public functions */
+
+int load_config_from_file(const char * config_filename,
+                          struct location * loc);
+
 void get_prayer_times(const struct tm *day,
                       const struct location *loc,
                       struct prayer_times *pt);
 
 double get_qibla_direction(const struct location *loc);
-
 
 #endif
