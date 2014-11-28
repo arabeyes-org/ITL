@@ -6,5 +6,14 @@ before_script:
   - mkdir build
   - cd build
   - cmake ..
-script: make
+  - cd ../new_method
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cd ../..
+script:
+  - cd build
+  - make
+  - cd ../new_method/build
+  - make
 

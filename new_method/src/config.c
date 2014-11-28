@@ -1,3 +1,6 @@
+/* Needed to expose POSIX stuff under C89 mode */
+#define _POSIX_C_SOURCE 2
+
 #include "config.h"
 
 /* List of valid keys in the config file */
@@ -134,6 +137,7 @@ int load_config_from_file(const char * config_filename,
 {
     FILE * fp = NULL;
     const char * delimiter = ":";
+    char * saveptr;
     char * key;
     char * value;
     char line[1024];
@@ -148,9 +152,9 @@ int load_config_from_file(const char * config_filename,
         exit(EXIT_FAILURE);
     }
     while (fgets(line, sizeof(line), fp) != NULL) {
-        key = strtok(line, delimiter);
+        key = strtok_r(line, delimiter, &saveptr);
         key = trim_whitespace(key);
-        value = strtok(NULL, delimiter);
+        value = strtok_r(NULL, delimiter, &saveptr);
         value = trim_whitespace(value);
         r = add_key_value(key, value, loc);
         if (r != EXIT_SUCCESS) {
