@@ -1,5 +1,70 @@
 #include "prayer.h"
 
+calc_method_t calc_methods [] = {
+ { MWL,  "Muslim World League (MWL)" , 18, ANGLE, 17 },
+ { ISNA, "Islamic Society of North America (ISNA)", 15, ANGLE, 15 },
+ { EGAS, "Egyptian General Authority of Survey", 19.5, ANGLE, 17.5 },
+ { UMAQ, "Umm Al-Qura University, Makkah", 18.5, OFFSET, 90 },
+ { UIS,  "University of Islamic Sciences, Karachi", 18, ANGLE, 18 }
+};
+
+/* Helper geometric funtions */
+static double to_degrees(const double x);
+static double to_radians(const double x);
+static double arccot(const double x);
+
+/* Normalizes the given value x within the range [0,N] */
+static double normalize(const double x, const double N);
+
+/* Get the Julian Day number of a given date */
+static unsigned long get_julian_day_number(const struct tm *date);
+
+/* Computes the approximate Sun coordinates for
+   the given Julian Day Number jdn */
+static void get_approx_sun_coord(const unsigned long jdn,
+                                 struct approx_sun_coord *coord);
+
+/* T function used to compute Sunrise, Sunset, Fajr and Isha
+   Taken from: http://praytimes.org/calculation/
+*/
+static double T(const double alpha,
+                const double latitude,
+                const double D);
+
+/* A function used to compute Asr
+   Taken from: http://praytimes.org/calculation/
+*/
+static double A(const double t,
+                const double latitude,
+                const double D);
+
+/* Methods for individual times and prayers */
+static double get_dhuhr(const struct location *loc,
+                        const struct approx_sun_coord *coord);
+
+static double get_sunrise(const double dhuhr,
+                          const struct location *loc,
+                          const struct approx_sun_coord *coord);
+
+static double get_fajr(const double dhuhr,
+                       const double sunset,
+                       const double sunrise,
+                       const struct location *loc,
+                       const struct approx_sun_coord *coord);
+
+static double get_isha(const double dhuhr,
+                       const double sunset,
+                       const double sunrise,
+                       const struct location *loc,
+                       const struct approx_sun_coord *coord);
+
+static void conv_time_to_event(const unsigned long julian_day,
+                               const double decimal_time,
+                               const round_t round,
+                               event_t *event);
+
+
+
 /**
  * Convert a given angle specified in degrees into radians
  */
@@ -255,7 +320,7 @@ static double get_fajr(const double dhuhr,
     } else {
         /* TODO: Extreme methods */
         fprintf(stderr, "Extreme methods are not implemented yet\n");
-        exit(EXIT_FAILURE);        
+        exit(EXIT_FAILURE);
     }
 
     return fajr;
@@ -328,142 +393,6 @@ static void conv_time_to_event(const unsigned long julian_day,
     }
 }
 
-/*
- * Taken from: http://stackoverflow.com/a/122721
- */
-static char * trim_whitespace(char * str)
-{
-    char * end;
-
-    assert(str != NULL);
-
-    while(isspace(*str)) str++;
-    if (*str == '\0') return str;
-
-    /* Trim trailing space */
-    end = str + strlen(str) - 1;
-    while(end > str && isspace(*end)) end--;
-
-    /* Write new null terminator */
-    *(end + 1) = '\0';
-    return str;
-}
-
-
-static int add_key_value(const char * key,
-                         const char * value,
-                         struct location * loc)
-{
-    char * save_ptr;
-    unsigned int method_id;
-
-    assert(key != NULL);
-    assert(value != NULL);
-    assert(loc != NULL);
-
-    if (strcmp(key, valid_keys[0]) == 0) { /* name */
-        strcpy(loc->name, value);
-    } else if (strcmp(key, valid_keys[1]) == 0) { /* latitude */
-        loc->latitude = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[2]) == 0) { /* longitude */
-        loc->longitude = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[3]) == 0) { /* height */
-        loc->height = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[4]) == 0) { /* asr_method */
-        loc->asr_method = strtol(value, &save_ptr, 10);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[5]) == 0) { /* calc_method */
-        method_id = strtol(value, &save_ptr, 10);
-        loc->calc_method = calc_methods[method_id];
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[6]) == 0) { /* extr_method */
-        loc->extr_method = strtol(value, &save_ptr, 10);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[7]) == 0) { /* timezone */
-        loc->timezone = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[8]) == 0) { /* daylight */
-        loc->daylight = strtol(value, &save_ptr, 10);
-        if (value == save_ptr) goto ERR;
-    } else {
-        fprintf(stderr, "Invalid key detected in the config file\n");
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
-ERR:
-    fprintf(stderr, "Error parsing the value\n");
-    return EXIT_FAILURE;
-}
-
-
-int load_config_from_file(const char * config_filename,
-                          struct location * loc)
-{
-    FILE * fp = NULL;
-    const char * delimiter = ":";
-    char * key;
-    char * value;
-    char line[1024];
-    int r;
-
-    assert(config_filename != NULL);
-    assert(loc != NULL);
-
-    fp = fopen(config_filename, "r");
-    if (fp == NULL) {
-        fprintf(stderr, "errno %d: %s\n", errno, strerror(errno));
-        exit(EXIT_FAILURE);
-    }
-    while (fgets(line, sizeof(line), fp) != NULL) {
-        key = strtok(line, delimiter);
-        key = trim_whitespace(key);
-        value = strtok(NULL, delimiter);
-        value = trim_whitespace(value);
-        r = add_key_value(key, value, loc);
-        if (r != EXIT_SUCCESS) {
-            fclose(fp);
-            exit(EXIT_FAILURE);
-        }
-    }
-    return EXIT_SUCCESS;
-}
-
-
-static void set_default_location(struct location *loc)
-{
-    assert(loc != NULL);
-
-    /* The following is for testing purposes only */
-    strcpy(loc->name, "Eindhoven, Netherlands");
-    loc->latitude = 51.408311;
-    loc->longitude = 5.454939;
-    loc->height = 5;
-    loc->asr_method = SHAFII;
-    loc->calc_method = calc_methods[MWL];
-    loc->extr_method = NONE;
-    loc->timezone = 1;
-    loc->daylight = 0;
-}
-
-
-static void parse_arguments(int argc,
-                            char ** argv,
-                            struct location * loc)
-{
-    assert(argc >= 1 && argc < 3);
-    assert(argv != NULL);
-    assert(loc != NULL);
-
-    if (argc == 1) {
-        fprintf(stdout, "Using default settings...\n");
-        set_default_location(loc);
-    } else if (argc == 2) {
-        load_config_from_file(argv[1], loc);
-    }
-}
 
 /**
  * Compute the Qibla direction from North clockwise
@@ -536,59 +465,4 @@ void get_prayer_times(const struct tm *date,
     conv_time_to_event(jdn, asr, UP, &(pt->asr));
     conv_time_to_event(jdn, maghrib, UP, &(pt->maghrib));
     conv_time_to_event(jdn, isha, UP, &(pt->isha));
-}
-
-
-int main(int argc, char **argv)
-{
-    struct location loc;
-    struct tm date;
-    time_t t;
-    double qibla;
-    struct prayer_times pt;
-
-    parse_arguments(argc, argv, &loc);
-
-    /* Get the date */
-    time(&t);
-    localtime_r(&t, &date);
-
-    fprintf(stdout, "Computing Prayer Times on %s", asctime(&date));
-    fprintf(stdout, "Current location is: %s "
-            "(Latitude = %f, Longitude = %f)\n",
-            loc.name, loc.latitude, loc.longitude);
-
-    qibla = get_qibla_direction(&loc);
-    fprintf(stdout, "Qibla direction is %f degrees"
-                    " from North clockwise\n", qibla);
-
-    fprintf(stdout, "Current Timezone is UTC%s%.2f"
-                    " (daylight is %s)\n",
-            (loc.timezone >= 0? "+" : "-"),
-            loc.timezone, (loc.daylight == 1? "on" : "off"));
-    fprintf(stdout, "Calculation Method Used: %s, Fajr angle: %.2f,"
-            " Isha %s: %.2f\n",
-            loc.calc_method.name, loc.calc_method.fajr,
-            (loc.calc_method.isha_type == ANGLE ?\
-             "angle" : "offset"),
-            loc.calc_method.isha);
-
-    get_prayer_times(&date, &loc, &pt);
-
-    fprintf(stdout, "\n Fajr\t\tSunrise\t\tDhuhr"
-                    "\t\tAsr\t\tSunset\t\tIsha\n");
-    fprintf(stdout, "--------------------------"
-                    "--------------------------");
-    fprintf(stdout, "---------------------------------\n");
-    fprintf(stdout, " %d:%02d\t\t%d:%02d\t\t%d:%02d\t\t"
-            "%d:%02d\t\t%d:%02d\t\t%d:%02d\n\n",
-            pt.fajr.hour, pt.fajr.minute,
-            pt.sunrise.hour, pt.sunrise.minute,
-            pt.dhuhr.hour, pt.dhuhr.minute,
-            pt.asr.hour, pt.asr.minute,
-            pt.maghrib.hour, pt.maghrib.minute,
-            pt.isha.hour, pt.isha.minute);
-
-
-    return EXIT_SUCCESS;
 }
