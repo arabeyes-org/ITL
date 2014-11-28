@@ -9,17 +9,17 @@ set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COMPILE_FLAGS}" )
 
 # Specify header files
 set( HEADERS
-    defs.h
-    prayer.h
-    config.h
+    src/defs.h
+    src/prayer.h
+    src/config.h
     )
 
 # Specify sources
 set( SRCS
-    prayer.c
-    config.c
+    src/prayer.c
+    src/config.c
     )
 
 # Specify executables
-add_executable( prayer main.c ${SRCS} )
+add_executable( prayer src/main.c ${SRCS} )
 target_link_libraries( prayer -lm )
