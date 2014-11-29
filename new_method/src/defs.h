@@ -16,7 +16,7 @@
 
 
 /* Rounding method used for seconds */
-typedef enum { UP, DOWN } round_t;
+typedef enum { UP, DOWN, NEAREST } round_t;
               
 /* Asr Method */
 typedef enum { SHAFII=0, HANAFI=1 } asr_method_t;
@@ -58,7 +58,7 @@ struct location {
     char          name[64];    /* Observer's location name */
     double        longitude;   /* Observer's longitude */
     double        latitude;    /* Observer's latitude */
-    double        height;      /* Observer's height in meters */
+    double        altitude;    /* Observer's altitude in meters */
     double        timezone;    /* Observer's timezone (in hours) relative
                                   to Universal Coordinated Time (UTC) */
     int           daylight;    /* Daylight Savings Time (DST) Flag

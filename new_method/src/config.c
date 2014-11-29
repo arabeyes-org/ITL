@@ -1,5 +1,6 @@
 /* Needed to expose POSIX stuff under C89 mode */
 #define _POSIX_C_SOURCE 2
+#define _XOPEN_SOURCE
 
 #include "config.h"
 
@@ -8,7 +9,7 @@ char valid_keys[NUM_OF_VALID_KEYS][16] = {
     "name",
     "latitude",
     "longitude",
-    "height",
+    "altitude",
     "asr_method",
     "calc_method",
     "extr_method",
@@ -68,8 +69,8 @@ static int add_key_value(const char * key,
     } else if (strcmp(key, valid_keys[2]) == 0) { /* longitude */
         loc->longitude = strtod(value, &save_ptr);
         if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[3]) == 0) { /* height */
-        loc->height = strtod(value, &save_ptr);
+    } else if (strcmp(key, valid_keys[3]) == 0) { /* altitude */
+        loc->altitude = strtod(value, &save_ptr);
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[4]) == 0) { /* asr_method */
         loc->asr_method = strtol(value, &save_ptr, 10);
@@ -106,7 +107,7 @@ static void set_default_location(struct location *loc)
     strcpy(loc->name, "Eindhoven, Netherlands");
     loc->latitude = 51.408311;
     loc->longitude = 5.454939;
-    loc->height = 5;
+    loc->altitude = 5;
     loc->asr_method = SHAFII;
     loc->calc_method = calc_methods[MWL];
     loc->extr_method = NONE;
@@ -115,20 +116,18 @@ static void set_default_location(struct location *loc)
 }
 
 
-void parse_arguments(int argc,
-                     char ** argv,
-                     struct location * loc)
+static void print_usage(const char * prog)
 {
-    assert(argc >= 1 && argc < 3);
-    assert(argv != NULL);
-    assert(loc != NULL);
-
-    if (argc == 1) {
-        fprintf(stdout, "Using default settings...\n");
-        set_default_location(loc);
-    } else if (argc == 2) {
-        load_config_from_file(argv[1], loc);
-    }
+    fprintf(stderr, "%s [-d YYYY-MM-DD] "
+                    "[-f config_filename] [-j] [-h]\n\n", prog);
+    fprintf(stderr, "where:\n");
+    fprintf(stderr, " * YYYY-MM-DD: is the date at which"
+                    " you want to compute the prayer times\n");
+    fprintf(stderr, " * config_filename: is the path to "
+                    "configuration file\n");
+    fprintf(stderr, " * -j: make the program produce output in "
+                    "JSON format instead of normal text\n");
+    fprintf(stderr, " * -h: print this help message\n");
 }
 
 
@@ -153,14 +152,92 @@ int load_config_from_file(const char * config_filename,
     }
     while (fgets(line, sizeof(line), fp) != NULL) {
         key = strtok_r(line, delimiter, &saveptr);
+        if (key == NULL) goto LD_ERR;
         key = trim_whitespace(key);
         value = strtok_r(NULL, delimiter, &saveptr);
+        if (value == NULL) goto LD_ERR;
         value = trim_whitespace(value);
         r = add_key_value(key, value, loc);
-        if (r != EXIT_SUCCESS) {
-            fclose(fp);
+        if (r != EXIT_SUCCESS) goto LD_ERR;
+    }
+    return EXIT_SUCCESS;
+LD_ERR:
+    fprintf(stderr, "Error parsing the config file\n");
+    fclose(fp);
+    exit(EXIT_FAILURE);
+}
+
+
+output_t parse_arguments(int argc,
+                         char ** argv,
+                         struct location * loc,
+                         struct tm * date)
+{
+    time_t t;
+    char * r;
+    int rsp, i;
+    unsigned int date_set = 0;
+    unsigned int config_from_file = 0;
+    output_t output = OUTPUT_NORMAL;
+
+    assert(argv != NULL);
+    assert(loc != NULL);
+    assert(date != NULL);
+
+    /* make sure that date is cleared */
+    memset(date, 0, sizeof(struct tm));
+
+    /* getopt is not portable...
+     * Therefore, we do things manually :-(
+     */
+    i = 1;
+    while (i < argc) {
+        if (strcmp(argv[i], "-j") == 0) {
+            output = OUTPUT_JSON;
+            i++;
+        } else if (strcmp(argv[i], "-d") == 0) {
+            i++;
+            /* make sure that next token is a date */
+            r = strptime(argv[i], "%Y-%m-%d", date);
+            if (r == NULL) {
+                fprintf(stderr, "Invalid argument to option -d\n");
+                print_usage(argv[0]);
+                exit(EXIT_FAILURE);
+            }
+            date_set = 1;
+            i++;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            i++;
+            /* make sure we have a file */
+            rsp = load_config_from_file(argv[i], loc);
+            if (rsp != EXIT_SUCCESS) {
+                fprintf(stderr, "Invalid argument to option -f\n");
+                print_usage(argv[0]);
+                exit(EXIT_FAILURE);
+            }
+            config_from_file = 1;
+            i++;
+        } else if (strcmp(argv[i], "-h") == 0) {
+            i++;
+            print_usage(argv[0]);
+            exit(EXIT_SUCCESS);
+        } else {
+            fprintf(stderr, "Invalid option\n");
+            print_usage(argv[0]);
             exit(EXIT_FAILURE);
         }
     }
-    return EXIT_SUCCESS;
+
+    /* By this point, command line parsing should have
+     * been done successfully... */
+    if (date_set == 0) {
+        time(&t);
+        localtime_r(&t, date);
+    }
+
+    if (config_from_file == 0) {
+        set_default_location(loc);
+    }
+
+    return output;
 }

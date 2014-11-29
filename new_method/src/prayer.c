@@ -8,11 +8,12 @@ calc_method_t calc_methods [] = {
  { UIS,  "University of Islamic Sciences, Karachi", 18, ANGLE, 18 }
 };
 
-/* Helper geometric funtions */
+/* Helper geometric and mathematical funtions */
 static double to_degrees(const double x);
 static double to_radians(const double x);
 static double arccot(const double x);
-
+/* round is available only in C99 */
+static double round(const double x);
 /* Normalizes the given value x within the range [0,N] */
 static double normalize(const double x, const double N);
 
@@ -103,6 +104,17 @@ static double normalize(const double x, const double N)
     assert(n <= N);
     return n;
 }
+
+
+/*
+ * Taken from:
+ * http://stackoverflow.com/questions/485525/round-for-float-in-c
+ */
+static double round(const double x)
+{
+    return floor(x + 0.5);
+}
+
 
 /**
  * Compute the Julian Day Number for a given date
@@ -273,7 +285,7 @@ static double get_sunrise(const double dhuhr,
     assert(loc != NULL);
     assert(coord != NULL);
 
-    return (dhuhr - T(0.8333 + 0.0347 * sqrt(loc->height),\
+    return (dhuhr - T(0.8333 + 0.0347 * sqrt(loc->altitude),\
                       loc->latitude, coord->D));
 }
 
@@ -289,7 +301,7 @@ static double get_sunset(const double dhuhr,
     assert(loc != NULL);
     assert(coord != NULL);
 
-    return (dhuhr + T(0.8333 + 0.0347 * sqrt(loc->height),\
+    return (dhuhr + T(0.8333 + 0.0347 * sqrt(loc->altitude),\
                       loc->latitude, coord->D));
 }
 
@@ -373,7 +385,7 @@ static double get_isha(const double dhuhr,
  */
 static void conv_time_to_event(const unsigned long julian_day,
                                const double decimal_time,
-                               const round_t round,
+                               const round_t rounding,
                                event_t *t)
 {
     double r = 0.0, f = 0.0;
@@ -385,11 +397,20 @@ static void conv_time_to_event(const unsigned long julian_day,
     t->julian_day = julian_day;
     f = floor(decimal_time);
     t->hour = (unsigned int)f;
-    r = (decimal_time - f) * 60.0 * 60.0;
-    if (round == UP) {
-        t->minute = (unsigned int)ceil(r / 60.0);
-    } else {
-        t->minute = (unsigned int)floor(r / 60.0);
+    r = (decimal_time - f) * 60.0;
+    switch (rounding) {
+        case UP:
+            t->minute = (unsigned int) ceil(r);
+            break;
+        case DOWN:
+            t->minute = (unsigned int) floor(r);
+            break;
+        case NEAREST:
+            t->minute = (unsigned int) round(r);
+            break;
+        default:
+            fprintf(stderr, "Invalid rounding method!\n");
+            exit(EXIT_FAILURE);
     }
 }
 
@@ -450,18 +471,19 @@ void get_prayer_times(const struct tm *date,
     asr = get_asr(true_noon, loc, &coord);
     fajr = get_fajr(true_noon, sunset_prev, sunrise, loc, &coord);
     isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
+    maghrib = sunset;
 
     /* Compute the safety margins for prayers */
-    /* Dhuhr has a 65 seconds safety margin */
+    /* Dhuhr has a 65 seconds safety margin according to
+     * http://praytimes.org/wiki/A_note_on_Dhuhr
+     */
     dhuhr = true_noon + ONE_MINUTE + 5.0 * ONE_SECOND;
-    /* Maghrib has between 1-3 minutes safety margin */
-    maghrib = sunset + ONE_MINUTE;
 
     /* TODO: I choose the UP, DOWN flags to ensure
-       higher safety margin for someone who is fasting */
+       higher safety margin for someone who is fasting. */
     conv_time_to_event(jdn, fajr, DOWN, &(pt->fajr));
     conv_time_to_event(jdn, sunrise, DOWN, &(pt->sunrise));
-    conv_time_to_event(jdn, dhuhr, UP, &(pt->dhuhr));
+    conv_time_to_event(jdn, dhuhr, NEAREST, &(pt->dhuhr));
     conv_time_to_event(jdn, asr, UP, &(pt->asr));
     conv_time_to_event(jdn, maghrib, UP, &(pt->maghrib));
     conv_time_to_event(jdn, isha, UP, &(pt->isha));
