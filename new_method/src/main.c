@@ -57,14 +57,14 @@ int main(int argc, char **argv)
                 pt.maghrib.hour, pt.maghrib.minute,
                 pt.isha.hour, pt.isha.minute);
     } else if (output == OUTPUT_JSON) {
-        fprintf(stdout, "{\n");
-        fprintf(stdout, "\t\"fajr\": \"%d:%02d\",\n"
-                        "\t\"dhuhr\": \"%d:%02d\",\n"
-                        "\t\"sunrise\": \"%d:%02d\",\n"
-                        "\t\"asr\": \"%d:%02d\",\n"
-                        "\t\"maghrib\": \"%d:%02d\",\n"
-                        "\t\"isha\": \"%d:%02d\"\n"
-                        "}\n",
+        fprintf(stdout, "{ \"times\" : [\n");
+        fprintf(stdout, "\t { \"fajr\": \"%d:%02d\" } ,\n"
+                        "\t { \"dhuhr\": \"%d:%02d\" } ,\n"
+                        "\t { \"sunrise\": \"%d:%02d\" } ,\n"
+                        "\t { \"asr\": \"%d:%02d\" } ,\n"
+                        "\t { \"maghrib\": \"%d:%02d\" } ,\n"
+                        "\t { \"isha\": \"%d:%02d\" } \n"
+                        "] }\n",
                 pt.fajr.hour, pt.fajr.minute,
                 pt.sunrise.hour, pt.sunrise.minute,
                 pt.dhuhr.hour, pt.dhuhr.minute,
