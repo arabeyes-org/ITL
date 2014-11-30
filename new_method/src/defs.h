@@ -6,8 +6,8 @@
 #endif
 
 /* Latitude and Longitude of Ka'aba. Obtained using Google Maps */
-#define KAABA_LATITUDE  (21.422491)
-#define KAABA_LONGITUDE (39.826204)
+#define KAABA_LATITUDE  (21.42249)
+#define KAABA_LONGITUDE (39.82620)
 
 /* One second and one minute as fractions of one hour
    Used for safety margins */

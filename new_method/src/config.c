@@ -1,7 +1,3 @@
-/* Needed to expose POSIX stuff under C89 mode */
-#define _POSIX_C_SOURCE 2
-#define _XOPEN_SOURCE
-
 #include "config.h"
 
 /* List of valid keys in the config file */
@@ -173,8 +169,9 @@ output_t parse_arguments(int argc,
                          struct tm * date)
 {
     time_t t;
-    char * r;
     int rsp, i;
+    struct tm * d = NULL;
+    unsigned int yyyy = 0, mm = 0, dd = 0;
     unsigned int date_set = 0;
     unsigned int config_from_file = 0;
     output_t output = OUTPUT_NORMAL;
@@ -196,13 +193,23 @@ output_t parse_arguments(int argc,
             i++;
         } else if (strcmp(argv[i], "-d") == 0) {
             i++;
-            /* make sure that next token is a date */
-            r = strptime(argv[i], "%Y-%m-%d", date);
-            if (r == NULL) {
-                fprintf(stderr, "Invalid argument to option -d\n");
-                print_usage(argv[0]);
+            /* make sure that the next token is a date */
+            rsp = sscanf(argv[i], "%4u-%2u-%2u", &yyyy, &mm, &dd);
+            if  ((rsp != 3) ||
+                 (yyyy < 2000 || yyyy > 2199) ||
+                 (mm < 1 || mm > 12) ||
+                 (dd < 1 || dd > 31)
+                ) {
+                fprintf(stderr, "Error! invalid date. ");
+                fprintf(stderr, "Date format is:\n");
+                fprintf(stderr, " - year must be in [2000,2199]\n");
+                fprintf(stderr, " - month must be in [1,12]\n");
+                fprintf(stderr, " - day must be in [1,31]\n");
                 exit(EXIT_FAILURE);
             }
+            date->tm_year = yyyy - 1900;
+            date->tm_mon = mm - 1;
+            date->tm_mday = dd;
             date_set = 1;
             i++;
         } else if (strcmp(argv[i], "-f") == 0) {
@@ -231,7 +238,11 @@ output_t parse_arguments(int argc,
      * been done successfully... */
     if (date_set == 0) {
         time(&t);
-        localtime_r(&t, date);
+        /* TODO: localtime is not thread safe, however,
+         * it is the only portable one... */
+        d = localtime(&t);
+        assert(d != NULL);
+        memcpy(date, d, sizeof(struct tm));
     }
 
     if (config_from_file == 0) {

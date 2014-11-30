@@ -1,5 +1,3 @@
-/* Needed to expose POSIX stuff under C89 mode */
-#define _POSIX_C_SOURCE 2
 
 #include <stdio.h>
 #include <stdlib.h>

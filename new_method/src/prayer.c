@@ -128,13 +128,13 @@ static unsigned long get_julian_day_number(const struct tm *date)
 
     a = floor((14.0 - (double)(date->tm_mon + 1)) / 12.0);
     y = (double)(1900 + date->tm_year) + 4800.0 - a;
-    m = (double)(date->tm_mon + 1) + 12.0*a - 3.0;
+    m = (double)(date->tm_mon + 1) + 12.0 * a - 3.0;
     jdn = (double)date->tm_mday + \
-          floor((153.0*m + 2.0) / 5.0) + \
-          365.0*y + \
-          floor(y/4.0) - \
-          floor(y/100.0) + \
-          floor(y/400.0) - \
+          floor((153.0 * m + 2.0) / 5.0) + \
+          365.0 * y + \
+          floor(y / 4.0) - \
+          floor(y / 100.0) + \
+          floor(y / 400.0) - \
           32045.0;
 
     return (unsigned long)jdn;
@@ -164,11 +164,13 @@ static void get_approx_sun_coord(const unsigned long jdn,
     double SD;  /* The angular semidiameter of the Sun in degrees */
 
     assert (coord != NULL);
+    assert (jdn > 2451545);
 
-    d = jdn - 2451545.0; /* Remove the offset from jdn */
+    d = (double)(jdn - 2451545); /* Remove the offset from jdn */
     g = 357.529 + 0.98560028 * d;
     q = 280.459 + 0.98564736 * d;
-    L = q + 1.915 * sin(to_radians(g)) + 0.020 * sin(to_radians(2*g));
+    L = q + 1.915 * sin(to_radians(g)) + \
+        0.020 * sin(to_radians(2.0*g));
     R = 1.00014 - 0.01671 * cos(to_radians(g)) - \
         0.00014 * cos(to_radians(2*g));
     e = 23.439 - 0.00000036 * d;
