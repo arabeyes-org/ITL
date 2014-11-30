@@ -16,4 +16,6 @@ script:
   - make
   - cd ../new_method/build
   - make
+  - cd ../tests
+  - python run_tests.py
 

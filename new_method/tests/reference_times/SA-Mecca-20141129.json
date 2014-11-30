@@ -1,0 +1,15 @@
+{
+    "date": "2014-11-29",
+    "tz": "3",
+    "dst": "0",
+    "country": "SA",
+    "location" : "Mecca",
+    "times": [
+        { "fajr": "5:21" },
+        { "sunrise": "6:40" },
+        { "dhuhr": "12:09" },
+        { "asr": "15:16" },
+        { "maghrib": "17:38" },
+        { "isha": "19:08" }
+    ]
+}
