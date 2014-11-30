@@ -1,11 +1,11 @@
 #include "prayer.h"
 
 calc_method_t calc_methods [] = {
- { MWL,  "Muslim World League (MWL)" , 18, ANGLE, 17 },
- { ISNA, "Islamic Society of North America (ISNA)", 15, ANGLE, 15 },
- { EGAS, "Egyptian General Authority of Survey", 19.5, ANGLE, 17.5 },
- { UMAQ, "Umm Al-Qura University, Makkah", 18.5, OFFSET, 90 },
- { UIS,  "University of Islamic Sciences, Karachi", 18, ANGLE, 18 }
+ { MWL,  "Muslim World League (MWL)", ANGLE, 18, 17 },
+ { ISNA, "Islamic Society of North America (ISNA)", ANGLE, 15, 15 },
+ { EGAS, "Egyptian General Authority of Survey", ANGLE, 19.5, 17.5 },
+ { UMAQ, "Umm Al-Qura University, Makkah", OFFSET, 18.5, 90 },
+ { UIS,  "University of Islamic Sciences, Karachi", ANGLE, 18, 18 }
 };
 
 /* Helper geometric and mathematical funtions */

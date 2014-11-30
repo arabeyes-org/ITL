@@ -45,17 +45,21 @@ struct approx_sun_coord {
     double SD;  /* The angular semidiameter of the Sun in degrees */
 };
 
+/* The order of struct members below guarantees
+ * that the compiler doesn't add padding bytes automatically
+ * on 64-bit architectures */
 typedef struct calc_method {
     method_id_t  id;         /* Method ID */
-    char         name[64];   /* Full name of the method */
-    double       fajr;       /* Fajr angle */
+    char         name[48];   /* Full name of the method */
     isha_flag_t  isha_type;  /* Angle or offset? */
+    double       fajr;       /* Fajr angle */
     double       isha;       /* Value for Isha angle/offset */
 } calc_method_t;
 
-/* Holds all the information related to the observer location */
+/* Holds all the information related to the observer location
+ * The struct members ordering guarantees that the compiler does
+ * not add any padding bytes when compiling for 64-bit machines */
 struct location {
-    char          name[64];    /* Observer's location name */
     double        longitude;   /* Observer's longitude */
     double        latitude;    /* Observer's latitude */
     double        altitude;    /* Observer's altitude in meters */
@@ -66,6 +70,7 @@ struct location {
     asr_method_t  asr_method;  /* Asr Method: Shafii or Hanafi */
     calc_method_t calc_method; /* Fajr and Isha Calculation method */
     extr_method_t extr_method; /* Extreme latitude method */
+    char          name[60];    /* Observer's location name */
 };
 
 /* Holds the time of a single event (i.e., prayer or sunrise) */
