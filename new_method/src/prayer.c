@@ -357,9 +357,9 @@ static double get_isha(const double dhuhr,
     assert(coord != NULL);
 
     if (loc->extr_method == NONE) {
-        if (loc->calc_method.id == UMAQ) {
+        if (loc->calc_method.isha_type == OFFSET) {
             /* Umm Al-Qura uses a fixed offset */
-            isha = sunset + 90.0 * ONE_MINUTE;
+            isha = sunset + loc->calc_method.isha * ONE_MINUTE;
         } else {
             isha = dhuhr + T(loc->calc_method.isha,\
                              loc->latitude,\
