@@ -171,7 +171,7 @@ output_t parse_arguments(int argc,
     time_t t;
     int rsp, i;
     struct tm * d = NULL;
-    unsigned int yyyy = 0, mm = 0, dd = 0;
+    int yyyy = 0, mm = 0, dd = 0;
     unsigned int date_set = 0;
     unsigned int config_from_file = 0;
     output_t output = OUTPUT_NORMAL;

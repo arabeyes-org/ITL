@@ -13,7 +13,7 @@ static double to_degrees(const double x);
 static double to_radians(const double x);
 static double arccot(const double x);
 /* round is available only in C99 */
-static double round(const double x);
+static double custom_round(const double x);
 /* Normalizes the given value x within the range [0,N] */
 static double normalize(const double x, const double N);
 
@@ -105,12 +105,9 @@ static double normalize(const double x, const double N)
     return n;
 }
 
-
-/*
- * Taken from:
- * http://stackoverflow.com/questions/485525/round-for-float-in-c
- */
-static double round(const double x)
+/* round is avalilable only in C99. Therefore, we
+ * use a custom one */
+static double custom_round(const double x)
 {
     return floor(x + 0.5);
 }
@@ -408,7 +405,7 @@ static void conv_time_to_event(const unsigned long julian_day,
             t->minute = (unsigned int) floor(r);
             break;
         case NEAREST:
-            t->minute = (unsigned int) round(r);
+            t->minute = (unsigned int) custom_round(r);
             break;
         default:
             fprintf(stderr, "Invalid rounding method!\n");

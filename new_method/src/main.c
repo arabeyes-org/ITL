@@ -46,8 +46,8 @@ int main(int argc, char **argv)
         fprintf(stdout, "--------------------------"
                         "--------------------------");
         fprintf(stdout, "---------------------------------\n");
-        fprintf(stdout, " %d:%02d\t\t%d:%02d\t\t%d:%02d\t\t"
-                "%d:%02d\t\t%d:%02d\t\t%d:%02d\n\n",
+        fprintf(stdout, " %u:%02u\t\t%u:%02u\t\t%u:%02u\t\t"
+                "%u:%02u\t\t%u:%02u\t\t%u:%02u\n\n",
                 pt.fajr.hour, pt.fajr.minute,
                 pt.sunrise.hour, pt.sunrise.minute,
                 pt.dhuhr.hour, pt.dhuhr.minute,
@@ -56,12 +56,12 @@ int main(int argc, char **argv)
                 pt.isha.hour, pt.isha.minute);
     } else if (output == OUTPUT_JSON) {
         fprintf(stdout, "{ \"times\" : [\n");
-        fprintf(stdout, "\t { \"fajr\": \"%d:%02d\" } ,\n"
-                        "\t { \"dhuhr\": \"%d:%02d\" } ,\n"
-                        "\t { \"sunrise\": \"%d:%02d\" } ,\n"
-                        "\t { \"asr\": \"%d:%02d\" } ,\n"
-                        "\t { \"maghrib\": \"%d:%02d\" } ,\n"
-                        "\t { \"isha\": \"%d:%02d\" } \n"
+        fprintf(stdout, "\t { \"fajr\": \"%u:%02u\" } ,\n"
+                        "\t { \"dhuhr\": \"%u:%02u\" } ,\n"
+                        "\t { \"sunrise\": \"%u:%02u\" } ,\n"
+                        "\t { \"asr\": \"%u:%02u\" } ,\n"
+                        "\t { \"maghrib\": \"%u:%02u\" } ,\n"
+                        "\t { \"isha\": \"%u:%02u\" } \n"
                         "] }\n",
                 pt.fajr.hour, pt.fajr.minute,
                 pt.sunrise.hour, pt.sunrise.minute,

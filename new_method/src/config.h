@@ -20,6 +20,7 @@ typedef enum {
     OUTPUT_JSON
 } output_t;
 
+extern char valid_keys[NUM_OF_VALID_KEYS][16];
 
 /* Public Functions */
 
