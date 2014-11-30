@@ -474,10 +474,10 @@ void get_prayer_times(const struct tm *date,
     isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
 
     /* TODO: Find what Fiqh says regarding the rounding... */
-    conv_time_to_event(jdn, fajr, DOWN, &(pt->fajr));
-    conv_time_to_event(jdn, sunrise, DOWN, &(pt->sunrise));
-    conv_time_to_event(jdn, dhuhr, DOWN, &(pt->dhuhr));
-    conv_time_to_event(jdn, asr, DOWN, &(pt->asr));
-    conv_time_to_event(jdn, maghrib, DOWN, &(pt->maghrib));
-    conv_time_to_event(jdn, isha, DOWN, &(pt->isha));
+    conv_time_to_event(jdn, fajr, NEAREST, &(pt->fajr));
+    conv_time_to_event(jdn, sunrise, NEAREST, &(pt->sunrise));
+    conv_time_to_event(jdn, dhuhr, NEAREST, &(pt->dhuhr));
+    conv_time_to_event(jdn, asr, NEAREST, &(pt->asr));
+    conv_time_to_event(jdn, maghrib, NEAREST, &(pt->maghrib));
+    conv_time_to_event(jdn, isha, NEAREST, &(pt->isha));
 }
