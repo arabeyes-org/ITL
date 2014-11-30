@@ -470,23 +470,17 @@ void get_prayer_times(const struct tm *date,
     sunrise_next = get_sunrise(noon_next, loc, &coord_next);
     sunset_prev = get_sunset(noon_prev, loc, &coord_prev);
 
-    asr = get_asr(true_noon, loc, &coord);
     fajr = get_fajr(true_noon, sunset_prev, sunrise, loc, &coord);
-    isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
+    dhuhr = true_noon;
+    asr = get_asr(true_noon, loc, &coord);
     maghrib = sunset;
+    isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
 
-    /* Compute the safety margins for prayers */
-    /* Dhuhr has a 65 seconds safety margin according to
-     * http://praytimes.org/wiki/A_note_on_Dhuhr
-     */
-    dhuhr = true_noon + ONE_MINUTE + 5.0 * ONE_SECOND;
-
-    /* TODO: I choose the UP, DOWN flags to ensure
-       higher safety margin for someone who is fasting. */
+    /* TODO: Find what Fiqh says regarding the rounding... */
     conv_time_to_event(jdn, fajr, DOWN, &(pt->fajr));
     conv_time_to_event(jdn, sunrise, DOWN, &(pt->sunrise));
-    conv_time_to_event(jdn, dhuhr, NEAREST, &(pt->dhuhr));
-    conv_time_to_event(jdn, asr, UP, &(pt->asr));
-    conv_time_to_event(jdn, maghrib, UP, &(pt->maghrib));
-    conv_time_to_event(jdn, isha, UP, &(pt->isha));
+    conv_time_to_event(jdn, dhuhr, DOWN, &(pt->dhuhr));
+    conv_time_to_event(jdn, asr, DOWN, &(pt->asr));
+    conv_time_to_event(jdn, maghrib, DOWN, &(pt->maghrib));
+    conv_time_to_event(jdn, isha, DOWN, &(pt->isha));
 }
