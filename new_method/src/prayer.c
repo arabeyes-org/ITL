@@ -1,11 +1,11 @@
 #include "prayer.h"
 
 calc_method_t calc_methods [] = {
- { MWL,  "Muslim World League (MWL)" , 18, ANGLE, 17 },
- { ISNA, "Islamic Society of North America (ISNA)", 15, ANGLE, 15 },
- { EGAS, "Egyptian General Authority of Survey", 19.5, ANGLE, 17.5 },
- { UMAQ, "Umm Al-Qura University, Makkah", 18.5, OFFSET, 90 },
- { UIS,  "University of Islamic Sciences, Karachi", 18, ANGLE, 18 }
+ { MWL,  "Muslim World League (MWL)", ANGLE, 18, 17 },
+ { ISNA, "Islamic Society of North America (ISNA)", ANGLE, 15, 15 },
+ { EGAS, "Egyptian General Authority of Survey", ANGLE, 19.5, 17.5 },
+ { UMAQ, "Umm Al-Qura University, Makkah", OFFSET, 18.5, 90 },
+ { UIS,  "University of Islamic Sciences, Karachi", ANGLE, 18, 18 }
 };
 
 /* Helper geometric and mathematical funtions */
@@ -13,7 +13,7 @@ static double to_degrees(const double x);
 static double to_radians(const double x);
 static double arccot(const double x);
 /* round is available only in C99 */
-static double round(const double x);
+static double custom_round(const double x);
 /* Normalizes the given value x within the range [0,N] */
 static double normalize(const double x, const double N);
 
@@ -105,12 +105,9 @@ static double normalize(const double x, const double N)
     return n;
 }
 
-
-/*
- * Taken from:
- * http://stackoverflow.com/questions/485525/round-for-float-in-c
- */
-static double round(const double x)
+/* round is avalilable only in C99. Therefore, we
+ * use a custom one */
+static double custom_round(const double x)
 {
     return floor(x + 0.5);
 }
@@ -128,13 +125,13 @@ static unsigned long get_julian_day_number(const struct tm *date)
 
     a = floor((14.0 - (double)(date->tm_mon + 1)) / 12.0);
     y = (double)(1900 + date->tm_year) + 4800.0 - a;
-    m = (double)(date->tm_mon + 1) + 12.0*a - 3.0;
+    m = (double)(date->tm_mon + 1) + 12.0 * a - 3.0;
     jdn = (double)date->tm_mday + \
-          floor((153.0*m + 2.0) / 5.0) + \
-          365.0*y + \
-          floor(y/4.0) - \
-          floor(y/100.0) + \
-          floor(y/400.0) - \
+          floor((153.0 * m + 2.0) / 5.0) + \
+          365.0 * y + \
+          floor(y / 4.0) - \
+          floor(y / 100.0) + \
+          floor(y / 400.0) - \
           32045.0;
 
     return (unsigned long)jdn;
@@ -164,11 +161,13 @@ static void get_approx_sun_coord(const unsigned long jdn,
     double SD;  /* The angular semidiameter of the Sun in degrees */
 
     assert (coord != NULL);
+    assert (jdn > 2451545);
 
-    d = jdn - 2451545.0; /* Remove the offset from jdn */
+    d = (double)(jdn - 2451545); /* Remove the offset from jdn */
     g = 357.529 + 0.98560028 * d;
     q = 280.459 + 0.98564736 * d;
-    L = q + 1.915 * sin(to_radians(g)) + 0.020 * sin(to_radians(2*g));
+    L = q + 1.915 * sin(to_radians(g)) + \
+        0.020 * sin(to_radians(2.0*g));
     R = 1.00014 - 0.01671 * cos(to_radians(g)) - \
         0.00014 * cos(to_radians(2*g));
     e = 23.439 - 0.00000036 * d;
@@ -358,9 +357,9 @@ static double get_isha(const double dhuhr,
     assert(coord != NULL);
 
     if (loc->extr_method == NONE) {
-        if (loc->calc_method.id == UMAQ) {
+        if (loc->calc_method.isha_type == OFFSET) {
             /* Umm Al-Qura uses a fixed offset */
-            isha = sunset + 90.0 * ONE_MINUTE;
+            isha = sunset + loc->calc_method.isha * ONE_MINUTE;
         } else {
             isha = dhuhr + T(loc->calc_method.isha,\
                              loc->latitude,\
@@ -406,7 +405,7 @@ static void conv_time_to_event(const unsigned long julian_day,
             t->minute = (unsigned int) floor(r);
             break;
         case NEAREST:
-            t->minute = (unsigned int) round(r);
+            t->minute = (unsigned int) custom_round(r);
             break;
         default:
             fprintf(stderr, "Invalid rounding method!\n");
@@ -468,23 +467,17 @@ void get_prayer_times(const struct tm *date,
     sunrise_next = get_sunrise(noon_next, loc, &coord_next);
     sunset_prev = get_sunset(noon_prev, loc, &coord_prev);
 
-    asr = get_asr(true_noon, loc, &coord);
     fajr = get_fajr(true_noon, sunset_prev, sunrise, loc, &coord);
-    isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
+    dhuhr = true_noon;
+    asr = get_asr(true_noon, loc, &coord);
     maghrib = sunset;
+    isha = get_isha(true_noon, sunset, sunrise_next, loc, &coord);
 
-    /* Compute the safety margins for prayers */
-    /* Dhuhr has a 65 seconds safety margin according to
-     * http://praytimes.org/wiki/A_note_on_Dhuhr
-     */
-    dhuhr = true_noon + ONE_MINUTE + 5.0 * ONE_SECOND;
-
-    /* TODO: I choose the UP, DOWN flags to ensure
-       higher safety margin for someone who is fasting. */
-    conv_time_to_event(jdn, fajr, DOWN, &(pt->fajr));
-    conv_time_to_event(jdn, sunrise, DOWN, &(pt->sunrise));
+    /* TODO: Find what Fiqh says regarding the rounding... */
+    conv_time_to_event(jdn, fajr, NEAREST, &(pt->fajr));
+    conv_time_to_event(jdn, sunrise, NEAREST, &(pt->sunrise));
     conv_time_to_event(jdn, dhuhr, NEAREST, &(pt->dhuhr));
-    conv_time_to_event(jdn, asr, UP, &(pt->asr));
-    conv_time_to_event(jdn, maghrib, UP, &(pt->maghrib));
-    conv_time_to_event(jdn, isha, UP, &(pt->isha));
+    conv_time_to_event(jdn, asr, NEAREST, &(pt->asr));
+    conv_time_to_event(jdn, maghrib, NEAREST, &(pt->maghrib));
+    conv_time_to_event(jdn, isha, NEAREST, &(pt->isha));
 }

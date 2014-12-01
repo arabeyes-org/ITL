@@ -15,8 +15,8 @@ Roadmap
 Here is a "rough" roadmap for implementing the new method completely.
 * Implement the basic method (DONE)
 * Load the configuration from a separate config file (DONE)
+* Add test suite (DONE)
 * Handle extreme latitude methods (TBD)
-* Add test suite (TBD)
 
 Config files
 ------------
@@ -28,4 +28,11 @@ The file takes the following form:
     ...
 
 Keys and values are separated by a colon ':'. The pair is ended by
-a new line. For examples, see `config` directory.
+a new line. For examples, see `tests/locations`
+
+Test Suite
+----------
+To make development easier, the new method comes with an automated
+test suite. The testing infrastructure is written in Python.
+To run the tests, execute `run_tests.py` located under `tests`
+
