@@ -33,12 +33,12 @@ static char * trim_whitespace(char * str)
 
     assert(str != NULL);
 
-    while (isspace(*str)) str++;
+    while (isspace((unsigned char) *str)) str++;
     if (*str == '\0') return str;
 
     /* Trim trailing space */
     end = str + strlen(str) - 1;
-    while (end > str && isspace(*end)) end--;
+    while (end > str && isspace((unsigned char) *end)) end--;
 
     /* Write new null terminator */
     *(end + 1) = '\0';
