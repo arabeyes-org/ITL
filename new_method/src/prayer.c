@@ -255,17 +255,14 @@ static double get_asr(const double dhuhr,
     assert(dhuhr > 0.0);
     assert(loc != NULL);
     assert(coord != NULL);
+    assert(loc->asr_method == SHAFII || loc->asr_method == HANAFI);
 
     switch(loc->asr_method) {
-    case SHAFII:
+      case SHAFII:
         asr = dhuhr + A(1.0, loc->latitude, coord->D);
         break;
-    case HANAFI:
+      case HANAFI:
         asr = dhuhr + A(2.0, loc->latitude, coord->D);
-        break;
-    default:
-        fprintf(stderr, "Error! Invalid Asr method detected\n");
-        exit(EXIT_FAILURE);
         break;
     }
     asr = normalize(asr, 24.0);
@@ -392,24 +389,24 @@ static void conv_time_to_event(const unsigned long julian_day,
     assert(julian_day > 0);
     assert(decimal_time >= 0.0 && decimal_time <= 24.0);
     assert(t != NULL);
+    assert(rounding == UP ||
+           rounding == DOWN ||
+           rounding == NEAREST);
 
     t->julian_day = julian_day;
     f = floor(decimal_time);
     t->hour = (unsigned int)f;
     r = (decimal_time - f) * 60.0;
     switch (rounding) {
-        case UP:
-            t->minute = (unsigned int)(ceil(r));
-            break;
-        case DOWN:
-            t->minute = (unsigned int)(floor(r));
-            break;
-        case NEAREST:
-            t->minute = (unsigned int)(custom_round(r));
-            break;
-        default:
-            fprintf(stderr, "Invalid rounding method!\n");
-            exit(EXIT_FAILURE);
+      case UP:
+        t->minute = (unsigned int)(ceil(r));
+        break;
+      case DOWN:
+        t->minute = (unsigned int)(floor(r));
+        break;
+      case NEAREST:
+        t->minute = (unsigned int)(custom_round(r));
+        break;
     }
 }
 
