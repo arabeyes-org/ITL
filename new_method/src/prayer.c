@@ -399,13 +399,13 @@ static void conv_time_to_event(const unsigned long julian_day,
     r = (decimal_time - f) * 60.0;
     switch (rounding) {
         case UP:
-            t->minute = (unsigned int) ceil(r);
+            t->minute = (unsigned int)(ceil(r));
             break;
         case DOWN:
-            t->minute = (unsigned int) floor(r);
+            t->minute = (unsigned int)(floor(r));
             break;
         case NEAREST:
-            t->minute = (unsigned int) custom_round(r);
+            t->minute = (unsigned int)(custom_round(r));
             break;
         default:
             fprintf(stderr, "Invalid rounding method!\n");
@@ -439,7 +439,7 @@ void get_prayer_times(const struct tm *date,
                       const struct location *loc,
                       struct prayer_times *pt)
 {
-    double jdn, jdn_next, jdn_prev;
+    unsigned long jdn, jdn_next, jdn_prev;
     double true_noon, sunrise, sunset;
     double noon_next, sunrise_next;
     double noon_prev, sunset_prev;
