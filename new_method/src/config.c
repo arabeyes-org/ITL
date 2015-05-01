@@ -69,20 +69,20 @@ static int add_key_value(const char * key,
         loc->altitude = strtod(value, &save_ptr);
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[4]) == 0) { /* asr_method */
-        loc->asr_method = strtol(value, &save_ptr, 10);
+        loc->asr_method = (asr_method_t)(strtol(value, &save_ptr, 10));
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[5]) == 0) { /* calc_method */
-        method_id = strtol(value, &save_ptr, 10);
+        method_id = (unsigned int)(strtol(value, &save_ptr, 10));
         loc->calc_method = calc_methods[method_id];
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[6]) == 0) { /* extr_method */
-        loc->extr_method = strtol(value, &save_ptr, 10);
+        loc->extr_method = (extr_method_t)(strtol(value, &save_ptr, 10));
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[7]) == 0) { /* timezone */
         loc->timezone = strtod(value, &save_ptr);
         if (value == save_ptr) goto ERR;
     } else if (strcmp(key, valid_keys[8]) == 0) { /* daylight */
-        loc->daylight = strtol(value, &save_ptr, 10);
+        loc->daylight = (int)(strtol(value, &save_ptr, 10));
         if (value == save_ptr) goto ERR;
     } else {
         fprintf(stderr, "Invalid key detected in the config file\n");
