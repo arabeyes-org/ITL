@@ -119,7 +119,7 @@ static double custom_round(const double x)
  */
 static unsigned long get_julian_day_number(const struct tm *date)
 {
-    double a = 0.0, y = 0.0, m = 0.0, jdn = 0.0;
+    double a, y, m, jdn;
 
     assert (date != NULL);
 
@@ -169,7 +169,7 @@ static void get_approx_sun_coord(const unsigned long jdn,
     L = q + 1.915 * sin(to_radians(g)) + \
         0.020 * sin(to_radians(2.0*g));
     R = 1.00014 - 0.01671 * cos(to_radians(g)) - \
-        0.00014 * cos(to_radians(2*g));
+        0.00014 * cos(to_radians(2.0*g));
     e = 23.439 - 0.00000036 * d;
     RA = to_degrees(atan2(cos(to_radians(e)) * sin(to_radians(L)), \
                           cos(to_radians(L)))/15.0);

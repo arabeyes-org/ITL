@@ -18,7 +18,7 @@ locations="locations"
 references="reference_times"
 # We require all the computed times to be within 3 minutes
 # of the reference values
-threshold = datetime.timedelta(minutes=4)
+threshold = datetime.timedelta(minutes=3)
 
 class TestPrayerNewMethod(unittest.TestCase):
     def setUp(self):
