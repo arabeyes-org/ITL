@@ -155,6 +155,7 @@ int load_config_from_file(const char * config_filename,
         r = add_key_value(key, value, loc);
         if (r != EXIT_SUCCESS) goto LD_ERR;
     }
+    fclose(fp);
     return EXIT_SUCCESS;
 LD_ERR:
     fprintf(stderr, "Error parsing the config file\n");
@@ -176,6 +177,7 @@ output_t parse_arguments(int argc,
     unsigned int config_from_file = 0;
     output_t output = OUTPUT_NORMAL;
 
+    assert(argc >= 1);
     assert(argv != NULL);
     assert(loc != NULL);
     assert(date != NULL);
