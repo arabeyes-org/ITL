@@ -1,7 +1,7 @@
 #include "config.h"
 
-/* List of valid keys in the config file */
-char valid_keys[NUM_OF_VALID_KEYS][16] = {
+/* List of valid key names in the config file */
+struct key_names valid_keys = {
     "name",
     "latitude",
     "longitude",
@@ -24,8 +24,10 @@ static int add_key_value(const char * key,
                          struct location * loc);
 
 
-/*
+/**
+ * Trims the leading and trailing whitespace from a string
  * Taken from: http://stackoverflow.com/a/122721
+ * @return Trimmed string
  */
 static char * trim_whitespace(char * str)
 {
@@ -42,10 +44,14 @@ static char * trim_whitespace(char * str)
 
     /* Write new null terminator */
     *(end + 1) = '\0';
+
     return str;
 }
 
-
+/**
+ * Adds a new <key,value> pair to the loc struct
+ * @return 0 if successful, 1 otherwise
+ */
 static int add_key_value(const char * key,
                          const char * value,
                          struct location * loc)
@@ -57,41 +63,39 @@ static int add_key_value(const char * key,
     assert(value != NULL);
     assert(loc != NULL);
 
-    if (strcmp(key, valid_keys[0]) == 0) { /* name */
+    if (strcmp(key, valid_keys.name) == 0) {
         strcpy(loc->name, value);
-    } else if (strcmp(key, valid_keys[1]) == 0) { /* latitude */
+    } else if (strcmp(key, valid_keys.latitude) == 0) {
         loc->latitude = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[2]) == 0) { /* longitude */
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.longitude) == 0) {
         loc->longitude = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[3]) == 0) { /* altitude */
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.altitude) == 0) {
         loc->altitude = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[4]) == 0) { /* asr_method */
-        loc->asr_method = (asr_method_t)(strtol(value, &save_ptr, 10));
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[5]) == 0) { /* calc_method */
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.asr_method) == 0) {
+        loc->asr_method = \
+          (asr_method_t)(strtol(value, &save_ptr, 10));
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.calc_method) == 0) {
         method_id = (unsigned int)(strtol(value, &save_ptr, 10));
         loc->calc_method = calc_methods[method_id];
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[6]) == 0) { /* extr_method */
-        loc->extr_method = (extr_method_t)(strtol(value, &save_ptr, 10));
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[7]) == 0) { /* timezone */
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.extr_method) == 0) {
+        loc->extr_method = \
+          (extr_method_t)(strtol(value, &save_ptr, 10));
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.timezone) == 0) {
         loc->timezone = strtod(value, &save_ptr);
-        if (value == save_ptr) goto ERR;
-    } else if (strcmp(key, valid_keys[8]) == 0) { /* daylight */
+        if (value == save_ptr) return 1;
+    } else if (strcmp(key, valid_keys.daylight) == 0) {
         loc->daylight = (int)(strtol(value, &save_ptr, 10));
-        if (value == save_ptr) goto ERR;
+        if (value == save_ptr) return 1;
     } else {
-        fprintf(stderr, "Invalid key detected in the config file\n");
-        return EXIT_FAILURE;
+        return 1;
     }
-    return EXIT_SUCCESS;
-ERR:
-    fprintf(stderr, "Error parsing the value\n");
-    return EXIT_FAILURE;
+    return 0;
 }
 
 
@@ -142,8 +146,7 @@ int load_config_from_file(const char * config_filename,
 
     fp = fopen(config_filename, "r");
     if (fp == NULL) {
-        fprintf(stderr, "errno %d: %s\n", errno, strerror(errno));
-        exit(EXIT_FAILURE);
+        return 1;
     }
     while (fgets(line, sizeof(line), fp) != NULL) {
         key = strtok(line, delimiter);
@@ -153,21 +156,27 @@ int load_config_from_file(const char * config_filename,
         if (value == NULL) goto LD_ERR;
         value = trim_whitespace(value);
         r = add_key_value(key, value, loc);
-        if (r != EXIT_SUCCESS) goto LD_ERR;
+        if (r != 0) goto LD_ERR;
     }
-    fclose(fp);
-    return EXIT_SUCCESS;
+    r = fclose(fp);
+    assert(r == 0);
+    return 0;
 LD_ERR:
-    fprintf(stderr, "Error parsing the config file\n");
-    fclose(fp);
-    exit(EXIT_FAILURE);
+    r = fclose(fp);
+    assert(r == 0);
+    return 1;
 }
 
-
-output_t parse_arguments(int argc,
-                         char ** argv,
-                         struct location * loc,
-                         struct tm * date)
+/**
+  * Parses the command line arguments and constructs the loc
+  * data structure out of it
+  * @return 0 if all went fine, 1 otherwise
+  */
+int parse_arguments(int argc,
+                    char ** argv,
+                    struct location * loc,
+                    struct tm * date,
+                    output_t * output)
 {
     time_t t;
     int rsp, i;
@@ -175,10 +184,9 @@ output_t parse_arguments(int argc,
     int yyyy = 0, mm = 0, dd = 0;
     unsigned int date_set = 0;
     unsigned int config_from_file = 0;
-    output_t output = OUTPUT_NORMAL;
+    *output = OUTPUT_NORMAL;
 
     assert(argc >= 1);
-    assert(argv != NULL);
     assert(loc != NULL);
     assert(date != NULL);
 
@@ -186,12 +194,11 @@ output_t parse_arguments(int argc,
     memset(date, 0, sizeof(struct tm));
 
     /* getopt is not portable...
-     * Therefore, we do things manually :-(
-     */
+     * Therefore, we do things manually :-( */
     i = 1;
     while (i < argc) {
         if (strcmp(argv[i], "-j") == 0) {
-            output = OUTPUT_JSON;
+            *output = OUTPUT_JSON;
             i++;
         } else if (strcmp(argv[i], "-d") == 0) {
             i++;
@@ -207,7 +214,7 @@ output_t parse_arguments(int argc,
                 fprintf(stderr, " - year must be in [2000,2199]\n");
                 fprintf(stderr, " - month must be in [1,12]\n");
                 fprintf(stderr, " - day must be in [1,31]\n");
-                exit(EXIT_FAILURE);
+                return 1;
             }
             date->tm_year = yyyy - 1900;
             date->tm_mon = mm - 1;
@@ -218,21 +225,21 @@ output_t parse_arguments(int argc,
             i++;
             /* make sure we have a file */
             rsp = load_config_from_file(argv[i], loc);
-            if (rsp != EXIT_SUCCESS) {
+            if (rsp != 0) {
                 fprintf(stderr, "Invalid argument to option -f\n");
                 print_usage(argv[0]);
-                exit(EXIT_FAILURE);
+                return 1;
             }
             config_from_file = 1;
             i++;
         } else if (strcmp(argv[i], "-h") == 0) {
             i++;
             print_usage(argv[0]);
-            exit(EXIT_SUCCESS);
+            return 1;
         } else {
             fprintf(stderr, "Invalid option\n");
             print_usage(argv[0]);
-            exit(EXIT_FAILURE);
+            return 1;
         }
     }
 
@@ -250,6 +257,5 @@ output_t parse_arguments(int argc,
     if (config_from_file == 0) {
         set_default_location(loc);
     }
-
-    return output;
+    return 0;
 }
