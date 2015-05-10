@@ -13,8 +13,13 @@ int main(int argc, char **argv)
     double qibla;
     struct prayer_times pt;
     output_t output;
+    int rsp;
 
-    output = parse_arguments(argc, argv, &loc, &date);
+    rsp = parse_arguments(argc, argv, &loc, &date, &output);
+    if (rsp != 0) {
+      fprintf(stderr, "Error in parsing arguments!\n");
+      exit(EXIT_FAILURE);
+    }
 
     qibla = get_qibla_direction(&loc);
     get_prayer_times(&date, &loc, &pt);

@@ -105,17 +105,19 @@ static double normalize(const double x, const double N)
     return n;
 }
 
-/* round is avalilable only in C99. Therefore, we
- * use a custom one */
+/**
+ * round is avalilable only in C99. Therefore, we use a custom one
+ * @return The rounded value of x
+ */
 static double custom_round(const double x)
 {
     return floor(x + 0.5);
 }
 
-
 /**
  * Compute the Julian Day Number for a given date
  * Source: https://en.wikipedia.org/wiki/Julian_day
+ * @return The Julian day number
  */
 static unsigned long get_julian_day_number(const struct tm *date)
 {
