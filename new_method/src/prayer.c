@@ -105,21 +105,23 @@ static double normalize(const double x, const double N)
     return n;
 }
 
-/* round is avalilable only in C99. Therefore, we
- * use a custom one */
+/**
+ * round is avalilable only in C99. Therefore, we use a custom one
+ * @return The rounded value of x
+ */
 static double custom_round(const double x)
 {
     return floor(x + 0.5);
 }
 
-
 /**
  * Compute the Julian Day Number for a given date
  * Source: https://en.wikipedia.org/wiki/Julian_day
+ * @return The Julian day number
  */
 static unsigned long get_julian_day_number(const struct tm *date)
 {
-    double a = 0.0, y = 0.0, m = 0.0, jdn = 0.0;
+    double a, y, m, jdn;
 
     assert (date != NULL);
 
@@ -169,7 +171,7 @@ static void get_approx_sun_coord(const unsigned long jdn,
     L = q + 1.915 * sin(to_radians(g)) + \
         0.020 * sin(to_radians(2.0*g));
     R = 1.00014 - 0.01671 * cos(to_radians(g)) - \
-        0.00014 * cos(to_radians(2*g));
+        0.00014 * cos(to_radians(2.0*g));
     e = 23.439 - 0.00000036 * d;
     RA = to_degrees(atan2(cos(to_radians(e)) * sin(to_radians(L)), \
                           cos(to_radians(L)))/15.0);
@@ -255,17 +257,14 @@ static double get_asr(const double dhuhr,
     assert(dhuhr > 0.0);
     assert(loc != NULL);
     assert(coord != NULL);
+    assert(loc->asr_method == SHAFII || loc->asr_method == HANAFI);
 
     switch(loc->asr_method) {
-    case SHAFII:
+      case SHAFII:
         asr = dhuhr + A(1.0, loc->latitude, coord->D);
         break;
-    case HANAFI:
+      case HANAFI:
         asr = dhuhr + A(2.0, loc->latitude, coord->D);
-        break;
-    default:
-        fprintf(stderr, "Error! Invalid Asr method detected\n");
-        exit(EXIT_FAILURE);
         break;
     }
     asr = normalize(asr, 24.0);
@@ -392,24 +391,24 @@ static void conv_time_to_event(const unsigned long julian_day,
     assert(julian_day > 0);
     assert(decimal_time >= 0.0 && decimal_time <= 24.0);
     assert(t != NULL);
+    assert(rounding == UP ||
+           rounding == DOWN ||
+           rounding == NEAREST);
 
     t->julian_day = julian_day;
     f = floor(decimal_time);
     t->hour = (unsigned int)f;
     r = (decimal_time - f) * 60.0;
     switch (rounding) {
-        case UP:
-            t->minute = (unsigned int) ceil(r);
-            break;
-        case DOWN:
-            t->minute = (unsigned int) floor(r);
-            break;
-        case NEAREST:
-            t->minute = (unsigned int) custom_round(r);
-            break;
-        default:
-            fprintf(stderr, "Invalid rounding method!\n");
-            exit(EXIT_FAILURE);
+      case UP:
+        t->minute = (unsigned int)(ceil(r));
+        break;
+      case DOWN:
+        t->minute = (unsigned int)(floor(r));
+        break;
+      case NEAREST:
+        t->minute = (unsigned int)(custom_round(r));
+        break;
     }
 }
 
@@ -439,7 +438,7 @@ void get_prayer_times(const struct tm *date,
                       const struct location *loc,
                       struct prayer_times *pt)
 {
-    double jdn, jdn_next, jdn_prev;
+    unsigned long jdn, jdn_next, jdn_prev;
     double true_noon, sunrise, sunset;
     double noon_next, sunrise_next;
     double noon_prev, sunset_prev;

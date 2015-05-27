@@ -2,20 +2,7 @@ language: c
 compiler:
   - gcc
   - clang
-before_script:
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cd ../new_method
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cd ../..
 script:
-  - cd build
-  - make
-  - cd ../new_method/build
-  - make
-  - cd ../tests
-  - python run_tests.py
-
+  - ./build.sh
+  - cd new_method
+  - ./build.sh

@@ -11,23 +11,40 @@
 
 #include "defs.h"
 
-#define NUM_OF_VALID_KEYS (9)
+#define KEY_NAME_LENGTH   (16)
 
-
-/* Output type */
+/**
+  * Output type
+  */
 typedef enum {
-    OUTPUT_NORMAL,
-    OUTPUT_JSON
+    OUTPUT_NORMAL, /**< Textual output */
+    OUTPUT_JSON    /**< JSON output */
 } output_t;
 
-extern char valid_keys[NUM_OF_VALID_KEYS][16];
+/**
+  * key names
+  */
+struct key_names {
+    char name[KEY_NAME_LENGTH];
+    char latitude[KEY_NAME_LENGTH];
+    char longitude[KEY_NAME_LENGTH];
+    char altitude[KEY_NAME_LENGTH];
+    char asr_method[KEY_NAME_LENGTH];
+    char calc_method[KEY_NAME_LENGTH];
+    char extr_method[KEY_NAME_LENGTH];
+    char timezone[KEY_NAME_LENGTH];
+    char daylight[KEY_NAME_LENGTH];
+};
+
+extern struct key_names valid_keys;
 
 /* Public Functions */
 
-output_t parse_arguments(int argc,
-                         char ** argv,
-                         struct location * loc,
-                         struct tm * date);
+int parse_arguments(int argc,
+                    char ** argv,
+                    struct location * loc,
+                    struct tm * date,
+                    output_t * output);
 
 int load_config_from_file(const char * config_filename,
                           struct location * loc);
