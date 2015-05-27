@@ -121,7 +121,9 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     /* Fajr */
     if (fj == 99) {
         tempPrayer[0] = 99;
-        invalid = 1;
+        if (conf->method != MOONSIGHTING_COMMITTEE) {
+            invalid = 1;
+        }
     }
     else tempPrayer[0] = zu - fj;
 
@@ -147,7 +149,9 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     /* Ishaa */
     if (is == 99) {
         tempPrayer[5] = 99;
-        invalid = 1;
+        if (conf->method != MOONSIGHTING_COMMITTEE) {
+            invalid = 1;
+        }
     }
     else tempPrayer[5] = zu + is;
 
@@ -155,6 +159,10 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     if (conf->method == MOONSIGHTING_COMMITTEE) {
         tempPrayer[0] = getSeasonalFajr(lat, dayOfYear, tempPrayer[0], tempPrayer[1]);
         tempPrayer[5] = getSeasonalIsha(lat, dayOfYear, tempPrayer[5], tempPrayer[4]);
+        
+        if (tempPrayer[0] == 99 || tempPrayer[5] == 99) {
+            invalid = 1;
+        }
         
         if (tempPrayer[2] != 99) {
             tempPrayer[2] += (5.0 / 60.0);
@@ -682,7 +690,7 @@ static double getSeasonalFajr(double lat, int day, double fajr, double sunrise)
     }
     
     adjustedFajr = sunrise - (floor(A) / 60.0);
-    if (adjustedFajr > fajr) {
+    if (adjustedFajr > fajr || fajr == 99) {
         fajr = adjustedFajr;
     }
     
@@ -717,7 +725,7 @@ static double getSeasonalIsha(double lat, int day, double isha, double sunset)
     }
 
     adjustedIsha = sunset + (ceil(A) / 60.0);
-    if (adjustedIsha < isha) {
+    if (adjustedIsha < isha || isha == 99) {
         isha = adjustedIsha;
     }
     
