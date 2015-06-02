@@ -49,7 +49,8 @@ enum methods    { NONE,
                   FIXED_ISHAA,
                   EGYPT_NEW,
                   UMM_ALQURRA_RAMADAN,
-                  MOONSIGHTING_COMMITTEE };
+                  MOONSIGHTING_COMMITTEE,
+                  MOROCCO_AWQAF };
 
 enum salatType  { FAJR,
                   SHUROOQ,
@@ -880,6 +881,14 @@ void getMethod(int n, Method* conf)
     case MOONSIGHTING_COMMITTEE:
         conf->fajrAng = 18;
         conf->ishaaAng = 18;
+        break;
+
+    case MOROCCO_AWQAF:
+        conf->fajrAng = 19;
+        conf->ishaaAng = 17;
+        conf->offset = 1;
+        conf->offList[2] = 5;
+        conf->offList[4] = 5;
         break;
     }
 }
