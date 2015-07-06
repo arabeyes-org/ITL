@@ -71,6 +71,13 @@ Method List:
 	* Fajr and Isha calculated with different values based on the season
 	* Used in: parts of the United States, parts of the UK
 
+10. Morocco Awqaf Ministry
+	* Fajr Angle: 19
+	* Ishaa Angle: 17
+	* Zuhr Offset: 5 min
+	* Maghrib Offset: 5 min
+	* Used in: Morocco
+
 
 ##  Notes on the Angle Table Used Above
 

@@ -134,6 +134,7 @@ extern "C" {
        8: Egyptian General Authority of Survey (Egypt)
        9: Umm Al-Qurra Ramadan, Saudi Arabia
       10: Moonsighting Committee Worldwide
+      11: Morocco Awqaf, Morocco
     */
     void getMethod(int n, Method* conf);
 
