@@ -73,7 +73,7 @@ static void getDayInfo( const Date* date, double gmt, int *lastDay, int *dayOfYe
 static void getPrayerTimesByDay ( const Location* loc, const Method* conf, int lastDay,
                                   int dayOfYear, double julianDay, Prayer* pt, int type);
 
-Astro astroCache; /* This global variable is used for caching values between
+/* Astro astroCache;  This global variable is used for caching values between
                    * multiple getPrayerTimesByDay() calls. You can disable this
                    * caching feature by moving this line to the start of the
                    * getPrayerTimesByDay() function. */
@@ -97,6 +97,7 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     double zu, sh, mg, fj, is, ar;
     double lat, lon, dec;
     double tempPrayer[6];
+    Astro astroCache; // made as a local variable to avoid race condition between threads
     Astro tAstro;
 
     lat = loc->degreeLat;
