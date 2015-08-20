@@ -97,7 +97,8 @@ static void getPrayerTimesByDay ( const Location* loc, const Method* conf,
     double zu, sh, mg, fj, is, ar;
     double lat, lon, dec;
     double tempPrayer[6];
-    Astro astroCache; // made as a local variable to avoid race condition between threads
+    /* made as a local variable to avoid race condition between threads */
+    Astro astroCache;
     Astro tAstro;
 
     lat = loc->degreeLat;
