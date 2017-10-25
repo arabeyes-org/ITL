@@ -25,3 +25,4 @@ Perform the following commands:
 | PHP      	| Official port        	| https://github.com/arabeyes-org/ITL-ports   	|
 | Obj-C    	| Unofficial interface 	| https://github.com/batoulapps/BAPrayerTimes 	|
 | Java     	| Unofficial port      	| https://github.com/fikr4n/itl-java          	|
+| GObject  	| Unofficial interface 	| https://github.com/aelmahmoudy/libitl-gobject |
