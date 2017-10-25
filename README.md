@@ -18,6 +18,13 @@ Perform the following commands:
   * make
   * make install (optional)
 
+Alternatively, one can build using the autoconf build system as follows:
+  * autoreconf -f -i
+  * ./configure
+  * make
+  * make check (optional to run tests)
+  * make install (optional)
+
 ## Other Languages
 
 | Language 	| Type                 	| URL                                         	|
