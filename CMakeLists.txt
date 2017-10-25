@@ -3,6 +3,7 @@
 
 cmake_minimum_required(VERSION 2.6)
 project( itl )
+include(GNUInstallDirs)
 message( "Installation target directory is: " ${CMAKE_INSTALL_PREFIX} )
 message( "To override this value, use 'make -DCMAKE_INSTALL_PREFIX=$DIR'" )
 
@@ -25,8 +26,8 @@ set( SOURCE_FILES
         )
 
 add_library( itl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
-install( FILES ${HEADER_FILES} DESTINATION "include/" )
-install( TARGETS itl DESTINATION "lib/" )
+install( FILES ${HEADER_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/itl" )
+install( TARGETS itl DESTINATION ${CMAKE_INSTALL_LIBDIR} )
 
 # Specify executables
 add_executable( demo_hijri hijri/demo_hijri.c )
