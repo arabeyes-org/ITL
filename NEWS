@@ -17,6 +17,18 @@
  *
  ************************************************************************/
 
+* Changes in libitl-0.8.0
+
+** New Features
+*** Added Morocco Awqaf Ministry calculation method
+
+** Bug fixes
+*** Fixed handling of invalid times when using Moonsighting committee method
+*** Some code refactoring
+*** Several bug fixes
+
+Updated other calcualtion methods
+
 * Changes in libitl-0.7.0
 
 ** New Features
