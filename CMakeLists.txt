@@ -32,6 +32,7 @@ set( SOURCE_FILES
 
 add_library( itl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
 add_library( itlShared SHARED  ${HEADER_FILES} ${SOURCE_FILES} )
+target_link_libraries( itlShared -lm )
 set_target_properties(itlShared PROPERTIES VERSION "${LIBRARY_VERSION_FULL}" SOVERSION "${LIBRARY_VERSION_MAJOR}" OUTPUT_NAME "itl" )
 install( FILES ${HEADER_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/itl" )
 install( TARGETS itl DESTINATION ${CMAKE_INSTALL_LIBDIR} )
