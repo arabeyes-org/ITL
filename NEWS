@@ -1,0 +1,36 @@
+/************************************************************************
+ * $Id$
+ *
+ * ------------
+ * Description:
+ * ------------
+ * This file is about changes to libitl. For now, the style of the
+ * file follows the format used in Emacs org-mode.
+ *  
+ * -----------------
+ * Revision Details:    (Updated by Revision Control System)
+ * -----------------
+ *  $Date$
+ *  $Author$
+ *  $Revision$
+ *  $Source$
+ *
+ ************************************************************************/
+
+* Changes in libitl-0.7.0
+
+** New Features
+*** Added a new method, for more info see prayertime/doc/method-info.txt.
+*** Added preliminary support for delta-t
+*** Added improved Invalid/error handling for all prayers
+
+** Bug fixes
+*** Fixed a bug causing wrong Assr prayer times in Southern hemisphere locations.
+*** Fajr and Ishaa Intervals will not be set when Maghrib/Shurooq is 99 (i.e. invalid)
+
+** Build process
+*** We now ship a configure script by default in packages, and Autoconf is no longer required to compile the library.
+*** Added proper static library building by default
+*** Added preliminary support for libtool using the "libitl-libtool" make option
+
+Plus many code-level restructuring, documentation, and cleanups.
