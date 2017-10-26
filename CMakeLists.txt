@@ -33,9 +33,18 @@ set( SOURCE_FILES
 add_library( itl STATIC ${HEADER_FILES} ${SOURCE_FILES} )
 add_library( itlShared SHARED  ${HEADER_FILES} ${SOURCE_FILES} )
 set_target_properties(itlShared PROPERTIES VERSION "${LIBRARY_VERSION_FULL}" SOVERSION "${LIBRARY_VERSION_MAJOR}" OUTPUT_NAME "itl" )
+set(prefix "${CMAKE_INSTALL_PREFIX}")
+set(exec_prefix "\${prefix}")
+set(libdir "\${exec_prefix}/lib")
+set(includedir "\${prefix}/include")
+set(PACKAGE_NAME "libitl")
+set(VERSION "${LIBRARY_VERSION_FULL}")
+configure_file("libitl.pc.in" "libitl.pc" @ONLY)
+
 install( FILES ${HEADER_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/itl" )
 install( TARGETS itl DESTINATION ${CMAKE_INSTALL_LIBDIR} )
 install( TARGETS itlShared DESTINATION ${CMAKE_INSTALL_LIBDIR} )
+install(FILES "libitl.pc" DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig/)
 
 # Specify executables
 add_executable( demo_hijri hijri/demo_hijri.c )
