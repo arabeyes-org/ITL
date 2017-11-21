@@ -32,5 +32,5 @@ AC_FUNC_MALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([floor memset modf pow sqrt strtol])
 
-AC_CONFIG_FILES([Makefile libitl.pc])
+AC_CONFIG_FILES([Makefile libitl.pc new_method/Makefile])
 AC_OUTPUT
