@@ -11,7 +11,7 @@ check_PROGRAMS = prayer
 prayer_LDADD= -lprayer -lm
 prayer_SOURCES = src/main.c
 
-#TESTS=tests/run_tests.py
+TESTS=testwrapper.sh
 
 exampledir = $(datarootdir)/doc/@PACKAGE@/new_method
 example_DATA = $(prayer_SOURCES)
