@@ -1,4 +1,4 @@
-
+SUBDIRS=$(AM_SUBDIRS)
 lib_LTLIBRARIES = libitl.la
 libitl_la_CFLAGS = 
 libitl_la_LDFLAGS = -version-info $(LTVERSION)

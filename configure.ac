@@ -13,6 +13,15 @@ LTVERSION=CURRENT:REV:AGE
 AC_SUBST(LTVERSION)
 
 AC_PROG_LIBTOOL
+
+# Enable new method:
+AC_ARG_ENABLE(newmethod,
+  AC_HELP_STRING([--enable-newmethod],[Enable new prayertime calculation method (still under development)]),
+  AM_SUBDIRS="$AM_SUBDIRS new_method",
+  AM_SUBDIRS="")
+
+AC_SUBST(AM_SUBDIRS)
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
@@ -32,5 +41,5 @@ AC_FUNC_MALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([floor memset modf pow sqrt strtol])
 
-AC_CONFIG_FILES([Makefile libitl.pc])
+AC_CONFIG_FILES([Makefile libitl.pc new_method/Makefile])
 AC_OUTPUT
