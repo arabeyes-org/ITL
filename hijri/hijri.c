@@ -96,6 +96,10 @@ char *h_month_short[13] = {"skip",
 			   "Ram", "Sha", "Qid", "Hij"};
 
 
+/* Forward declarations for C99 compatibility.  */
+int g_absolute(int day, int month, int year);
+int g_numdays(int month, int year);
+
 /* Store-off any events for passed-in date */
 int
 get_events(char ***addr_event,
